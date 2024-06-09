@@ -157,6 +157,7 @@
       auto-cpufreq
       jdk17
       jdk8
+      jre8
       (pass.withExtensions (ext: with ext ; [pass-otp]))
       pass
       gnupg
@@ -196,6 +197,8 @@
       openssl
       espeak
       ffmpeg
+      virtiofsd
+      rclone
     ])
 
     ++
@@ -249,9 +252,9 @@
 
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryPackage = pkgs.pinentry-gtk2;
     enableSSHSupport = true;
   };
 
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
