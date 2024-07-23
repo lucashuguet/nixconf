@@ -68,7 +68,8 @@
   },
 
   "clock": {
-    "format": "{:\uf017 %R  \uf073 %d/%m}",
+    "_format": "{:\uf017 %R  \uf073 %d/%m}",
+    "format": "<b>󰥔 {:%H:%M 󰃭 %d/%m}</b>",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
