@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, pkgs-zathura, ... }:
 
 {
   imports =
@@ -153,7 +153,6 @@
       ncmpcpp
       mpc-cli
       prismlauncher
-      zathura
       auto-cpufreq
       jdk17
       jdk8
@@ -199,6 +198,16 @@
       ffmpeg
       virtiofsd
       rclone
+      gimp
+      chromium
+      imagemagick
+      ncdu
+    ])
+
+    ++
+
+    (with pkgs-zathura; [
+      zathura # zathura 5.2
     ])
 
     ++

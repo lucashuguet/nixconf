@@ -41,7 +41,8 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "unstable": "unstable"
+        "unstable": "unstable",
+        "zathura": "zathura"
       }
     },
     "unstable": {
@@ -57,6 +58,22 @@
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "zathura": {
+      "locked": {
+        "lastModified": 1710537636,
+        "narHash": "sha256-f6uxdw4r8R5qUzaBJ8NCz7v8HHxF2ZNQ8+PcReJHV0I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5a83f6f984f387d47373f6f0c43b97a64e7755c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5a83f6f984f387d47373f6f0c43b97a64e7755c0",
         "type": "github"
       }
     }
