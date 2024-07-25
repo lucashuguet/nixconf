@@ -76,5 +76,24 @@
     ".config/dunst/config.toml".source = ./dotfiles/dunst.toml;
   };
 
+   xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/xhtml+xml" = "librewolf.desktop";
+      "text/html" = "librewolf.desktop";
+      "text/xml" = "librewolf.desktop";
+      "x-scheme-handler/ftp" = "librewolf.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+
+      "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+      "application/vnd.comicbook+zip" = "org.pwmt.zathura-cb.desktop";
+
+      "image/gif" = "sxiv.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/png" = "imv.desktop";
+    };
+  };
+
   programs.home-manager.enable = true;
 }
