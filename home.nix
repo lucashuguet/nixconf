@@ -9,6 +9,7 @@
     (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./scripts/rofidrives.py))
     (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ./scripts/rofinmcli.py))
     (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./scripts/rofitheme.sh))
+    (pkgs.writeScriptBin "screenshot" (builtins.readFile ./scripts/screenshot.sh))
     (pkgs.writeScriptBin "aurastatic" ''
       asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)
     '')
