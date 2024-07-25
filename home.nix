@@ -1,9 +1,9 @@
-{ config, pkgs, unstable-pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.username = "astrogoat";
   home.homeDirectory = "/home/astrogoat";
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   home.packages = [
     (pkgs.writeScriptBin "rofisink" (builtins.readFile ./scripts/rofisink.py))
     (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./scripts/rofidrives.py))
@@ -32,6 +32,15 @@
         variant = "mocha";
       };
     };
+    iconTheme = {
+      package = pkgs.tela-icon-theme;
+      name = "Tela-blue-dark";
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
   };
 
   xdg.configFile = {

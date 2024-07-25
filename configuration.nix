@@ -75,10 +75,14 @@
   };
 
   services.xserver.libinput.enable = true;
+
   services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --mode 1920x1080 --rate 60
   '';
+
   services.xserver.desktopManager.gnome.enable = true;
 
   services.xserver.xkb = {
@@ -123,10 +127,17 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables.XCURSOR_SIZE = "32";
-  environment.variables.EDITOR = "nvim";
-  environment.variables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-  # environment.variables.LD_LIBRARY_PATH = lib.mkForce "${pkgs.stdenv.cc.cc.lib}/lib";
+  environment.variables = {
+    XCURSOR_SIZE = "32";
+    EDITOR = "nvim";
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    # LD_LIBRARY_PATH = lib.mkForce "${pkgs.stdenv.cc.cc.lib}/lib";
+  };
+
+  environment.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  #   QT_STYLE_OVERRIDE = "kvantum";
+  };
 
   environment.systemPackages = 
     (with pkgs; [
@@ -202,6 +213,13 @@
       chromium
       imagemagick
       ncdu
+      pcmanfm
+      libsForQt5.qt5ct
+      libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qtbase
+      libsForQt5.qtsvg
+      libsForQt5.qtgraphicaleffects
+      libsForQt5.qtquickcontrols2
     ])
 
     ++
@@ -239,6 +257,8 @@
   programs.hyprland.enable = true;
   programs.fish.enable = true;
   programs.light.enable = true;
+
+  programs.command-not-found.enable = false;
 
   # programs.nh = {
   #   enable = true;
