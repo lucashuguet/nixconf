@@ -8,7 +8,6 @@
 
   boot = {
     kernelParams = [ "video=1920x1080@60" "quiet" ];
-    # kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "nvidia" ];
     loader.efi.canTouchEfiVariables = true;
     extraModprobeConfig = ''
@@ -24,8 +23,6 @@
       configurationLimit = 10;
     };
   };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -45,7 +42,13 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  services.xserver.enable = true;
+  console.keyMap = "fr";
+
+  sound.enable = true;
+  security.rtkit.enable = true;
+
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
 
   hardware.opengl = {
     enable = true;
@@ -53,8 +56,6 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [vaapiVdpau];
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -66,7 +67,7 @@
 
     prime = {
       offload = {
-	enable = true;
+	      enable = true;
         enableOffloadCmd =  true;
       };
       intelBusId = "PCI:0:2:0";
@@ -74,7 +75,16 @@
     };
   };
 
-  services.xserver.libinput.enable = true;
+  services.xserver = {
+    enable = true;
+    libinput.enable = true;
+    videoDrivers = [ "nvidia" ];
+    desktopManager.gnome.enable = true;
+    xkb = {
+      layout = "fr";
+      variant = "azerty";
+    };
+  };
 
   services.xserver.displayManager.sddm = {
     enable = true;
@@ -100,21 +110,13 @@
     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --mode 1920x1080 --rate 60
   '';
 
-  services.xserver.desktopManager.gnome.enable = true;
-
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "azerty";
-  };
-  console.keyMap = "fr";
+  services.asusd.enable = true;
+  services.auto-cpufreq.enable = true;
+  services.blueman.enable = true;
 
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -123,145 +125,112 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
-
-  services.auto-cpufreq.enable = true;
-  services.asusd.enable = true;
+  
   services.pcscd.enable = true;
-  services.blueman.enable = true;
-  # services.mpd.enable = true;
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="uucp"
-  '';
+  ''; # ledger read+write permissions for uucp group
 
   users.users.astrogoat = {
     isNormalUser = true;
     description = "AstroGoat";
     extraGroups = [ "networkmanager" "wheel" "audio" "video" "libvirtd" "uucp" "docker" ];
     shell = pkgs.fish;
-    packages = with pkgs; [];
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
     XCURSOR_SIZE = "32";
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    # LD_LIBRARY_PATH = lib.mkForce "${pkgs.stdenv.cc.cc.lib}/lib";
+    # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
-  environment.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  #   QT_STYLE_OVERRIDE = "kvantum";
-  };
+  nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = 
-    (with pkgs; [
-      neofetch
-      neovim
-      librewolf
-      mpv
-      thunderbird
-      eza
-      bat
-      fish
-      starship
-      hyprland
-      rofi-wayland
-      waybar
-      (python3.withPackages (ps: with ps; [numpy]))
-      pavucontrol
-      git
-      pywal
-      imv
-      sxiv
-      mpd
-      ncmpcpp
-      mpc-cli
-      prismlauncher
-      auto-cpufreq
-      jdk17
-      jdk8
-      jre8
-      (pass.withExtensions (ext: with ext; [pass-otp]))
-      pass
-      gnupg
-      pinentry
-      pinentry-gtk2
-      emacs
-      mangal
-      aria
-      asusctl
-      yt-dlp
-      home-manager
-      swww
-      dunst
-      qutebrowser
-      libnotify
-      wl-clipboard
-      light
-      virt-manager
-      steam
-      lutris
-      ledger-live-desktop
-      libreoffice
-      docker
-      docker-compose
-      p7zip
-      wine
-      qrencode
-      zbar
-      rustup
-      blueman
-      ncdu
-      vimv
-      rust-analyzer
-      gcc
-      nodejs
-      pkg-config
-      openssl
-      espeak
-      ffmpeg
-      virtiofsd
-      rclone
-      gimp
-      chromium
-      imagemagick
-      ncdu
-      pcmanfm
-      capitaine-cursors
-      grim
-      slurp
-      wlr-randr
-      (callPackage ./pkgs/bpytop.nix {})
-    ])
+  environment.systemPackages = (with pkgs; [
+    aria
+    asusctl
+    auto-cpufreq
+    bat
+    blueman
+    capitaine-cursors
+    chromium
+    docker
+    docker-compose
+    dunst
+    emacs
+    espeak
+    eza
+    ffmpeg
+    fish
+    gcc
+    gimp
+    git
+    gnupg
+    grim slurp # screenshot tools
+    home-manager
+    hyprland
+    imagemagick
+    imv
+    jdk8 jdk17 jdk21
+    ledger-live-desktop
+    libnotify
+    libreoffice
+    librewolf
+    light
+    lutris
+    mangal
+    mpd mpc-cli ncmpcpp
+    mpv
+    ncdu
+    neofetch
+    neovim
+    nodejs
+    # openssl
+    p7zip
+    pavucontrol
+    pcmanfm
+    pinentry pinentry-gtk2
+    # pkg-config
+    prismlauncher
+    pywal # themes from wallpapers
+    qutebrowser
+    rofi-wayland
+    rustup  rust-analyzer
+    starship
+    steam
+    swww
+    sxiv
+    thunderbird
+    vimv
+    virt-manager virtiofsd
+    waybar
+    wine
+    wl-clipboard
+    wlr-randr
+    yt-dlp
 
-    ++
+    (pass.withExtensions (ext: with ext; [pass-otp]))
+    (python3.withPackages (ps: with ps; [numpy]))
 
-    (with pkgs-zathura; [
-      zathura # zathura 5.2
-    ])
+    (callPackage ./pkgs/bpytop.nix {})
+  ])
 
-    ++
+  ++
 
-    (with pkgs-unstable; [
-      alacritty
-      nh
-    ]);
+  (with pkgs-zathura; [ zathura ]) # zathura 5.2 (fix cbz being cropped)
 
-  fonts.packages = 
-    (with pkgs-unstable; [
-      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    ])
+  ++
 
-    ++
+  (with pkgs-unstable; [ alacritty nh ]);
 
-    (with pkgs; [
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-cjk
-    ]);
+  fonts.packages = (with pkgs-unstable; [
+    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  ])
+
+  ++
+
+  (with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ]);
 
   fonts.fontconfig.defaultFonts = {
     serif = [ "Noto Serif" ];
@@ -269,36 +238,29 @@
     monospace = [ "FantasqueSansM Nerd Font" ];
   };
 
-  programs.hyprland.enable = true;
-  programs.fish.enable = true;
-  programs.light.enable = true;
-
-  programs.command-not-found.enable = false;
-
-  # programs.nh = {
-  #   enable = true;
-  #   clean.enable = true;
-  #   clean.extraArgs = "--keep-since 4d --keep 3";
-  #   flake = "/home/astrogoat/nixos";
-  # };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+  programs = {
+    command-not-found.enable = false;
+    fish.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gtk2;
+      enableSSHSupport = true;
+    };
+    hyprland.enable = true;
+    light.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    virt-manager.enable = true;
   };
 
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.docker.enable = true;
 
-  programs.virt-manager.enable = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
-    enableSSHSupport = true;
-  };
-
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 }
