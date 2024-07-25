@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, pkgs-zathura, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-zathura, ... }:
 
 {
   imports =
@@ -7,7 +7,7 @@
     ];
 
   boot = {
-    kernelParams = [ "video=1920x1080@60" ];
+    kernelParams = [ "video=1920x1080@60" "quiet" ];
     # kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "nvidia" ];
     loader.efi.canTouchEfiVariables = true;
@@ -76,8 +76,25 @@
 
   services.xserver.libinput.enable = true;
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    settings = {
+      Theme = {
+        CursorTheme = "capitaine-cursors";
+        CursorSize = 32;
+      };
+    };
+    sugarCandyNix = {
+      enable = true;
+      settings = {
+        Background = lib.cleanSource ./assets/background.png;
+        FormPosition = "left";
+        MainColor = "#99d2e8";
+        AccentColor = "#9169B0";
+        BackgroundColor = "#99d2e8";
+      };
+    };
+  };
 
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --mode 1920x1080 --rate 60
@@ -153,8 +170,7 @@
       hyprland
       rofi-wayland
       waybar
-      python3
-      python311Packages.numpy
+      (python3.withPackages (ps: with ps; [numpy]))
       pavucontrol
       git
       pywal
@@ -168,7 +184,7 @@
       jdk17
       jdk8
       jre8
-      (pass.withExtensions (ext: with ext ; [pass-otp]))
+      (pass.withExtensions (ext: with ext; [pass-otp]))
       pass
       gnupg
       pinentry
@@ -214,12 +230,11 @@
       imagemagick
       ncdu
       pcmanfm
-      libsForQt5.qt5ct
-      libsForQt5.qtstyleplugin-kvantum
-      libsForQt5.qtbase
-      libsForQt5.qtsvg
-      libsForQt5.qtgraphicaleffects
-      libsForQt5.qtquickcontrols2
+      capitaine-cursors
+      grim
+      slurp
+      wlr-randr
+      (callPackage ./pkgs/bpytop.nix {})
     ])
 
     ++
