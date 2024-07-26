@@ -1,5 +1,9 @@
-{ config, lib, pkgs, pkgs-unstable, pkgs-zathura, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
+let
+  pkgs-unstable = inputs.unstable.legacyPackages.${pkgs.system};
+  pkgs-zathura = inputs.zathura.legacyPackages.${pkgs.system};
+in 
 {
   imports =
     [ 
@@ -235,39 +239,6 @@
   ++
 
   (with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ]);
-
-  # environment.gnome.excludePackages = (with pkgs; [
-  #   gnome-photos
-  #   gnome-tour
-  #   gnome-text-editor
-  #   gnome-connections
-  #   loupe
-  # ]) ++ (with pkgs.gnome; [
-  #   cheese # webcam tool
-  #   gnome-music
-  #   gnome-terminal
-  #   gnome-calculator
-  #   gnome-calendar
-  #   gnome-clocks
-  #   gnome-contacts
-  #   gnome-maps
-  #   gnome-music
-  #   gnome-system-monitor
-  #   gnome-weather
-  #   gedit # text editor
-  #   epiphany # web browser
-  #   geary # email reader
-  #   evince # document viewer
-  #   gnome-characters
-  #   totem # video player
-  #   tali # poker game
-  #   iagno # go game
-  #   hitori # sudoku game
-  #   atomix # puzzle game
-  #   nautilus
-  #   simple-scan
-  #   snapshot
-  # ]);
 
   fonts.fontconfig.defaultFonts = {
     serif = [ "Noto Serif" ];

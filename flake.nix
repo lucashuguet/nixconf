@@ -17,26 +17,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, zathura, home-manager, sddm-sugar-candy-nix, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
 
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = unstable.legacyPackages.${system};
-      pkgs-zathura = zathura.legacyPackages.${system};
-
       home-manager = inputs.home-manager;
     in {
       nixosConfigurations."nixos" = lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-	        # inherit inputs;
-	        inherit pkgs-unstable;
-          inherit pkgs-zathura;
-	      };
+        specialArgs = { inherit inputs; };
         modules = [
-          sddm-sugar-candy-nix.nixosModules.default
+          inputs.sddm-sugar-candy-nix.nixosModules.default
           ./configuration.nix
         ];
       };
@@ -44,9 +36,6 @@
       homeConfigurations."astrogoat@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 	      modules = [ ./home.nix ];
-	      extraSpecialArgs = {
-          inherit pkgs-unstable;
-	      };
       };
     };
 }
