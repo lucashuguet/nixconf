@@ -182,6 +182,7 @@ in
     imagemagick
     imv
     jdk8 jdk17 jdk21
+    kitty
     ledger-live-desktop
     libnotify
     libreoffice
