@@ -74,6 +74,7 @@
     ".config/rofi/theme.rasi".source = ./dotfiles/rofi_theme.rasi;
     ".config/qutebrowser/config.py".source = ./dotfiles/qutebrowser.py;
     ".config/dunst/config.toml".source = ./dotfiles/dunst.toml;
+    ".config/fastfetch/config.jsonc".source = ./dotfiles/fastfetch.jsonc;
   };
 
    xdg.mimeApps = {

@@ -169,6 +169,7 @@ in
     emacs
     espeak
     eza
+    fastfetch
     ffmpeg
     fish
     gcc
@@ -191,7 +192,6 @@ in
     mpd mpc-cli ncmpcpp
     mpv
     ncdu
-    neofetch
     neovim
     nodejs
     # openssl

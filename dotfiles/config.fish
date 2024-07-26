@@ -52,6 +52,6 @@ alias vim="nvim"
 #    PF_INFO="ascii title os host kernel uptime pkgs shell" pfetch
 # end
 
-if status --is-interactive && type -q neofetch
-  neofetch
+if status --is-interactive && type -q fastfetch
+  fastfetch
 end
