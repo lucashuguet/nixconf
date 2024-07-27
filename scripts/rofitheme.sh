@@ -81,6 +81,7 @@ hyprland=$colors_path/hyprland.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
 aura=$colors_path/aura.txt
+kitty=$colors_path/kitty.conf
 
 dunstc=~/.config/dunst/config.toml
 dunstrc=~/.config/dunst/dunstrc
@@ -176,6 +177,28 @@ cat $dunstc | tee -a $dunstrc
 
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
+
+rm $kitty
+echo "foreground  $foreground" | tee -a $kitty
+echo "background  $background" | tee -a $kitty
+echo "color0      $black" | tee -a $kitty
+echo "color8      $lblack" | tee -a $kitty
+echo "color1      $red" | tee -a $kitty
+echo "color9      $lred" | tee -a $kitty
+echo "color2      $green" | tee -a $kitty
+echo "color10     $lgreen" | tee -a $kitty
+echo "color3      $yellow" | tee -a $kitty
+echo "color11     $lyellow" | tee -a $kitty
+echo "color4      $blue" | tee -a $kitty
+echo "color12     $lblue" | tee -a $kitty
+echo "color5      $magenta" | tee -a $kitty
+echo "color13     $lmagenta" | tee -a $kitty
+echo "color6      $cyan" | tee -a $kitty
+echo "color14     $lcyan" | tee -a $kitty
+echo "color7      $white" | tee -a $kitty
+echo "color15     $lwhite" | tee -a $kitty
+
+# kitty @ set-colors -a "~/.config/colors/kitty.conf"
 
 pkill waybar
 pkill dunst

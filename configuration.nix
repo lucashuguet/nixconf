@@ -182,7 +182,6 @@ in
     imagemagick
     imv
     jdk8 jdk17 jdk21
-    kitty
     ledger-live-desktop
     libnotify
     libreoffice
@@ -218,6 +217,11 @@ in
     wl-clipboard
     wlr-randr
     yt-dlp
+
+
+    (kitty.overrideAttrs (final: prev: {
+      patches = prev.patches ++ [ ./kitty_bold_bright.patch ];
+    }))
 
     (pass.withExtensions (ext: with ext; [pass-otp]))
     (python3.withPackages (ps: with ps; [numpy]))
