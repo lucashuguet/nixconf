@@ -168,6 +168,7 @@ in
     dunst
     emacs
     espeak
+    exegol
     eza
     fastfetch
     ffmpeg
