@@ -122,6 +122,9 @@ in
   services.gnome.core-utilities.enable = false;
   services.gnome.rygel.enable = false;
 
+  services.ollama.enable = true;
+  services.ollama.acceleration = "cuda";
+
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
 
@@ -195,6 +198,7 @@ in
     ncdu
     neovim
     nodejs
+    ollama
     # openssl
     p7zip
     pavucontrol
@@ -205,7 +209,7 @@ in
     pywal # themes from wallpapers
     qutebrowser
     rofi-wayland
-    rustup  rust-analyzer
+    rustup rust-analyzer
     starship
     steam
     swww
@@ -219,9 +223,8 @@ in
     wlr-randr
     yt-dlp
 
-
     (pass.withExtensions (ext: with ext; [pass-otp]))
-    (python3.withPackages (ps: with ps; [numpy]))
+    (python3.withPackages (ps: with ps; [numpy python-lsp-server]))
 
     (callPackage ./pkgs/bpytop.nix {})
   ])
