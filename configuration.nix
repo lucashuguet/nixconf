@@ -217,13 +217,8 @@ in
     wine
     wl-clipboard
     wlr-randr
-    yazi
     yt-dlp
 
-
-    (kitty.overrideAttrs (final: prev: {
-      patches = prev.patches ++ [ ./kitty_bold_bright.patch ];
-    }))
 
     (pass.withExtensions (ext: with ext; [pass-otp]))
     (python3.withPackages (ps: with ps; [numpy]))
@@ -237,7 +232,7 @@ in
 
   ++
 
-  (with pkgs-unstable; [ nh ]);
+  (with pkgs-unstable; [ alacritty nh ]);
 
   fonts.packages = (with pkgs-unstable; [
     (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
