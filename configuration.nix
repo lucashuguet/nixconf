@@ -138,6 +138,7 @@ in
   };
   
   services.pcscd.enable = true;
+  services.usbmuxd.enable = true;
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="uucp"
@@ -183,9 +184,10 @@ in
     grim slurp # screenshot tools
     home-manager
     hyprland
+    jdk8 jdk17 jdk21
+    ifuse libimobiledevice
     imagemagick
     imv
-    jdk8 jdk17 jdk21
     ledger-live-desktop
     libnotify
     libreoffice
@@ -199,12 +201,10 @@ in
     neovim
     nodejs
     ollama
-    # openssl
     p7zip
     pavucontrol
     pcmanfm
     pinentry pinentry-gtk2
-    # pkg-config
     prismlauncher
     pywal # themes from wallpapers
     qutebrowser
