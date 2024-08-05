@@ -216,6 +216,7 @@ in
     wine
     wl-clipboard
     wlr-randr
+    yazi
     yt-dlp
 
 
@@ -235,7 +236,7 @@ in
 
   ++
 
-  (with pkgs-unstable; [ alacritty nh ]);
+  (with pkgs-unstable; [ nh ]);
 
   fonts.packages = (with pkgs-unstable; [
     (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })

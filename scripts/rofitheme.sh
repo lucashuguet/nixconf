@@ -45,7 +45,7 @@ light_color() {
     echo "#$(twolen $(printf '%x' ${light[0]}))$(twolen $(printf '%x' ${light[1]}))$(twolen $(printf '%x' ${light[2]}))"
 }
 
-wal -qntes -i ~/Pictures/wallpapers/$file.png
+wal -qnte -i ~/Pictures/wallpapers/$file.png
 
 source ~/.cache/wal/colors.sh
 
