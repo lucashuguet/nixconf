@@ -216,6 +216,7 @@ in
     sxiv
     thunderbird
     vimv
+    virtualenv
     virt-manager virtiofsd
     waybar
     wine
