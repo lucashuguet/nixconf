@@ -179,7 +179,7 @@ in
     fish
     gcc
     gimp
-    git
+    git git-lfs
     gnupg
     grim slurp # screenshot tools
     home-manager
