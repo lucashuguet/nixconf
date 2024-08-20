@@ -20,22 +20,29 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      lib = nixpkgs.lib;
-
       pkgs = nixpkgs.legacyPackages.${system};
-      home-manager = inputs.home-manager;
+      pkgs-unstable = inputs.unstable.legacyPackages.${system};
     in {
-      nixosConfigurations."nixos" = lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          inputs.sddm-sugar-candy-nix.nixosModules.default
-          ./configuration.nix
-        ];
-      };
-
-      homeConfigurations."astrogoat@nixos" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	      modules = [ ./home.nix ];
+      nixosConfigurations = {
+        "rog" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system pkgs-unstable;
+            DE = [ "hyprland" "gnome" ];
+            username = "astrogoat";
+            hostname = "rog";
+          } // inputs;
+          modules = [
+            ./.
+            ./modules/hardware/nvidia
+            ./modules/games
+            ./modules/cups
+            ./modules/code
+            ./modules/apps/ai
+            ./modules/apps/ledger
+            ./modules/apps/mangal
+            ./modules/virt
+          ];
+        };
       };
     };
 }
