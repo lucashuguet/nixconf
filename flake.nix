@@ -43,6 +43,19 @@
             ./modules/virt
           ];
         };
+
+        "natnix" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system pkgs-unstable;
+            DE = [ "gnome" ];
+            username = "natminer";
+            hostname = "natnix";
+          } // inputs;
+          modules = [
+            ./.
+            ./modules/hardware/nvidia
+          ];
+        };
       };
     };
 }
