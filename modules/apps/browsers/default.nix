@@ -1,12 +1,6 @@
-{ pkgs, username, ... }:
+{ extra-browsers, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [
-      librewolf chromium qutebrowser
-    ];
-
-    home.file = {
-      ".config/qutebrowser/config.py".source = ./config.py;
-    };
-  };
+  imports = (builtins.map (br: ./${br}) extra-browsers) ++ [
+    ./librewolf
+  ];
 }

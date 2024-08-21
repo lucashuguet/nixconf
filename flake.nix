@@ -28,6 +28,7 @@
           specialArgs = {
             inherit system pkgs-unstable;
             DE = [ "hyprland" "gnome" ];
+            extra-browsers = [ "qutebrowser" "chromium" ];
             username = "astrogoat";
             hostname = "rog";
           } // inputs;
