@@ -5,7 +5,7 @@
       username = {
         format = " [$user]($style)@";
         show_always = true;
-        style_user = "green bold";
+        style_user = "red bold";
         style_root = "red bold";
       };
 
@@ -52,87 +52,87 @@
       };
 
       aws = {
-        symbol = "\uebaa ";
+        symbol = " ";
       };
 
       conda = {
-        symbol = "\uec16 ";
+        symbol = " ";
       };
 
       dart = {
-        symbol = "\ue798 ";
+        symbol = " ";
       };
 
       docker_context = {
-        symbol = "\uf21f ";
+        symbol = " ";
       };
 
       elixir = {
-        symbol = "\ue62d ";
+        symbol = " ";
       };
 
       elm = {
-        symbol = "\ue62c ";
+        symbol = " ";
       };
 
       git_branch = {
-        symbol = "\ue725 ";
+        symbol = " ";
       };
 
       golang = {
-        symbol = "\ue627 ";
+        symbol = " ";
       };
 
       hg_branch = {
-        symbol = "\ue725 ";
+        symbol = " ";
       };
 
       java = {
-        symbol = "\ue738 ";
+        symbol = " ";
       };
 
       julia = {
-        symbol = "\ue624 ";
+        symbol = " ";
       };
 
       nim = {
-        symbol = "\ue677 ";
+        symbol = " ";
       };
 
       nix_shell = {
-        symbol = "\uf313 ";
+        symbol = "󱄅 ";
       };
 
       nodejs = {
-        symbol = "\ued0d ";
+        symbol = " ";
       };
 
       package = {
-        symbol = "\ueb29 ";
+        symbol = " ";
       };
 
       perl = {
-        symbol = "\ue67e ";
+        symbol = " ";
       };
 
       php = {
-        symbol = "\ue608 ";
+        symbol = " ";
       };
 
       python = {
-        symbol = "\ue73c ";
+        symbol = " ";
       };
 
       ruby = {
-        symbol = "\ue739 ";
+        symbol = " ";
       };
 
       rust = {
-        symbol = "\ue7a8 ";
+        symbol = " ";
       };
 
       swift = {
-        symbol = "\ue755 ";
+        symbol = " ";
       };
     };
   };
