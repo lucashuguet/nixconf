@@ -1,12 +1,13 @@
 { pkgs, username, ... }:
 let
-  gtkThemeName = "Catppuccin-Mocha-Standard-Blue-Dark";
+  gtkThemeName = "catppuccin-mocha-blue-standard+rimless,black";
   gtkThemePkg = pkgs.catppuccin-gtk.override {
     accents = [ "blue" ];
     size = "standard";
     tweaks = [ "rimless" "black" ];
     variant = "mocha";
   };
+  gtk4 = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0";
 in
 {
   services.xserver = {
@@ -52,9 +53,9 @@ in
     };
 
     xdg.configFile = {
-      "gtk-4.0/assets".source = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0/assets";
-      "gtk-4.0/gtk.css".source = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0/gtk.css";
-      "gtk-4.0/gtk-dark.css".source = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0/gtk-dark.css";
+      "gtk-4.0/assets".source = "${gtk4}/assets";
+      "gtk-4.0/gtk.css".source = "${gtk4}/gtk.css";
+      "gtk-4.0/gtk-dark.css".source = "${gtk4}/gtk-dark.css";
     };
 
     xdg.mimeApps = {

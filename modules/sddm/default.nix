@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     settings = {
       Theme = {
