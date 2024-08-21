@@ -2,7 +2,7 @@
 {
   home-manager.users.${username} = {
     home.packages =
-      (with pkgs; [ rofi-wayland pywal ])
+      (with pkgs; [ rofi-wayland fzf pywal ])
       ++
       [
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ../../../sh/rofisink.py))

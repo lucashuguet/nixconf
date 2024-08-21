@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
 file=$(find ~/Pictures/wallpapers/ -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -dmenu)
+hypr=1
 
-if [ $? == 1 ]; then	
+if [ -z "${file}" ]; then
+  file=$(find ~/Pictures/wallpapers/ -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
+  hypr=0
+fi
+
+if [ -z "${file}" ]; then	
   exit 0
 fi
 
@@ -49,7 +55,12 @@ wal -qntes -i ~/Pictures/wallpapers/$file.png
 
 source ~/.cache/wal/colors.sh
 
-swww img $wallpaper -t none
+if [ $hypr -eq 1 ]; then	
+  swww img $wallpaper -t none
+fi
+
+gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
+gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
 
 black=$color0
 red=$color1
@@ -73,6 +84,10 @@ lforeground=$white
 lbackground=$color2
 
 colors_path=~/.config/colors
+
+if [ ! -d $colors_path ]; then
+  mkdir -p $colors_path;
+fi
 
 alacritty=$colors_path/alacritty.toml
 qutebrowser=$colors_path/qutebrowser.yml
@@ -178,30 +193,10 @@ cat $dunstc | tee -a $dunstrc
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
-rm $kitty
-echo "foreground  $foreground" | tee -a $kitty
-echo "background  $background" | tee -a $kitty
-echo "color0      $black" | tee -a $kitty
-echo "color8      $lblack" | tee -a $kitty
-echo "color1      $red" | tee -a $kitty
-echo "color9      $lred" | tee -a $kitty
-echo "color2      $green" | tee -a $kitty
-echo "color10     $lgreen" | tee -a $kitty
-echo "color3      $yellow" | tee -a $kitty
-echo "color11     $lyellow" | tee -a $kitty
-echo "color4      $blue" | tee -a $kitty
-echo "color12     $lblue" | tee -a $kitty
-echo "color5      $magenta" | tee -a $kitty
-echo "color13     $lmagenta" | tee -a $kitty
-echo "color6      $cyan" | tee -a $kitty
-echo "color14     $lcyan" | tee -a $kitty
-echo "color7      $white" | tee -a $kitty
-echo "color15     $lwhite" | tee -a $kitty
+if [ $hypr -eq 1 ]; then	
+  pkill waybar
+  pkill dunst
 
-# kitty @ set-colors -a "~/.config/colors/kitty.conf"
-
-pkill waybar
-pkill dunst
-
-waybar &
-dunst &
+  waybar &
+  dunst &
+fi

@@ -49,12 +49,14 @@
           specialArgs = {
             inherit system pkgs-unstable;
             DE = [ "gnome" ];
+            extra-browsers = [];
             username = "natminer";
             hostname = "natnix";
           } // inputs;
           modules = [
             ./.
             ./modules/hardware/nvidia
+            ./modules/hyprland/rofi
           ];
         };
       };
