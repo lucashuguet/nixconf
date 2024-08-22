@@ -1,7 +1,7 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, unstable, ... }:
 {
   fonts = {
-    packages = (with pkgs-unstable; [
+    packages = (with unstable; [
       (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     ])
 

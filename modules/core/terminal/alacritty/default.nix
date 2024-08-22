@@ -1,6 +1,6 @@
-{ pkgs-unstable, username, ... }:
+{ unstable, username, ... }:
 {
-  environment.systemPackages = with pkgs-unstable; [ alacritty ];
+  environment.systemPackages = with unstable; [ alacritty ];
 
   home-manager.users.${username} = _: {
     home.file = {

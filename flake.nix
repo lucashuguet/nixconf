@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    zathura.url = "github:nixos/nixpkgs/5a83f6f984f387d47373f6f0c43b97a64e7755c0"; # zathura 5.2
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-zathura.url = "github:nixos/nixpkgs/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3"; # zathura 5.2 (fix cbz being cropped)
 
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
@@ -17,16 +17,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = inputs.unstable.legacyPackages.${system};
+      unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
       nixosConfigurations = {
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system pkgs-unstable;
+            inherit system unstable;
             DE = [ "hyprland" "gnome" ];
             extra-browsers = [ "qutebrowser" "chromium" ];
             username = "astrogoat";
@@ -47,7 +47,7 @@
 
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system pkgs-unstable;
+            inherit system unstable;
             DE = [ "gnome" ];
             extra-browsers = [];
             username = "natminer";

@@ -1,11 +1,10 @@
-{ zathura, system, username, ... }:
+{ system, nixpkgs-zathura, username, ... }:
 let
-  zathura-pkgs = zathura.legacyPackages.${system};
+  zathura = nixpkgs-zathura.legacyPackages.${system}.zathura;
 in
 {
   home-manager.users.${username} = {
-    # zathura 5.2 (fix cbz being cropped)
-    home.packages = with zathura-pkgs; [ zathura ];
+    home.packages = [ zathura ];
     home.file = {
       ".config/zathura/zathurarc".text = ''
         set selection-clipboard clipboard
