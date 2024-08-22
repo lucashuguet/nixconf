@@ -19,4 +19,5 @@
       vim = "nvim";
     };
   };
+  programs.command-not-found.enable = false;
 }
