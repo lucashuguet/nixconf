@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-file=$(find ~/Pictures/wallpapers/ -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -dmenu)
+directory="$HOME/Pictures/wallpapers/"
+if [ -n "$1" ]; then
+  directory="$1"
+fi
+
+file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -dmenu)
 hypr=1
 
 if [ -z "${file}" ]; then
-  file=$(find ~/Pictures/wallpapers/ -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
+  file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
   hypr=0
 fi
 
@@ -51,7 +56,7 @@ light_color() {
     echo "#$(twolen $(printf '%x' ${light[0]}))$(twolen $(printf '%x' ${light[1]}))$(twolen $(printf '%x' ${light[2]}))"
 }
 
-wal -qntes -i ~/Pictures/wallpapers/$file.png
+wal -qntes -i $directory$file.png
 
 source ~/.cache/wal/colors.sh
 
