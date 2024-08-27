@@ -5,6 +5,7 @@
     ./gimp
     ./libreoffice
     ./mpv
+    ./thunderbird
     ./zathura
   ];
 }
