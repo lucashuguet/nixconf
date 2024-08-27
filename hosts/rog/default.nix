@@ -1,3 +1,5 @@
+# Asus ROG Stix G15 G512LV
+
 { pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];

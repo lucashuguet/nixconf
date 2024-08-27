@@ -1,3 +1,5 @@
+# Lenovo IdeaPad Gaming 3 15HU6
+
 {
   imports = [ ./hardware-configuration.nix ];
 
