@@ -1,4 +1,4 @@
-{ username, ... }:
+{ pkgs, username, ... }:
 {
   sound.enable = true;
   security.rtkit.enable = true;
@@ -15,4 +15,6 @@
   users.users.${username} = {
     extraGroups = [ "audio" ];
   };
+
+  environment.systemPackages = with pkgs; [ pulseaudio pavucontrol ];
 }
