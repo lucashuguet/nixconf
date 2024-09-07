@@ -38,7 +38,6 @@
             ./modules/games
             ./modules/cups
             ./modules/code
-            ./modules/apps/ai
             ./modules/apps/ledger
             ./modules/apps/mangal
             ./modules/virt
