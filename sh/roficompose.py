@@ -49,7 +49,7 @@ notify(action["name"] + " " + selected)
 subprocess.run(
     [
         "docker", "compose",
-        "-f", directory + "docker-compose." + selected.replace("." + name, "") + ".yaml"
+        "-f", directory + ("docker-compose." + selected + ".yaml").replace("." + name, "")
     ] + action["cmd"]
 )
 
