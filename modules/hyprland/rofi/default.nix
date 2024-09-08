@@ -8,6 +8,7 @@
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ../../../sh/rofisink.py))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ../../../sh/rofidrives.py))
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ../../../sh/rofinmcli.py))
+        (pkgs.writeScriptBin "roficompose" (builtins.readFile ../../../sh/roficompose.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ../../../sh/rofitheme.sh))
         (pkgs.writeScriptBin "screenshot" (builtins.readFile ../../../sh/screenshot.sh))
         (pkgs.writeScriptBin "aurastatic" ''
