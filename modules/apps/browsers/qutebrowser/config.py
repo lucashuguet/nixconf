@@ -8,12 +8,12 @@ config.load_autoconfig()
 c.fonts.default_family = "FantasqueSansM Nerd Font"
 c.fonts.default_size = "12pt"
 
-duck = "https://duckduckgo.com"
+searxng = "http://127.0.0.1:8888"
 
-c.url.default_page = duck
-c.url.start_pages = [duck]
+c.url.default_page = searxng
+c.url.start_pages = [searxng]
 c.url.searchengines = {
-    "DEFAULT": "https://duckduckgo.com/&q={}"
+    "DEFAULT": "http://127.0.0.1:8888/search?q={}"
 }
 
 c.downloads.location.prompt = False
