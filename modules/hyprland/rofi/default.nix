@@ -10,6 +10,7 @@
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ../../../sh/rofinmcli.py))
         (pkgs.writeScriptBin "roficompose" (builtins.readFile ../../../sh/roficompose.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ../../../sh/rofitheme.sh))
+        (pkgs.writeScriptBin "rofipass" (builtins.readFile ../../../sh/rofipass.sh))
         (pkgs.writeScriptBin "screenshot" (builtins.readFile ../../../sh/screenshot.sh))
         (pkgs.writeScriptBin "aurastatic" ''
       asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)
