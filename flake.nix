@@ -40,7 +40,7 @@
             ./modules/code
             ./modules/apps/ledger
             ./modules/apps/mangal
-            ./modules/virt
+            ./modules/virt/docker
           ];
         };
 
