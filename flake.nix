@@ -20,8 +20,8 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      unstable = nixpkgs-unstable.legacyPackages.${system};
+      pkgs = import nixpkgs { inherit system; };
+      unstable = import nixpkgs-unstable { inherit system; };
     in {
       nixosConfigurations = {
         "rog" = nixpkgs.lib.nixosSystem {
@@ -59,6 +59,12 @@
             ./modules/virt/docker
           ];
         };
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          pkg-config openssl
+        ];
       };
     };
 }
