@@ -5,13 +5,11 @@ import subprocess
 from glob import glob
 
 base = os.path.expanduser("~") + "/Documents/app/"
-name = "open-webui"
+name = "compose"
 
 directory = base + name + "/"
 
-ps = subprocess.check_output([
-    "docker", "compose", "-f", directory + "docker-compose.yaml", "ps"
-], text=True).strip()
+ps = subprocess.check_output(["docker", "ps"], text=True).strip()
 
 def process_container(c):
     name = os.path.basename(c).replace("docker-compose.", "").replace(".yaml", "")
@@ -26,7 +24,7 @@ def notify(text):
 compose = [
     process_container(c)
     for c in glob(directory + "docker-compose.*.yaml")
-] + [name]
+]
 
 selected = subprocess.check_output(
     ["rofi", "-dmenu"], text=True, input="\n".join(compose)
@@ -49,7 +47,7 @@ notify(action["name"] + " " + selected)
 subprocess.run(
     [
         "docker", "compose",
-        "-f", directory + ("docker-compose." + selected + ".yaml").replace("." + name, "")
+        "-f", directory + ("docker-compose." + selected + ".yaml")
     ] + action["cmd"]
 )
 
