@@ -12,4 +12,9 @@
   };
 
   services.pcscd.enable = true;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 21 80 ];
+  };
 }
