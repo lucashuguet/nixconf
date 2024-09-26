@@ -6,5 +6,6 @@
     ./users
     ./modules
     ./hosts
+    ./sh
   ];
 }

@@ -55,7 +55,6 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
-            ./modules/hyprland/rofi
             ./modules/virt/docker
           ];
         };
