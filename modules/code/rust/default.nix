@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    rustup rust-analyzer
+    cargo cargo-nextest rustup rust-analyzer
   ];
 }
