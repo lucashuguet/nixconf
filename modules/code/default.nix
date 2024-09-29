@@ -4,5 +4,6 @@
     ./node
     ./python
     ./rust
+    ./sqlite
   ];
 }
