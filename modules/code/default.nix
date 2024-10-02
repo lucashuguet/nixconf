@@ -1,6 +1,6 @@
 {
   imports = [
-    ./maths
+    ./json
     ./node
     ./python
     ./rust
