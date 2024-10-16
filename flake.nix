@@ -41,6 +41,7 @@
             ./modules/apps/ledger
             ./modules/apps/mangal
             ./modules/virt/docker
+            ./modules/virt/virsh
             ./modules/maths
           ];
         };
