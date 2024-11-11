@@ -10,9 +10,9 @@ let
   gtk4 = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0";
 in
 {
+  services.libinput.enable = true;
   services.xserver = {
     enable = true;
-    libinput.enable = true;
     excludePackages = [ pkgs.xterm ];
   };
 
@@ -49,7 +49,7 @@ in
 
     qt = {
       enable = true;
-      platformTheme = "gtk";
+      platformTheme.name = "gtk";
     };
 
     xdg.configFile = {
