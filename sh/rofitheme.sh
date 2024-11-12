@@ -5,7 +5,7 @@ if [ -n "$1" ]; then
   directory="$1"
 fi
 
-file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -dmenu)
+file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -matching fuzzy -dmenu)
 hypr=1
 
 if [ -z "${file}" ]; then
