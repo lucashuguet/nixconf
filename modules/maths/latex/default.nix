@@ -1,4 +1,4 @@
 { pkgs, ...}:
 {
-  environment.systemPackages = with pkgs; [ texlive.combined.scheme-medium ];
+  environment.systemPackages = with pkgs; [ texliveFull ];
 }
