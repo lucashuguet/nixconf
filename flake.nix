@@ -6,6 +6,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-zathura.url = "github:nixos/nixpkgs/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3"; # zathura 5.2 (fix cbz being cropped)
 
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,16 +22,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ (import rust-overlay) ];
+        config.allowUnfree = true;
+      };
       unstable = import nixpkgs-unstable { inherit system; };
     in {
       nixosConfigurations = {
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system unstable;
+            inherit pkgs system unstable;
             DE = [ "hyprland" "gnome" ];
             extra-browsers = [ "qutebrowser" ];
             username = "astrogoat";

@@ -8,9 +8,6 @@
   home-manager = {
     users.${username} = {
       home.stateVersion = "24.05";
-      nixpkgs.config.allowUnfree = true;
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 }
