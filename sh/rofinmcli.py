@@ -30,15 +30,20 @@ for line in lines:
     else:
         ssid = fields[0]
 
+    if ssid == "--":
+        continue
 
     if in_use:
         ssid += " (connected)"
-
+    
     ssids.append(ssid)
 
 inputs = "\n".join(ssids)
 
-selected = subprocess.check_output(["rofi", "-dmenu"], text=True, input=inputs).strip()
+try:
+    selected = subprocess.check_output(["rofi", "-dmenu"], text=True, input=inputs).strip()
+except Exception:
+    exit(1)
 
 if not "connected" in selected:
     if selected in knowned_net:
