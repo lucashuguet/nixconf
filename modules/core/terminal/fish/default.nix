@@ -28,6 +28,9 @@
       dev = "nix develop $FLAKE --command fish";
 
       gmpv = "nvidia-offload mpv -vo gpu";
+
+      em = "emacsclient -nc";
+      e = "emacsclient -nw -c";
     };
   };
   programs.command-not-found.enable = false;

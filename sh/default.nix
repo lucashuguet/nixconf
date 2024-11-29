@@ -18,7 +18,6 @@
         (pkgs.writeScriptBin "aurastatic" ''
           asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)
         '')
-        (pkgs.writeScriptBin "em" "emacsclient -nc $@")
       ];
   };
 }
