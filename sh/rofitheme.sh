@@ -169,7 +169,9 @@ echo "    col.active_border = rgba(${lforeground:1}ee)" | tee -a $hyprland
 echo "    col.inactive_border = rgba(${lbackground:1}ee)" | tee -a $hyprland
 echo "}" | tee -a $hyprland
 echo "decoration {" | tee -a $hyprland
-echo "    col.shadow = rgba(${background:1}ee)" | tee -a $hyprland
+echo "    shadow {" | tee -a $hyprland
+echo "        color = rgba(${background:1}ee)" | tee -a $hyprland
+echo "    }" | tee -a $hyprland
 echo "}" | tee -a $hyprland
 
 rm $waybar

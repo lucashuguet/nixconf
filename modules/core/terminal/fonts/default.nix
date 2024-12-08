@@ -7,7 +7,7 @@
 
     ++
 
-    (with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ]);
+    (with pkgs; [ noto-fonts noto-fonts-cjk-sans noto-fonts-emoji ]);
 
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" ];
