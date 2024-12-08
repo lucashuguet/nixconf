@@ -35,12 +35,17 @@ def parse_wpctl_status():
         res["id"] = int(sink.split(".")[0])
         res["name"] = sink.split(".")[1].strip()
 
-        if len(sinks_dict) > 0:
-            if sinks_dict[-1]["name"].replace(" - (current)", "") in res["name"]:
-                continue
+        contained = False
+        for name in [sink["name"] for sink in sinks_dict]:
+            if name in res["name"]:
+                contained = True
+        if contained:
+            continue
 
         if res["master"]:
-            res["name"] += " - (current)"
+            res["current"] = True
+        else:
+            res["current"] = False
 
         sinks_dict.append(res)
 
@@ -49,16 +54,22 @@ def parse_wpctl_status():
 if __name__ == "__main__":
     sinks = parse_wpctl_status()
 
-    inputs = "\n".join([sink["name"] for sink in sinks])
+    names = []
+    for sink in sinks:
+        name = sink["name"]
+        if sink["current"]:
+            name += " - (current)"
+        names.append(name)
 
-    selected_name = subprocess.check_output(["rofi", "-dmenu"], text=True, input=inputs).strip()
+    inputs = "\n".join(names)
 
-    if not "current" in selected_name:
-        sink = next((s["id"] for s in sinks if s["name"] == selected_name), None)
-  
-        if sink:
-            subprocess.run(["mpc", "pause"])
-            subprocess.run(["wpctl", "set-default", str(sink)])
-            subprocess.run(["notify-send", "rofisink.py", "sink changed"])
-        else:
-            exit(1)
+    name = subprocess.check_output(["rofi", "-dmenu"], text=True, input=inputs).strip().replace(" - (current)", "")
+    sink = next([sink for sink in sinks if sink["name"] == name], None)
+
+    if not sink:
+        exit(1)
+
+    if not sink["current"]:
+        subprocess.run(["mpc", "pause"])
+        subprocess.run(["wpctl", "set-default", str(sink)])
+        subprocess.run(["notify-send", "rofisink.py", "sink changed"])
