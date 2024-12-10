@@ -34,7 +34,7 @@ except Exception:
     exit(1)
 
 if option == "yes":
-    notify("Stopping " + " ,".join(compose) + " then will shutdown")
+    notify("Stopping " + ", ".join(compose) + " then will shutdown")
     print(compose)
 
     for c in compose:
