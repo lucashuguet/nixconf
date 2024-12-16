@@ -2,12 +2,12 @@
 {
   fonts = {
     packages = (with unstable; [
-      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      nerd-fonts.fantasque-sans-mono
     ])
 
     ++
 
-    (with pkgs; [ noto-fonts noto-fonts-cjk-sans noto-fonts-emoji ]);
+    (with pkgs; [ noto-fonts noto-fonts-cjk-sans noto-fonts-emoji]);
 
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" ];
