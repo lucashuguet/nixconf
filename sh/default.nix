@@ -9,6 +9,7 @@
         (pkgs.writeScriptBin "audiosetup" (builtins.readFile ./audiosetup.sh))
         (pkgs.writeScriptBin "createcbz" (builtins.readFile ./createcbz.py))
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
+        (pkgs.writeScriptBin "gs" (builtins.readFile ./gs.sh))
 	(pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./rofidrives.py))
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ./rofinmcli.py))
