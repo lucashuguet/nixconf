@@ -80,6 +80,7 @@
           xorg.libX11 xorg.libXcursor xorg.libXi xorg.libXrandr # To use the x11 feature
           libxkbcommon wayland # To use the wayland feature
           sqlite
+	  cmake
         ];
         LD_LIBRARY_PATH = nixpkgs.lib.makeLibraryPath buildInputs;
       };
