@@ -1,5 +1,6 @@
 {
   imports = [
+    ./c
     ./json
     ./julia
     ./nix
