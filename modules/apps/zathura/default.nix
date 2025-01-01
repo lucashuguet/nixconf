@@ -1,10 +1,7 @@
-{ system, nixpkgs-zathura, username, ... }:
-let
-  zathura = nixpkgs-zathura.legacyPackages.${system}.zathura;
-in
+{ unstable, username, ... }:
 {
   home-manager.users.${username} = {
-    home.packages = [ zathura ];
+    home.packages = with unstable; [ zathura ];
     home.file = {
       ".config/zathura/zathurarc".text = ''
         set selection-clipboard clipboard

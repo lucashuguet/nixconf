@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-zathura.url = "github:nixos/nixpkgs/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3"; # zathura 5.2 (fix cbz being cropped)
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
