@@ -2,19 +2,19 @@
 
 directory="$HOME/Pictures/wallpapers/"
 if [ -n "$1" ]; then
-  directory="$1"
+    directory="$1"
 fi
 
 file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -matching fuzzy -dmenu)
 hypr=1
 
 if [ -z "${file}" ]; then
-  file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
-  hypr=0
+    file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
+    hypr=0
 fi
 
 if [ -z "${file}" ]; then	
-  exit 0
+    exit 0
 fi
 
 convert_rgba() {
@@ -61,7 +61,7 @@ wal -qntes -i $directory$file.png
 source ~/.cache/wal/colors.sh
 
 if [ $hypr -eq 1 ]; then	
-  swww img $wallpaper -t none
+    swww img $wallpaper -t none
 fi
 
 gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
@@ -91,7 +91,7 @@ lbackground=$color2
 colors_path=~/.config/colors
 
 if [ ! -d $colors_path ]; then
-  mkdir -p $colors_path;
+    mkdir -p $colors_path;
 fi
 
 alacritty=$colors_path/alacritty.toml
@@ -101,7 +101,6 @@ hyprland=$colors_path/hyprland.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
 aura=$colors_path/aura.txt
-kitty=$colors_path/kitty.conf
 
 dunstc=~/.config/dunst/config.toml
 dunstrc=~/.config/dunst/dunstrc
@@ -200,10 +199,8 @@ cat $dunstc | tee -a $dunstrc
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
-if [ $hypr -eq 1 ]; then	
-  pkill waybar
-  pkill dunst
 
-  waybar &
-  dunst &
+if [ $hypr -eq 1 ]; then
+    pkill dunst
+    dunst &
 fi
