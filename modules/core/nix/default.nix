@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ nixpkgs, nixpkgs-unstable, username, ... }:
 {
   imports = [ ./nh ];
 
@@ -9,5 +9,10 @@
     users.${username} = {
       home.stateVersion = "24.05";
     };
+  };
+
+  nix.registry = {
+    nixpkgs.flake = nixpkgs;
+    unstable.flake = nixpkgs-unstable;
   };
 }
