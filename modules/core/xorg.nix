@@ -14,6 +14,8 @@ in
   services.xserver = {
     enable = true;
     excludePackages = [ pkgs.xterm ];
+
+    displayManager.startx.enable = true;
   };
 
   environment.variables = {

@@ -93,6 +93,7 @@ hyprland=$colors_path/hyprland.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
 aura=$colors_path/aura.txt
+dwm=$colors_path/dwm
 
 dunstc=~/.config/dunst/config.toml
 dunstrc=~/.config/dunst/dunstrc
@@ -190,6 +191,14 @@ cat $dunstc | tee -a $dunstrc
 
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
+
+rm $dwm
+echo "dwm.normbordercolor: $green" | tee -a $dwm
+echo "dwm.normbgcolor: $background" | tee -a $dwm
+echo "dwm.normfgcolor: $foreground" | tee -a $dwm
+echo "dwm.selbordercolor: $foreground" | tee -a $dwm
+echo "dwm.selbgcolor: $foreground" | tee -a $dwm
+echo "dwm.selfgcolor: $background" | tee -a $dwm
 
 aurastatic
 pkill dunst
