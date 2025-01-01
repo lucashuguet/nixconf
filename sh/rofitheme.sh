@@ -199,6 +199,7 @@ cat $dunstc | tee -a $dunstrc
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
+aurastatic
 
 if [ $hypr -eq 1 ]; then
     pkill dunst
