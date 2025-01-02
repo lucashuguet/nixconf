@@ -7,7 +7,11 @@
     ./waybar
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
   programs.light.enable = true;
   home-manager.users.${username} = {
     home.file = {
