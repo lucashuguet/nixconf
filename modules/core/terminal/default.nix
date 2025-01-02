@@ -2,9 +2,9 @@
   imports = [
     ./alacritty
     ./fastfetch
-    ./fish
-    ./fonts
-    ./neovim
-    ./starship
+    ./fish.nix
+    ./fonts.nix
+    ./neovim.nix
+    ./starship.nix
   ];
 }

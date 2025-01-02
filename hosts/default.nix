@@ -1,4 +1,4 @@
 { hostname, ... }:
 {
-  imports = [ ./${hostname} ./locale ];
+  imports = [ ./${hostname} ];
 }

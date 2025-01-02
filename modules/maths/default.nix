@@ -1,7 +1,0 @@
-{ DE, ... }:
-{
-  imports = [
-    ./latex
-    ./sagemath
-  ];
-}

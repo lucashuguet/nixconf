@@ -1,5 +1,12 @@
 { pkgs, username, ... }:
 {
+  imports = [
+    ./bpytop
+    ./dunst
+    ./rofi
+    ./waybar
+  ];
+
   programs.hyprland.enable = true;
   programs.light.enable = true;
   home-manager.users.${username} = {

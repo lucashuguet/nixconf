@@ -1,7 +1,7 @@
 {
   imports = [
-    ./audio
-    ./bluetooth
-    ./network
+    ./audio.nix
+    ./bluetooth.nix
+    ./network.nix
   ];
 }

@@ -38,7 +38,11 @@
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit pkgs system;
+	    DM = "sddm";
             DE = [ "hyprland" "gnome" ];
+	    apps = [
+	      "games" "latex" "ledger" "mangal" "mpd" "thunderbird"
+	    ];
             extra-browsers = [ "qutebrowser" ];
             username = "astrogoat";
             hostname = "rog";
@@ -46,29 +50,26 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
-            ./modules/games
-            ./modules/cups
+	    ./modules/apps/virt
+            ./modules/core/cups
             ./modules/code
-            ./modules/apps/ledger
-            ./modules/apps/mangal
-            ./modules/virt/docker
-            ./modules/virt/virsh
-            ./modules/maths
+	    ./sh
           ];
         };
 
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit pkgs system;
+	    DM = "sddm";
             DE = [ "gnome" ];
             extra-browsers = [];
+	    apps = [ "virt/docker" ];
             username = "natminer";
             hostname = "natnix";
           } // inputs;
           modules = [
             ./.
             ./modules/hardware/nvidia
-            ./modules/virt/docker
           ];
         };
       };

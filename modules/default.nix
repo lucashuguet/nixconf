@@ -1,10 +1,9 @@
-{ DE, ... }:
 {
-  imports = (builtins.map (de: ./${de}) DE) ++ [
+  imports = [
     ./apps
     ./core
+    ./dm
     ./hardware
-    ./music
-    ./sddm
+    ./wm
   ];
 }

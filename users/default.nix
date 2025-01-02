@@ -1,4 +1,4 @@
 { username, ... }:
 {
-  imports = [ ./${username} ];
+  imports = [ ./${username}.nix ];
 }

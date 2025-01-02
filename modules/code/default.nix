@@ -1,12 +1,12 @@
 {
   imports = [
-    ./c
-    ./json
-    ./julia
-    ./nix
-    ./node
-    ./python
-    ./rust
-    ./sqlite
+    ./c.nix
+    ./json.nix
+    ./julia.nix
+    ./nix.nix
+    ./node.nix
+    ./python.nix
+    ./rust.nix
+    ./sqlite.nix
   ];
 }

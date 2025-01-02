@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
   imports = [
-    ./boot/grub
+    ./boot
+    ./locale.nix
     ./nix
-    ./security
+    ./security.nix
     ./terminal
-    ./xorg
+    ./xorg.nix
   ];
 
   environment.systemPackages = with pkgs; [
