@@ -5,13 +5,7 @@ if [ -n "$1" ]; then
     directory="$1"
 fi
 
-file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -matching fuzzy -dmenu)
-hypr=1
-
-if [ -z "${file}" ]; then
-    file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | fzf)
-    hypr=0
-fi
+file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
 
 if [ -z "${file}" ]; then	
     exit 0
@@ -60,9 +54,7 @@ wal -qntes -i $directory$file.png
 
 source ~/.cache/wal/colors.sh
 
-if [ $hypr -eq 1 ]; then	
-    swww img $wallpaper -t none
-fi
+swww img $wallpaper -t none
 
 gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
 gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
@@ -200,8 +192,5 @@ rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
 aurastatic
-
-if [ $hypr -eq 1 ]; then
-    pkill dunst
-    dunst &
-fi
+pkill dunst
+dunst &
