@@ -1,7 +1,7 @@
-{ unstable, username, ... }:
+{ pkgs, username, ... }:
 {
   home-manager.users.${username} = {
-    home.packages = with unstable; [ ledger-live-desktop ];
+    home.packages = with pkgs; [ unstable.ledger-live-desktop ];
   };
   
   # fix read+write permissions for ledger

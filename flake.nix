@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS config flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -21,20 +21,23 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
+      unstable = import nixpkgs-unstable { inherit system; };
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ (import rust-overlay) ];
+        overlays = [
+	  (import rust-overlay)
+	  (final: prev: { inherit unstable; })
+	];
         config.allowUnfree = true;
       };
-      unstable = import nixpkgs-unstable { inherit system; };
     in {
       nixosConfigurations = {
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit pkgs system unstable;
+            inherit pkgs system;
             DE = [ "hyprland" "gnome" ];
             extra-browsers = [ "qutebrowser" ];
             username = "astrogoat";
@@ -56,7 +59,7 @@
 
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system unstable;
+            inherit pkgs system;
             DE = [ "gnome" ];
             extra-browsers = [];
             username = "natminer";

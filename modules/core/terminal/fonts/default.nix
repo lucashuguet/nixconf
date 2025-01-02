@@ -1,13 +1,10 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   fonts = {
-    packages = (with unstable; [
-      nerd-fonts.fantasque-sans-mono
-    ])
-
-    ++
-
-    (with pkgs; [ noto-fonts noto-fonts-cjk-sans noto-fonts-emoji]);
+    packages = with pkgs; [
+      unstable.nerd-fonts.fantasque-sans-mono
+      noto-fonts noto-fonts-cjk-sans noto-fonts-emoji
+    ];
 
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" ];
