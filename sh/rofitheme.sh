@@ -54,11 +54,6 @@ wal -qntes -i $directory$file.png
 
 source ~/.cache/wal/colors.sh
 
-swww img $wallpaper -t none
-
-gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
-gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
-
 black=$color0
 red=$color1
 green=$color2
@@ -93,7 +88,7 @@ hyprland=$colors_path/hyprland.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
 aura=$colors_path/aura.txt
-dwm=$colors_path/dwm
+suckless=$colors_path/suckless.txt
 
 dunstc=~/.config/dunst/config.toml
 dunstrc=~/.config/dunst/dunstrc
@@ -192,13 +187,24 @@ cat $dunstc | tee -a $dunstrc
 rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
-rm $dwm
-echo "dwm.normbordercolor: $green" | tee -a $dwm
-echo "dwm.normbgcolor: $background" | tee -a $dwm
-echo "dwm.normfgcolor: $foreground" | tee -a $dwm
-echo "dwm.selbordercolor: $foreground" | tee -a $dwm
-echo "dwm.selbgcolor: $foreground" | tee -a $dwm
-echo "dwm.selfgcolor: $background" | tee -a $dwm
+rm $suckless
+echo "$background" | tee -a $suckless # normbgcolor
+echo "$foreground" | tee -a $suckless # normfgcolor
+echo "$green" | tee -a $suckless      # normbordercolor
+echo "$foreground" | tee -a $suckless # selbgcolor
+echo "$background" | tee -a $suckless #selfgcolor
+echo "$foreground" | tee -a $suckless #selbordercolor
+
+if [[$XDG_CURRENT_DESKTOP -eq "Hyprland"]]
+then
+    swww img $wallpaper -t none
+else
+    feh --no-fehbg --bg-scale $wallpaper
+    xdotool key "Super+F5"
+fi
+  
+gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
+gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
 
 aurastatic
 pkill dunst

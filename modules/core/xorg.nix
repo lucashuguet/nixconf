@@ -10,7 +10,11 @@ let
   gtk4 = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0";
 in
 {
-  services.libinput.enable = true;
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+  };
+
   services.xserver = {
     enable = true;
     excludePackages = [ pkgs.xterm ];
