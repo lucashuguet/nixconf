@@ -20,7 +20,7 @@
 
     home.packages = with pkgs; [
       swww
-      grim slurp
+      hyprshot
       wl-clipboard
       wlr-randr
     ];

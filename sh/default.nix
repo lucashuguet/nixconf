@@ -17,7 +17,6 @@
         (pkgs.writeScriptBin "rofishutdown" (builtins.readFile ./rofishutdown.py))
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ./rofisink.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./rofitheme.sh))
-        (pkgs.writeScriptBin "screenshot" (builtins.readFile ./screenshot.sh))
         (pkgs.writeScriptBin "aurastatic" ''
           asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)
         '')
