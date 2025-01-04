@@ -8,6 +8,8 @@ let
     variant = "mocha";
   };
   gtk4 = "${gtkThemePkg}/share/themes/${gtkThemeName}/gtk-4.0";
+  cursorName = "capitaine-cursors";
+  cursorPkg = pkgs.capitaine-cursors;
 in
 {
   services.libinput = {
@@ -35,10 +37,13 @@ in
     ];
 
     home.pointerCursor = {
-      x11.enable = true;
+      x11 = {
+        defaultCursor = "left_ptr";
+        enable = true;
+      };
       gtk.enable = true;
-      name = "capitaine-cursors";
-      package = pkgs.capitaine-cursors;
+      name = cursorName;
+      package = cursorPkg;
     };
 
     gtk = {
