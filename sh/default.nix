@@ -3,7 +3,7 @@
   imports = [ ../modules/wm/hyprland/rofi ];
   home-manager.users.${username} = {
     home.packages =
-      (with pkgs; [ fzf pywal feh xdotool])
+      (with pkgs; [ fzf pywal ])
       ++
       [
         (pkgs.writeScriptBin "audiosetup" (builtins.readFile ./audiosetup.sh))
