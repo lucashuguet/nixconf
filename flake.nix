@@ -19,6 +19,9 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dwm.url = "github:lucashuguet/dwm";
+    st.url = "github:lucashuguet/st";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
@@ -39,7 +42,7 @@
           specialArgs = {
             inherit pkgs system;
 	    DM = "sddm";
-            DE = [ "hyprland" "gnome" ];
+            DE = [ "hyprland" "dwm" "gnome" ];
 	    apps = [
 	      "games" "latex" "ledger" "mangal" "mpd" "thunderbird"
 	    ];
