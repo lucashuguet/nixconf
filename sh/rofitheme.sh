@@ -5,10 +5,18 @@ if [ -n "$1" ]; then
     directory="$1"
 fi
 
-file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
+if [ "${directory##*.}" = "png" ]; then
+    file=$(basename $directory | sed "s/.png\$//g")
+    directory="$(dirname $directory)/"
+else
+    file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
+fi
+
 
 if [ -z "${file}" ]; then	
     exit 0
+else
+    echo $file
 fi
 
 convert_rgba() {
@@ -48,6 +56,13 @@ light_color() {
     light=($(clamp $((rgb[0] * 130 / 100)) 0 255) $(clamp $((rgb[1] * 130 / 100)) 0 255) $(clamp $((rgb[2] * 130 / 100)) 0 255))
 
     echo "#$(twolen $(printf '%x' ${light[0]}))$(twolen $(printf '%x' ${light[1]}))$(twolen $(printf '%x' ${light[2]}))"
+}
+
+update_swww() {
+    for i in $(find $HOME/.cache/swww/ -type f); do
+        rm $i
+        echo "$directory$file.png" | tee $i
+    done
 }
 
 wal -qntes -i $directory$file.png
@@ -195,12 +210,12 @@ echo "$foreground" | tee -a $suckless # selbgcolor
 echo "$background" | tee -a $suckless #selfgcolor
 echo "$foreground" | tee -a $suckless #selbordercolor
 
-if [[$XDG_CURRENT_DESKTOP -eq "Hyprland"]]
-then
+if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
     swww img $wallpaper -t none
 else
-    feh --no-fehbg --bg-scale $wallpaper
+    feh --no-fehbg --bg-fill $wallpaper
     xdotool key "Super+F5"
+    # update_swww
 fi
   
 gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
