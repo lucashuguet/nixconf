@@ -64,12 +64,12 @@ if __name__ == "__main__":
     inputs = "\n".join(names)
 
     name = subprocess.check_output(["rofi", "-dmenu"], text=True, input=inputs).strip().replace(" - (current)", "")
-    sink = next([sink for sink in sinks if sink["name"] == name], None)
+    sink = next(iter([sink for sink in sinks if sink["name"] == name]), None)
 
     if not sink:
         exit(1)
 
     if not sink["current"]:
         subprocess.run(["mpc", "pause"])
-        subprocess.run(["wpctl", "set-default", str(sink)])
+        subprocess.run(["wpctl", "set-default", str(sink["id"])])
         subprocess.run(["notify-send", "rofisink.py", "sink changed"])
