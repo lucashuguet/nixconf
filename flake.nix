@@ -22,6 +22,8 @@
 
     dwm.url = "github:lucashuguet/dwm";
     st.url = "github:lucashuguet/st";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
@@ -53,6 +55,7 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
+            ./modules/containers
 	    ./modules/apps/virt
             ./modules/core/cups
             ./modules/code

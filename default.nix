@@ -1,10 +1,12 @@
-{ home-manager, sddm-sugar-candy-nix, ... }:
+{ home-manager, sddm-sugar-candy-nix, sops-nix, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
     sddm-sugar-candy-nix.nixosModules.default
-    ./users
-    ./modules
+    sops-nix.nixosModules.sops
     ./hosts
+    ./modules
+    ./secrets
+    ./users
   ];
 }
