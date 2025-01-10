@@ -203,23 +203,35 @@ rm $aura
 echo $(echo $red | cut -c2-) | tee -a $aura
 
 rm $suckless
-echo "$background" | tee -a $suckless # normbgcolor
-echo "$foreground" | tee -a $suckless # normfgcolor
-echo "$green" | tee -a $suckless      # normbordercolor
-echo "$foreground" | tee -a $suckless # selbgcolor
-echo "$background" | tee -a $suckless #selfgcolor
-echo "$foreground" | tee -a $suckless #selbordercolor
+echo "$black" | tee -a $suckless
+echo "$red" | tee -a $suckless
+echo "$green" | tee -a $suckless
+echo "$yellow" | tee -a $suckless
+echo "$blue" | tee -a $suckless
+echo "$magenta" | tee -a $suckless
+echo "$cyan" | tee -a $suckless
+echo "$white" | tee -a $suckless
+echo "$lblack" | tee -a $suckless
+echo "$lred" | tee -a $suckless
+echo "$lgreen" | tee -a $suckless
+echo "$lyellow" | tee -a $suckless
+echo "$lblue" | tee -a $suckless
+echo "$lmagenta" | tee -a $suckless
+echo "$lcyan" | tee -a $suckless
+echo "$lwhite" | tee -a $suckless
 
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
     swww img $wallpaper -t none
 else
     feh --no-fehbg --bg-fill $wallpaper
-    xdotool key "Super+F5"
     # update_swww
 fi
   
 gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
 gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
+
+pidof dwm | xargs kill -s USR1
+pidof st | xargs kill -s USR1
 
 aurastatic
 pkill dunst
