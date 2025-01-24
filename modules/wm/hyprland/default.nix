@@ -9,7 +9,7 @@
 
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
+    withUWSM = false;
   };
 
   programs.light.enable = true;
