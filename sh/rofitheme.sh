@@ -9,9 +9,8 @@ if [ "${directory##*.}" = "png" ]; then
     file=$(basename $directory | sed "s/.png\$//g")
     directory="$(dirname $directory)/"
 else
-    file=$(find $directory -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
+    file=$(find $directory -maxdepth 1 -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
 fi
-
 
 if [ -z "${file}" ]; then	
     exit 0
@@ -224,13 +223,13 @@ if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
     swww img $wallpaper -t none
 else
     feh --no-fehbg --bg-fill $wallpaper
+    xdotool key "Super+F5"
     # update_swww
 fi
   
 gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
 gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
 
-pidof dwm | xargs kill -s USR1
 pidof st | xargs kill -s USR1
 
 aurastatic
