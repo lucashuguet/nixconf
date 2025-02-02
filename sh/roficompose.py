@@ -4,15 +4,13 @@ import os
 import subprocess
 from glob import glob
 
-base = os.path.expanduser("~") + "/Documents/app/"
-name = "compose"
-
-directory = base + name + "/"
+directory = os.path.expanduser("~") + "/Documents/containers/"
 
 ps = subprocess.check_output(["docker", "ps"], text=True).strip()
 
 def process_container(c):
-    name = os.path.basename(c).replace("docker-compose.", "").replace(".yaml", "")
+    name = os.path.basename(c)
+
     if name in ps:
         name += " (running)"
 
@@ -23,32 +21,36 @@ def notify(text):
 
 compose = [
     process_container(c)
-    for c in glob(directory + "docker-compose.*.yaml")
+    for c in glob(directory + "*")
 ]
 
-selected = subprocess.check_output(
-    ["rofi", "-dmenu"], text=True, input="\n".join(compose)
-).strip()
+try:
+    selected = subprocess.check_output(
+        ["rofi", "-dmenu"], text=True, input="\n".join(compose)
+    ).strip()
+except Exception:
+    exit(1)
 
 action = {
     "name": "Starting",
-    "cmd": ["up", "-d"]
+    "cmd": [
+        ["alacritty", "-e", "sh", "-c", "cd " + directory + selected + " && docker compose pull"],
+        ["docker", "compose", "up", "-d"]
+    ]
 }
 
 if "(running)" in selected:
     selected = selected.replace(" (running)", "")
     action = {
         "name": "Stopping",
-        "cmd": ["stop"]
+        "cmd": [["docker", "compose", "stop"]]
     }
 
 notify(action["name"] + " " + selected)
 
-subprocess.run(
-    [
-        "docker", "compose",
-        "-f", directory + ("docker-compose." + selected + ".yaml")
-    ] + action["cmd"]
-)
+for cmd in action["cmd"]:
+    subprocess.Popen(
+        cmd, cwd=directory + selected
+    ).wait()
 
-notify("Sucessfully set " + selected + " " + action["cmd"][0])
+notify("Sucessfully set " + selected + " " + action["cmd"][-1][2])

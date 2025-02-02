@@ -4,27 +4,26 @@ import os
 import subprocess
 from glob import glob
 
-base = os.path.expanduser("~") + "/Documents/app/"
-name = "compose"
-
-directory = base + name + "/"
+directory = os.path.expanduser("~") + "/Documents/containers/"
 
 ps = subprocess.check_output(["docker", "ps"], text=True).strip()
 
-def process_containers(containers):
-    res = []
+def process_container(c):
+    name = os.path.basename(c)
 
-    for c in containers:
-        name = os.path.basename(c).replace("docker-compose.", "").replace(".yaml", "")
-        if name in ps:
-            res.append(name)
+    if name not in ps:
+        name = None
 
-    return res
+    return name
 
 def notify(text):
     subprocess.run(["notify-send", "rofishutdown.py", text])
 
-compose = process_containers(glob(directory + "docker-compose.*.yaml"))
+compose = [
+    container
+    for c in glob(directory + "*")
+    if (container := process_container(c))
+]
 
 try:
     option = subprocess.check_output(
