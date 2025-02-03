@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1735955688,
-        "narHash": "sha256-Co+S2kZULkh7IXF81vOhq9z7/sdpnR4GTW+8KAeiZkA=",
+        "lastModified": 1736528109,
+        "narHash": "sha256-gWNOBSNCiJFpbXvEsLbNT3QaiWRQHotZXhZ7eXauTUM=",
         "owner": "lucashuguet",
         "repo": "dwm",
-        "rev": "2333a660ef1a0f348c46787809dd4216b5093706",
+        "rev": "81f116f1a8d245656b2853be76194626954fb63d",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1735951715,
-        "narHash": "sha256-8PNXuL3fsTuzL8jgAujgOhnc0hsL8LfkaH7lmYx48Fw=",
+        "lastModified": 1736523776,
+        "narHash": "sha256-nOgSGGxrSugIbM0a21l0JzxgPv7P6XjbnBC+T5yOsbA=",
         "owner": "lucashuguet",
         "repo": "st",
-        "rev": "26f1c372cb774fa3a2a12ff7bddffdd7c1bd2208",
+        "rev": "007352b18d89a48e7f85f41cf40469bb9205857a",
         "type": "github"
       },
       "original": {
