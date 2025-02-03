@@ -55,7 +55,6 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
-            ./modules/containers
 	    ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
