@@ -2,7 +2,7 @@
 
 { pkgs, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./disko-config.nix ];
 
   # broken screen on 144hz
   boot.kernelParams = [ "video=1920x1080@60" ];
