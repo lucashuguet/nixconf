@@ -6,7 +6,7 @@ from glob import glob
 
 directory = os.path.expanduser("~") + "/Documents/containers/"
 
-ps = subprocess.check_output(["docker", "ps"], text=True).strip()
+ps = subprocess.check_output(["docker", "ps", "--format", "{{.Names}}"], text=True).strip()
 
 def process_container(c):
     name = os.path.basename(c)
