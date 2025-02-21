@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    lutris
+    lutris wineWowPackages.stable wineWowPackages.waylandFull winetricks
     prismlauncher
     jdk8 jdk17 jdk21
     mangohud
