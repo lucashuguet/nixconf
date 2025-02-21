@@ -11,6 +11,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    aria ffmpeg imagemagick git git-lfs ncdu p7zip yt-dlp vimv file
+    aria ffmpeg imagemagick git git-lfs ncdu p7zip yt-dlp vimv file xxd fd
   ];
 }
