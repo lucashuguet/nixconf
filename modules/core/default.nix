@@ -2,6 +2,7 @@
 {
   imports = [
     ./boot
+    ./btrfs.nix
     ./locale.nix
     ./nix
     ./security.nix
