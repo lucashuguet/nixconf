@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
-directory="$HOME/Pictures/wallpapers/"
-if [ -n "$1" ]; then
-    directory="$1"
+directory="$HOME/Pictures/wallpapers"
+
+if [ -z "$1" ]; then
+    echo $directory
+elif [ -f "$1" ]; then
+    file="$1"
+elif [ -d "$1" ]; then
+    directory=$(realpath "$1")
 fi
 
-if [ "${directory##*.}" = "png" ]; then
-    file=$(basename $directory | sed "s/.png\$//g")
-    directory="$(dirname $directory)/"
-else
-    file=$(find $directory -maxdepth 1 -name '*.png' -exec basename {} \; | sed "s/.png\$//g" | rofi -i -matching fuzzy -dmenu)
-fi
-
-if [ -z "${file}" ]; then	
-    exit 0
-else
-    echo $file
+if [ -z "$file" ]; then	
+    file=$(find $directory -maxdepth 1 -type f -exec basename {} \; | rofi -i -matching fuzzy -dmenu)
+    if [ $? -ne 0 ]; then
+        exit 0
+    fi
 fi
 
 convert_rgba() {
@@ -60,11 +59,11 @@ light_color() {
 update_swww() {
     for i in $(find $HOME/.cache/swww/ -type f); do
         rm $i
-        echo "$directory$file.png" | tee $i
+        echo "$directory/$file" | tee $i
     done
 }
 
-wal -qntes -i $directory$file.png
+wal -qntes -i "$directory/$file"
 
 source ~/.cache/wal/colors.sh
 
@@ -220,15 +219,15 @@ echo "$lcyan" | tee -a $suckless
 echo "$lwhite" | tee -a $suckless
 
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-    swww img $wallpaper -t none
+    swww img "$wallpaper" -t none
 else
-    feh --no-fehbg --bg-fill $wallpaper
+    feh --no-fehbg --bg-fill "$wallpaper"
     xdotool key "Super+F5"
     # update_swww
 fi
   
-gsettings set org.gnome.desktop.background picture-uri file://$wallpaper
-gsettings set org.gnome.desktop.background picture-uri-dark file://$wallpaper
+gsettings set org.gnome.desktop.background picture-uri "file://$wallpaper"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$wallpaper"
 
 pidof st | xargs kill -s USR1
 
