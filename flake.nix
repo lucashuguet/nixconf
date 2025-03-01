@@ -70,6 +70,7 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
+            ./modules/apps/sideloader
 	    ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
