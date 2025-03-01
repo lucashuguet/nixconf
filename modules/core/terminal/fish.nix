@@ -8,6 +8,8 @@
       end
       abbr -a !! --position anywhere --function last_history_item
 
+      set -Ux KOMGA_API (cat /run/secrets/komga_api)
+
       set fish_greeting
       fastfetch
     '';
