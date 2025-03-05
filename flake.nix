@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,16 +46,17 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, rust-overlay, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, emacs-overlay, rust-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable { inherit system; };
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-	  (import rust-overlay)
-	  (final: prev: { inherit unstable; })
-	];
+          (import rust-overlay)
+          (import emacs-overlay)
+          (final: prev: { inherit unstable; })
+        ];
         config.allowUnfree = true;
       };
     in {
@@ -58,11 +64,11 @@
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit pkgs system;
-	    DM = "sddm";
+            DM = "sddm";
             DE = [ "hyprland" "dwm" "gnome" ];
-	    apps = [
-	      "games" "latex" "ledger" "mangal" "mpd" "thunderbird"
-	    ];
+            apps = [
+              "games" "latex" "ledger" "mangal" "mpd" "thunderbird"
+            ];
             extra-browsers = [ "qutebrowser" ];
             username = "astrogoat";
             hostname = "rog";
@@ -71,20 +77,20 @@
             ./.
             ./modules/hardware/nvidia
             ./modules/apps/sideloader
-	    ./modules/apps/virt
+            ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
-	    ./sh
+            ./sh
           ];
         };
 
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit pkgs system;
-	    DM = "sddm";
+            DM = "sddm";
             DE = [ "gnome" ];
             extra-browsers = [];
-	    apps = [ "virt/docker" ];
+            apps = [ "virt/docker" ];
             username = "natminer";
             hostname = "natnix";
           } // inputs;
@@ -104,7 +110,7 @@
           xorg.libX11 xorg.libXcursor xorg.libXi xorg.libXrandr # To use the x11 feature
           libxkbcommon wayland # To use the wayland feature
           sqlite
-	  cmake
+          cmake
         ];
         LD_LIBRARY_PATH = nixpkgs.lib.makeLibraryPath buildInputs;
       };
