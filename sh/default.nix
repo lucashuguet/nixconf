@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 {
-  imports = [ ../modules/wm/hyprland/rofi ];
+  imports = [ ../modules/wm/hyprland/rofi ../modules/apps/browsers/surf ];
   home-manager.users.${username} = {
     home.packages =
       (with pkgs; [ fzf pywal ])
@@ -16,6 +16,7 @@
         (pkgs.writeScriptBin "rofipass" (builtins.readFile ./rofipass.sh))
         (pkgs.writeScriptBin "rofishutdown" (builtins.readFile ./rofishutdown.py))
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ./rofisink.py))
+        (pkgs.writeScriptBin "rofisurf" (builtins.readFile ./rofisurf.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./rofitheme.sh))
         (pkgs.writeScriptBin "aurastatic" ''
           asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)

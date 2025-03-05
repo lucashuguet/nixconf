@@ -8,12 +8,12 @@ config.load_autoconfig()
 c.fonts.default_family = "FantasqueSansM Nerd Font"
 c.fonts.default_size = "12pt"
 
-searxng = "http://127.0.0.1:8888"
+searxng = "http://localhost:4001"
 
 c.url.default_page = searxng
 c.url.start_pages = [searxng]
 c.url.searchengines = {
-    "DEFAULT": "http://127.0.0.1:8888/search?q={}"
+    "DEFAULT": "http://localhost:4001/search?q={}"
 }
 
 c.downloads.location.prompt = False
@@ -48,7 +48,7 @@ with open(os.path.expanduser("~/.config/colors/qutebrowser.yml")) as f:
     c.colors.statusbar.command.bg = colors["colors"]["primary"]["background"]
     c.colors.statusbar.normal.fg = colors["colors"]["primary"]["foreground"]
     c.colors.statusbar.command.fg = colors["colors"]["primary"]["foreground"]
-    
+
     c.colors.tabs.even.bg = colors["colors"]["primary"]["background"]
     c.colors.tabs.odd.bg = colors["colors"]["primary"]["background"]
     c.colors.tabs.even.fg = colors["colors"]["primary"]["foreground"]
@@ -56,7 +56,7 @@ with open(os.path.expanduser("~/.config/colors/qutebrowser.yml")) as f:
     c.colors.tabs.selected.even.bg = colors["colors"]["bright"]["black"]
     c.colors.tabs.selected.odd.bg = colors["colors"]["bright"]["black"]
     c.colors.tabs.indicator.stop = colors["colors"]["normal"]["cyan"]
-    
+
     c.colors.completion.even.bg = colors["colors"]["primary"]["background"]
     c.colors.completion.odd.bg = colors["colors"]["primary"]["background"]
     c.colors.completion.odd.bg = colors["colors"]["primary"]["background"]
@@ -65,7 +65,7 @@ with open(os.path.expanduser("~/.config/colors/qutebrowser.yml")) as f:
     c.colors.completion.category.fg = colors["colors"]["primary"]["foreground"]
     c.colors.completion.item.selected.bg = colors["colors"]["primary"]["background"]
     c.colors.completion.item.selected.fg = colors["colors"]["primary"]["foreground"]
-    
+
     c.colors.hints.bg = colors["colors"]["primary"]["background"]
     c.colors.hints.fg = colors["colors"]["primary"]["foreground"]
 
