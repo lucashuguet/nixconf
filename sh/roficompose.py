@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import subprocess
 from glob import glob
+
+# roficompose.py [terminal emulator] [disable pull]
+
+if len(sys.argv) < 2:
+    exit(1)
 
 directory = os.path.expanduser("~") + "/Documents/containers/"
 
@@ -34,7 +40,7 @@ except Exception:
 action = {
     "name": "Starting",
     "cmd": [
-        ["alacritty", "-e", "sh", "-c", "cd " + directory + selected + " && docker compose pull"],
+        [sys.argv[1], "-e", "sh", "-c", "cd " + directory + selected + " && docker compose pull"],
         ["docker", "compose", "up", "-d"]
     ]
 }
@@ -49,6 +55,8 @@ if "(running)" in selected:
 notify(action["name"] + " " + selected)
 
 for cmd in action["cmd"]:
+    if sys.argv[1] in cmd and len(sys.argv) == 3:
+        continue
     subprocess.Popen(
         cmd, cwd=directory + selected
     ).wait()
