@@ -85,7 +85,7 @@
 
 ;; (require 'doom-themes)
 ;; (load-theme 'doom-material-dark t)
-(load-theme 'modus-vivendi-tritanopia t)
+(load-theme 'doom-dark+ t)
 ;; (doom-themes-org-config)
 
 (setq doom-modeline-height 30)
