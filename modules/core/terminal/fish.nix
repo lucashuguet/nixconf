@@ -27,7 +27,7 @@
       cat = "${pkgs.bat}/bin/bat --style header --style rule --style snip --style changes --style header";
 
       vim = "nvim";
-      dev = "nix develop $FLAKE --command fish";
+      dev = "nix develop --command fish";
 
       gmpv = "nvidia-offload mpv -vo gpu";
 

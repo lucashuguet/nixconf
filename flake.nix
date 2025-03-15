@@ -100,19 +100,5 @@
           ];
         };
       };
-
-      devShells.${system}.default = pkgs.mkShell rec {
-        nativeBuildInputs = with pkgs; [
-          pkg-config
-        ];
-        buildInputs = with pkgs; [
-          udev openssl alsa-lib vulkan-loader
-          xorg.libX11 xorg.libXcursor xorg.libXi xorg.libXrandr # To use the x11 feature
-          libxkbcommon wayland # To use the wayland feature
-          sqlite
-          cmake
-        ];
-        LD_LIBRARY_PATH = nixpkgs.lib.makeLibraryPath buildInputs;
-      };
     };
 }
