@@ -10,8 +10,8 @@ elif [ -d "$1" ]; then
     directory=$(realpath "$1")
 fi
 
-if [ -z "$file" ]; then	
-    file=$(find $directory -maxdepth 1 -type f -exec basename {} \; | rofi -i -matching fuzzy -dmenu)
+if [ -z "$file" ]; then
+    file=$(find $directory -maxdepth 1 -type f -exec basename {} \; | sort | rofi -i -matching fuzzy -dmenu)
     if [ $? -ne 0 ]; then
         exit 0
     fi
