@@ -3,19 +3,14 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      function last_history_item
-        echo $history[1]
-      end
-      abbr -a !! --position anywhere --function last_history_item
+      abbr -a !! --position anywhere (echo $history[1])
 
       set -Ux KOMGA_API (cat /run/secrets/komga_api)
-
       set fish_greeting
+
+      zoxide init fish | source
       fastfetch
     '';
-    shellAbbrs = {
-      "!!" = "(echo $history[1])";
-    };
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";
       la = "${pkgs.eza}/bin/eza -a --color=always --group-directories-first --icons";
