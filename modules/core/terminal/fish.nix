@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       abbr -a !! --position anywhere (echo $history[1])
 
-      set -Ux KOMGA_API (cat /run/secrets/komga_api)
+      set -x KOMGA_API (cat /run/secrets/komga_api)
       set fish_greeting
 
       zoxide init fish | source
@@ -31,4 +31,11 @@
     };
   };
   programs.command-not-found.enable = false;
+
+  home-manager.users.${username} = {
+    programs.fish.enable = true;
+    home.sessionPath = [
+      "$HOME/.local/bin"
+    ];
+  };
 }
