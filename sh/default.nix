@@ -8,6 +8,7 @@
       [
         (pkgs.writeScriptBin "audiosetup" (builtins.readFile ./audiosetup.sh))
         (pkgs.writeScriptBin "createcbz" (builtins.readFile ./createcbz.py))
+        (pkgs.writeScriptBin "epub2cbz" (builtins.readFile ./epub2cbz.sh))
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
         (pkgs.writeScriptBin "gs" (builtins.readFile ./gs.sh))
 	(pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
