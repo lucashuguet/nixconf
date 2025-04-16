@@ -67,7 +67,7 @@
             DM = "sddm";
             DE = [ "hyprland" "dwm" "gnome" ];
             apps = [
-              "games" "latex" "ledger" "mangal" "mpd" "thunderbird"
+              "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki"
             ];
             extra-browsers = [ "qutebrowser" ];
             username = "astrogoat";
