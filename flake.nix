@@ -69,7 +69,7 @@
             apps = [
               "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki"
             ];
-            extra-browsers = [ "qutebrowser" ];
+            extra-browsers = [ "firefox" "qutebrowser" ];
             username = "astrogoat";
             hostname = "rog";
           } // inputs;
