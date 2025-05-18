@@ -77,7 +77,6 @@
             ./.
             ./modules/hardware/nvidia
             ./modules/apps/sideloader
-            ./modules/apps/virt/waydroid.nix
             ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
