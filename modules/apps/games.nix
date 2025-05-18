@@ -16,7 +16,6 @@
     enable = true;
     remotePlay.openFirewall = false;
     dedicatedServer.openFirewall = false;
-    gamescopeSession.enable = true;
   };
 
   hardware.xone.enable = true;
