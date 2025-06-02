@@ -5,6 +5,13 @@
     prismlauncher
     jdk8 jdk17 jdk21
     mangohud
+    (retroarch.withCores (
+      cores: with cores; [
+        fceumm  # nes
+        gpsp    # gba
+        melonds # ds
+      ]
+    ))
   ];
 
   programs.gamescope = {
