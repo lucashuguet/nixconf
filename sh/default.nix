@@ -20,7 +20,7 @@
         (pkgs.writeScriptBin "rofisurf" (builtins.readFile ./rofisurf.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./rofitheme.sh))
         (pkgs.writeScriptBin "aurastatic" ''
-          asusctl led-mode static -c $(cat ~/.config/colors/aura.txt)
+          asusctl aura static -c $(cat ~/.config/colors/aura.txt)
         '')
       ];
   };

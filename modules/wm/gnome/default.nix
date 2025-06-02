@@ -2,7 +2,7 @@
 {
   services.xserver.desktopManager.gnome.enable = true;
 
-  services.gnome.core-utilities.enable = false;
+  services.gnome.core-apps.enable = false;
   services.gnome.rygel.enable = false;
   services.usbmuxd.enable = true;
 
@@ -38,13 +38,13 @@
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
         ];
       };
-      
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt>f";
         command = "librewolf";
         name = "librewolf";
       };
-      
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         binding = "<Super>m";
         command = "alacritty -e ncmpcpp";
@@ -56,7 +56,7 @@
         command = "alacritty";
         name = "alacritty";
       };
-      
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
         binding = "<Super>e";
         command = "pcmanfm";
