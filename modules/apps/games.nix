@@ -7,9 +7,10 @@
     mangohud
     (retroarch.withCores (
       cores: with cores; [
-        fceumm  # nes
-        gpsp    # gba
-        melonds # ds
+        fceumm   # nes
+        gpsp     # gba
+        gambatte # gb / gbc
+        melonds  # ds
       ]
     ))
   ];
