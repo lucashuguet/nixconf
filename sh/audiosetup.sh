@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-amixer -c 0 set Master unmute
-amixer -c 0 set Master 100%
+amixer -c 1 set Master unmute
+amixer -c 1 set Master 100%
 
-amixer -c 0 set Speaker unmute
+amixer -c 1 set Headphone unmute
+amixer -c 1 set Headphone 100%
 
-amixer -c 0 set "Auto-Mute Mode" Enabled
+amixer -c 1 set Speaker unmute
+amixer -c 1 set Speaker 100%
 
-wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+amixer -c 1 set "Auto-Mute Mode" Enabled
+
+amixer set Capture nocap

@@ -12,7 +12,7 @@
 
   # fix sound
   boot.extraModprobeConfig = ''
-    options snd-hda-intel model=asus-zenbook
+    blacklist snd_hda_codec_realtek
   '';
 
   # asus services
