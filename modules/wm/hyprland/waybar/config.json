@@ -39,6 +39,18 @@
         "spacing": 10
     },
 
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "\uf24e",
+            "performance": "\udb82\udc20",
+            "balanced": "\uf24e",
+            "power-saver": "\uf06c"
+        }
+    },
+
     "clock": {
         "format": "\udb82\udd54 {0:%H:%M} \udb80\udced {0:%d/%m}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -52,18 +64,6 @@
     "memory": {
         "interval": 1,
         "format": "\udb80\udf5b {used} GiB",
-    },
-
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "\uf24e",
-            "performance": "\udb82\udc20",
-            "balanced": "\uf24e",
-            "power-saver": "\uf06c"
-        }
     },
 
     "battery": {

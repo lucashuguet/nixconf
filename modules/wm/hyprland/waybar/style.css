@@ -82,7 +82,7 @@ window#waybar.empty #window {
 }
 
 #cpu {
-    color: @yellow;	
+    color: @yellow;
 }
 
 #memory {
