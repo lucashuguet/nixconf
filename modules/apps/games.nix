@@ -8,6 +8,7 @@
     (retroarch.withCores (
       cores: with cores; [
         fceumm   # nes
+        snes9x   # snes
         gpsp     # gba
         gambatte # gb / gbc
         melonds  # ds
