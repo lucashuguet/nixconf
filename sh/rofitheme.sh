@@ -225,7 +225,9 @@ else
     xdotool key "Super+F5"
     # update_swww
 fi
-  
+
+hyprctl reload
+
 gsettings set org.gnome.desktop.background picture-uri "file://$wallpaper"
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$wallpaper"
 
