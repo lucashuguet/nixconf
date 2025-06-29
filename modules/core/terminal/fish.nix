@@ -29,6 +29,12 @@
       em = "emacsclient -nc";
       e = "emacsclient -nw -c";
     };
+    shellAbbrs = {
+      atd = "aria2c --seed-time=0 --max-upload-limit=1";
+      ats = "aria2c --seed-time=0 --max-upload-limit=1 --show-files";
+      atds = "aria2c --seed-time=0 --max-upload-limit=1 --select-file=";
+      add = "aria2c --continue=true";
+    };
   };
   programs.command-not-found.enable = false;
 
