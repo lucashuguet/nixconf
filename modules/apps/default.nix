@@ -6,6 +6,7 @@
     ./gimp.nix
     ./libreoffice.nix
     ./mpv
+    ./thunar.nix
     ./zathura.nix
   ];
 }

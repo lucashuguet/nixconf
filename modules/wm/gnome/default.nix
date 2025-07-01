@@ -59,8 +59,8 @@
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
         binding = "<Super>e";
-        command = "pcmanfm";
-        name = "pcmanfm";
+        command = "thunar";
+        name = "thunar";
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {

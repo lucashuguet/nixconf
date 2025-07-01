@@ -30,7 +30,7 @@ in
 
   home-manager.users.${username} = {
     home.packages = with pkgs; [
-      pcmanfm sxiv libnotify
+      sxiv libnotify
 
       # wayland specific
       imv wl-clipboard wlr-randr
