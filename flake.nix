@@ -60,6 +60,7 @@
             ./.
             ./modules/hardware/nvidia
             ./modules/apps/sideloader
+	    ./modules/apps/emacs
             ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
@@ -80,6 +81,25 @@
           modules = [
             ./.
             ./modules/hardware/nvidia
+          ];
+        };
+
+	"t470" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system;
+            DM = "sddm";
+            DE = [ "hyprland" "dwm" "gnome" ];
+            extra-browsers = [ "firefox" ];
+            apps = [ "games" "thunderbird" ];
+            username = "astrogoat";
+            hostname = "t470";
+          } // inputs;
+          modules = [
+            ./.
+	    ./modules/apps/emacs
+            ./modules/apps/virt
+	    ./modules/code
+	    ./sh
           ];
         };
       };
