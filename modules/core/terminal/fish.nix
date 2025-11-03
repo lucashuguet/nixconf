@@ -5,7 +5,10 @@
     interactiveShellInit = ''
       abbr -a !! --position anywhere (echo $history[1])
 
-      set -x KOMGA_API (cat /run/secrets/komga_api)
+      if test -e /run/secrets/komga_api;
+        set -x KOMGA_API (cat /run/secrets/komga_api)
+      end
+
       set fish_greeting
 
       zoxide init fish | source
