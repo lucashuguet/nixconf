@@ -1,5 +1,7 @@
-{ hostname, username, ... }:
+{ pkgs, hostname, username, ... }:
 {
+  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+
   networking = {
     hostName = hostname;
     networkmanager.enable = true;
