@@ -50,7 +50,7 @@
             DM = "sddm";
             DE = [ "hyprland" "dwm" "gnome" ];
             apps = [
-              "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki"
+              "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki" "filezilla"
             ];
             extra-browsers = [ "firefox" "qutebrowser" ];
             username = "astrogoat";
@@ -90,7 +90,7 @@
             DM = "sddm";
             DE = [ "hyprland" "dwm" "gnome" ];
             extra-browsers = [ "firefox" ];
-            apps = [ "games" "thunderbird" ];
+            apps = [ "games" "thunderbird" "filezilla" "mpd" ];
             username = "astrogoat";
             hostname = "t470";
           } // inputs;
