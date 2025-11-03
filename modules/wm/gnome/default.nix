@@ -74,7 +74,7 @@
           "org.prismlauncher.PrismLauncher.desktop"
           "librewolf.desktop"
           "Alacritty.desktop"
-          "pcmanfm.desktop"
+          "thunar.desktop"
         ];
       };
 
