@@ -13,6 +13,8 @@
     extraPackages = with pkgs; [vaapiVdpau];
   };
 
+  hardware.nvidia-container-toolkit.enable = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
