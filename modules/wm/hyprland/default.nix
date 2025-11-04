@@ -1,5 +1,7 @@
-{ pkgs, username, ... }:
-{
+{ pkgs, lib, config, username, ... }:
+let
+  hyprConfig = builtins.readFile ./hyprland.conf;
+in {
   imports = [
     ./bpytop
     ./dunst
@@ -7,24 +9,38 @@
     ./waybar
   ];
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = false;
+  options.programs.hyprland = {
+    monitor-resolution = lib.mkOption {
+      type = lib.types.str;
+      default = "preferred";
+      description = "Hyprland monitor resolution";
+    };
   };
 
-  programs.light.enable = true;
-  users.users.${username}.extraGroups = [ "video" ];
-
-  home-manager.users.${username} = {
-    home.file = {
-      ".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  config = {
+    programs.hyprland = {
+      enable = true;
+      withUWSM = false;
     };
 
-    home.packages = with pkgs; [
-      swww
-      hyprshot
-      wl-clipboard
-      wlr-randr
-    ];
+    programs.light.enable = true;
+    users.users.${username}.extraGroups = [ "video" ];
+
+    home-manager.users.${username} = {
+      home.file = {
+        ".config/hypr/hyprland.conf".text = ''
+        monitor = ,${config.programs.hyprland.monitor-resolution},0x0,1
+
+        ${hyprConfig}
+        '';
+      };
+
+      home.packages = with pkgs; [
+        swww
+        hyprshot
+        wl-clipboard
+        wlr-randr
+      ];
+    };
   };
 }

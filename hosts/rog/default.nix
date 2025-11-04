@@ -6,6 +6,7 @@
 
   # broken screen on 144hz
   boot.kernelParams = [ "video=1920x1080@60" ];
+  programs.hyprland.monitor-resolution = "1920x1080@60";
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --mode 1920x1080 --rate 60
   '';
