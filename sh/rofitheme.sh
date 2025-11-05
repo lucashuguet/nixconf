@@ -107,8 +107,7 @@ suckless=$colors_path/suckless.txt
 dunstc=~/.config/dunst/config.toml
 dunstrc=~/.config/dunst/dunstrc
 
-rm $alacritty
-echo "[colors.primary]" | tee -a $alacritty
+echo "[colors.primary]" | tee $alacritty
 echo "background = '$background'" | tee -a $alacritty
 echo "foreground = '$foreground'" | tee -a $alacritty
 echo "[colors.normal]" | tee -a $alacritty
@@ -130,8 +129,7 @@ echo "magenta = '$lmagenta'" | tee -a $alacritty
 echo "cyan = '$lcyan'" | tee -a $alacritty
 echo "white = '$lwhite'" | tee -a $alacritty
 
-rm $qutebrowser
-echo "colors:" | tee -a $qutebrowser
+echo "colors:" | tee $qutebrowser
 echo "  primary:" | tee -a $qutebrowser
 echo "    background: '$background'" | tee -a $qutebrowser
 echo "    foreground: '$foreground'" | tee -a $qutebrowser
@@ -154,8 +152,7 @@ echo "    magenta: '$lmagenta'" | tee -a $qutebrowser
 echo "    cyan: '$lcyan'" | tee -a $qutebrowser
 echo "    white: '$lwhite'" | tee -a $qutebrowser
 
-rm $rofi
-echo "* {" | tee -a $rofi
+echo "* {" | tee $rofi
 echo "    red: $(convert_rgba $red);" | tee -a $rofi
 echo "    blue: $(convert_rgba $blue);" | tee -a $rofi
 echo "    foreground: $(convert_rgba $foreground);" | tee -a $rofi
@@ -164,8 +161,7 @@ echo "    lightfg: $(convert_rgba $lbackground);" | tee -a $rofi
 echo "    lightbg: $(convert_rgba $background);" | tee -a $rofi
 echo "}" | tee -a $rofi
 
-rm $hyprland
-echo "general {" | tee -a $hyprland
+echo "general {" | tee $hyprland
 echo "    col.active_border = rgba(${lforeground:1}ee)" | tee -a $hyprland
 echo "    col.inactive_border = rgba(${lbackground:1}ee)" | tee -a $hyprland
 echo "}" | tee -a $hyprland
@@ -175,8 +171,7 @@ echo "        color = rgba(${background:1}ee)" | tee -a $hyprland
 echo "    }" | tee -a $hyprland
 echo "}" | tee -a $hyprland
 
-rm $hyprlock
-echo "\$wallpaper = $wallpaper" | tee -a $hyprlock
+echo "\$wallpaper = $wallpaper" | tee $hyprlock
 echo "\$accent = rgb(${green:1})" | tee -a $hyprlock
 echo "\$accentAlpha = ${green:1}" | tee -a $hyprlock
 echo "\$text = rgb(${foreground:1})" | tee -a $hyprlock
@@ -185,8 +180,7 @@ echo "\$base = rgb(${background:1})" | tee -a $hyprlock
 echo "\$red = rgb(${red:1})" | tee -a $hyprlock
 echo "\$yellow = rgb(${yellow:1})" | tee -a $hyprlock
 
-rm $waybar
-echo "@define-color foreground $foreground;" | tee -a $waybar
+echo "@define-color foreground $foreground;" | tee $waybar
 echo "@define-color background $background;" | tee -a $waybar
 echo "@define-color red $red;" | tee -a $waybar
 echo "@define-color green $green;" | tee -a $waybar
@@ -197,22 +191,18 @@ echo "@define-color cyan $cyan;" | tee -a $waybar
 echo "@define-color white $white;" | tee -a $waybar
 echo "@define-color lblack $lblack;" | tee -a $waybar
 
-rm $dunst
-echo "[global]" | tee -a $dunst
+echo "[global]" | tee $dunst
 echo "    frame_color = \"$lforeground\"" | tee -a $dunst
 echo "[urgency_normal]" | tee -a $dunst
 echo "    background = \"$background\"" | tee -a $dunst
 echo "    foreground = \"$foreground\"" | tee -a $dunst
 
-rm $dunstrc
-cat $dunst | tee -a $dunstrc
+cat $dunst | tee $dunstrc
 cat $dunstc | tee -a $dunstrc
 
-rm $aura
-echo $(echo $red | cut -c2-) | tee -a $aura
+echo $(echo $red | cut -c2-) | tee $aura
 
-rm $suckless
-echo "$black" | tee -a $suckless
+echo "$black" | tee $suckless
 echo "$red" | tee -a $suckless
 echo "$green" | tee -a $suckless
 echo "$yellow" | tee -a $suckless
