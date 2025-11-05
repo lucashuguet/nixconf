@@ -5,6 +5,7 @@ in {
   imports = [
     ./bpytop
     ./dunst
+    ./hyprlock
     ./rofi
     ./waybar
   ];

@@ -98,6 +98,7 @@ alacritty=$colors_path/alacritty.toml
 qutebrowser=$colors_path/qutebrowser.yml
 rofi=$colors_path/rofi.rasi
 hyprland=$colors_path/hyprland.conf
+hyprlock=$colors_path/hyprlock.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
 aura=$colors_path/aura.txt
@@ -173,6 +174,16 @@ echo "    shadow {" | tee -a $hyprland
 echo "        color = rgba(${background:1}ee)" | tee -a $hyprland
 echo "    }" | tee -a $hyprland
 echo "}" | tee -a $hyprland
+
+rm $hyprlock
+echo "\$wallpaper = $wallpaper" | tee -a $hyprlock
+echo "\$accent = rgb(${green:1})" | tee -a $hyprlock
+echo "\$accentAlpha = ${green:1}" | tee -a $hyprlock
+echo "\$text = rgb(${foreground:1})" | tee -a $hyprlock
+echo "\$textAlpha = ${foreground:1}" | tee -a $hyprlock
+echo "\$base = rgb(${background:1})" | tee -a $hyprlock
+echo "\$red = rgb(${red:1})" | tee -a $hyprlock
+echo "\$yellow = rgb(${yellow:1})" | tee -a $hyprlock
 
 rm $waybar
 echo "@define-color foreground $foreground;" | tee -a $waybar
