@@ -5,8 +5,8 @@
     interactiveShellInit = ''
       abbr -a !! --position anywhere (echo $history[1])
 
-      if test -e /run/secrets/komga_api;
-        set -x KOMGA_API (cat /run/secrets/komga_api)
+      if test -e /run/secrets/hosts/(hostname)/komga_api;
+        set -x KOMGA_API (cat /run/secrets/hosts/(hostname)/komga_api)
       end
 
       set fish_greeting
