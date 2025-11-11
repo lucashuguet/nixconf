@@ -1,10 +1,16 @@
 { pkgs, hostname, username, ... }:
 {
-  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+  environment.systemPackages = with pkgs; [ networkmanagerapplet openvpn wireguard-tools ];
 
   networking = {
     hostName = hostname;
-    networkmanager.enable = true;
+    wireguard.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
+    };
   };
 
   services.avahi = {
