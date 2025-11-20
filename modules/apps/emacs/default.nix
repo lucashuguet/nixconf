@@ -17,6 +17,7 @@ let
     eglot corfu cape nerd-icons-corfu
     yasnippet yasnippet-snippets
     rust-mode nix-mode nix-ts-mode web-mode emmet-mode
+    typst-preview typst-ts-mode
     general dashboard
   ]);
 in{

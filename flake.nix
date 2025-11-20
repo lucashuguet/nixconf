@@ -97,6 +97,7 @@
           modules = [
             ./.
 	    ./modules/apps/emacs
+            ./modules/apps/typst.nix
             ./modules/apps/virt
 	    ./modules/code
 	    ./sh

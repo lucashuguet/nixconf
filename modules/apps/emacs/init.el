@@ -393,6 +393,7 @@
         (rust "https://github.com/tree-sitter/tree-sitter-rust")
         (toml "https://github.com/tree-sitter/tree-sitter-toml")
         (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+        (typst . ("https://github.com/uben0/tree-sitter-typst" "master" "src"))
         (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
