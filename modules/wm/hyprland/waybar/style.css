@@ -89,7 +89,7 @@ window#waybar.empty #window {
     color: @blue;
 }
 
-#battery {
+#custom-battery {
     color: @magenta;
 }
 

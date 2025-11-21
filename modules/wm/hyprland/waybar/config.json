@@ -15,7 +15,7 @@
         "clock",
         "cpu",
         "memory",
-        "battery",
+        "custom/battery",
         "pulseaudio",
         "pulseaudio#microphone"
     ],
@@ -66,17 +66,17 @@
         "format": "\udb80\udf5b {used} GiB",
     },
 
-    "battery": {
-        "bat": "BAT0",
-        "states": {
-            "full": 99,
-            "good": 80,
-            "normal": 60,
-            "warning": 20,
-            "critical": 10
+    "custom/battery": {
+        "exec": "waybar-battery",
+        "return-type": "json",
+        "format": "{icon}  {text}%",
+        "format-icons": {
+            "full": "\uf240",
+            "good": "\uf241",
+            "normal": "\uf242",
+            "warning": "\uf243",
+            "critical": "\uf244"
         },
-        "format": "{icon}  {capacity}%",
-        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
         "interval": 30
     },
 
