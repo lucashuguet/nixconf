@@ -19,6 +19,7 @@
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ./rofisink.py))
         (pkgs.writeScriptBin "rofisurf" (builtins.readFile ./rofisurf.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./rofitheme.sh))
+        (pkgs.writeScriptBin "waybar-battery" (builtins.readFile ./battery.sh))
         (pkgs.writeScriptBin "aurastatic" ''
           asusctl aura static -c $(cat ~/.config/colors/aura.txt)
         '')
