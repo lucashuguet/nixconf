@@ -60,7 +60,7 @@
             ./.
             ./modules/hardware/nvidia
             ./modules/apps/sideloader
-	    ./modules/apps/emacs
+            ./modules/apps/emacs
             ./modules/apps/virt
             ./modules/core/cups
             ./modules/code
@@ -84,7 +84,7 @@
           ];
         };
 
-	"t470" = nixpkgs.lib.nixosSystem {
+        "t470" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
             DM = "sddm";
@@ -96,11 +96,11 @@
           } // inputs;
           modules = [
             ./.
-	    ./modules/apps/emacs
+            ./modules/apps/emacs
             ./modules/apps/typst.nix
             ./modules/apps/virt
-	    ./modules/code
-	    ./sh
+            ./modules/code
+            ./sh
           ];
         };
       };
