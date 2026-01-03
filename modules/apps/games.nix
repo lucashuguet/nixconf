@@ -5,13 +5,18 @@
     prismlauncher
     jdk8 jdk17 jdk21
     mangohud
+    retroarch-assets
     (retroarch.withCores (
       cores: with cores; [
-        fceumm   # nes
-        snes9x   # snes
-        gpsp     # gba
+        fceumm # nes
         gambatte # gb / gbc
-        melonds  # ds
+        gpsp # gba
+        libretro.beetle-psx-hw # psx
+        libretro.dolphin # wii
+        libretro.dosbox-pure # dos
+        melonds # ds
+        mupen64plus # n64
+        snes9x   # snes
       ]
     ))
   ];
