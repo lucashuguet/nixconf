@@ -100,6 +100,7 @@
             ./modules/apps/optical
             ./modules/apps/typst.nix
             ./modules/apps/virt
+            ./modules/core/cups
             ./modules/code
             ./sh
           ];
