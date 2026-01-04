@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 {
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   services.gnome.core-apps.enable = false;
   services.gnome.rygel.enable = false;

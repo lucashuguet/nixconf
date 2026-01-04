@@ -4,7 +4,6 @@
     brasero
     dvdbackup
     handbrake
-    kdePackages.k3b
   ];
 
   users.users.${username}.extraGroups = [ "cdrom" ];

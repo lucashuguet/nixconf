@@ -3,7 +3,7 @@
   fonts = {
     packages = with pkgs; [
       unstable.nerd-fonts.fantasque-sans-mono
-      noto-fonts noto-fonts-cjk-sans noto-fonts-emoji
+      noto-fonts noto-fonts-cjk-sans noto-fonts-color-emoji
     ];
 
     fontconfig.defaultFonts = {
