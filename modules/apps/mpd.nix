@@ -1,7 +1,7 @@
 { pkgs, config, username, ... }:
 {
   home-manager.users.${username} = {
-    home.packages = with pkgs; [ mpc-cli ncmpcpp cava ];
+    home.packages = with pkgs; [ mpc ncmpcpp cava ];
     services.mpd = {
       enable = true;
 

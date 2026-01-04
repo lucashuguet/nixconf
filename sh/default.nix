@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 {
-  imports = [ ../modules/wm/hyprland/rofi ../modules/apps/browsers/surf ];
+  imports = [ ../modules/wm/hyprland/rofi ];
   home-manager.users.${username} = {
     home.packages =
       (with pkgs; [ fzf pywal ])

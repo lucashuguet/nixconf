@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    pinentry pinentry-rofi
+    pinentry-rofi
     (pass.withExtensions (ext: with ext; [pass-otp]))
   ];
 
