@@ -1,23 +1,32 @@
-{
+let
+  layout = "fr";
+  variant = "azerty";
+  locale = "en_US.UTF-8";
+  extraLocale = "fr_FR.UTF-8";
+in {
   time.timeZone = "Europe/Paris";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = locale;
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
+    LC_ADDRESS = extraLocale;
+    LC_IDENTIFICATION = extraLocale;
+    LC_MEASUREMENT = extraLocale;
+    LC_MONETARY = extraLocale;
+    LC_NAME = extraLocale;
+    LC_NUMERIC = extraLocale;
+    LC_PAPER = extraLocale;
+    LC_TELEPHONE = extraLocale;
+    LC_TIME = extraLocale;
   };
 
-  console.keyMap = "fr";
+  console.keyMap = layout;
 
   services.xserver.xkb = {
-    layout = "fr";
-    variant = "azerty";
+    inherit layout variant;
+  };
+
+  environment.variables = {
+    XKB_DEFAULT_LAYOUT = layout;
+    XKB_DEFAULT_VARIANT = variant;
   };
 }

@@ -4,7 +4,6 @@
   home-manager,
   nixpkgs-unstable,
   rust-overlay,
-  sddm-sugar-candy-nix,
   system,
   sops-nix,
   ...
@@ -15,7 +14,6 @@ in {
   imports = [
     disko.nixosModules.disko
     home-manager.nixosModules.home-manager
-    sddm-sugar-candy-nix.nixosModules.default
     sops-nix.nixosModules.sops
     ./hosts
     ./modules

@@ -25,11 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sddm-sugar-candy-nix = {
-      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +42,7 @@
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "sddm";
+            DM = "greetd";
             DE = [ "hyprland" "dwm" "gnome" ];
             apps = [
               "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki" "filezilla"
@@ -71,7 +66,7 @@
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "sddm";
+            DM = "greetd";
             DE = [ "gnome" ];
             extra-browsers = [];
             apps = [ "virt/docker" ];
@@ -87,7 +82,7 @@
         "t470" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "ly";
+            DM = "greetd";
             DE = [ "hyprland" "dwm" "gnome" ];
             extra-browsers = [ "firefox" ];
             apps = [ "games" "thunderbird" "filezilla" "mpd" ];
