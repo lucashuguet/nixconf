@@ -1,7 +1,7 @@
 { pkgs, username, ... }:
 {
   environment.systemPackages = with pkgs; [
-    brasero
+    brasero dvdplusrwtools
     dvdbackup
     handbrake
   ];
