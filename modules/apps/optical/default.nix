@@ -1,9 +1,9 @@
-{ pkgs, username, ... }:
+{ username, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    brasero dvdplusrwtools
-    dvdbackup
-    handbrake
+  imports = [
+    ./brasero
+    ./dvdbackup
+    ./handbrake
   ];
 
   users.users.${username}.extraGroups = [ "cdrom" ];

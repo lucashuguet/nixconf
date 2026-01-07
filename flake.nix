@@ -42,23 +42,31 @@
         "rog" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "greetd";
-            DE = [ "hyprland" "dwm" "gnome" ];
-            apps = [
-              "games" "latex" "ledger" "mangal" "mpd" "thunderbird" "koreader" "anki" "filezilla"
-            ];
-            extra-browsers = [ "firefox" "qutebrowser" ];
+            displayManager = "greetd";
+            windowManager = [ "hyprland" "dwm" "gnome" ];
+            extraBrowsers = [ "firefox" "qutebrowser" ];
             username = "astrogoat";
             hostname = "rog";
           } // inputs;
           modules = [
             ./.
-            ./modules/hardware/nvidia
-            ./modules/apps/sideloader
             ./modules/apps/emacs
+            ./modules/apps/filezilla
+            ./modules/apps/games
+            ./modules/apps/games/steam
+            ./modules/apps/games/retroarch
+            ./modules/apps/games/prismlauncher
+            ./modules/apps/koreader
+            ./modules/apps/ledger
+            ./modules/apps/mpd
+            ./modules/apps/sideloader
+            ./modules/apps/study
+            ./modules/apps/study/maths
+            ./modules/apps/thunderbird
             ./modules/apps/virt
-            ./modules/core/cups
             ./modules/code
+            ./modules/core/cups
+            ./modules/hardware/nvidia
             ./sh
           ];
         };
@@ -66,15 +74,15 @@
         "natnix" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "greetd";
-            DE = [ "gnome" ];
-            extra-browsers = [];
-            apps = [ "virt/docker" ];
+            displayManager = "greetd";
+            windowManager = [ "gnome" ];
+            extraBrowsers = [];
             username = "natminer";
             hostname = "natnix";
           } // inputs;
           modules = [
             ./.
+            ./modules/apps/virt/docker
             ./modules/hardware/nvidia
           ];
         };
@@ -82,21 +90,27 @@
         "t470" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            DM = "greetd";
-            DE = [ "hyprland" "dwm" "gnome" ];
-            extra-browsers = [ "firefox" ];
-            apps = [ "games" "thunderbird" "filezilla" "mpd" ];
+            displayManager = "greetd";
+            windowManager = [ "hyprland" "dwm" "gnome" ];
+            extraBrowsers = [ "firefox" ];
             username = "astrogoat";
             hostname = "t470";
           } // inputs;
           modules = [
             ./.
             ./modules/apps/emacs
+            ./modules/apps/filezilla
+            ./modules/apps/games
+            ./modules/apps/games/steam
+            ./modules/apps/games/retroarch
+            ./modules/apps/games/prismlauncher
+            ./modules/apps/mpd
             ./modules/apps/optical
-            ./modules/apps/typst.nix
+            ./modules/apps/study/maths/typst
+            ./modules/apps/thunderbird
             ./modules/apps/virt
-            ./modules/core/cups
             ./modules/code
+            ./modules/core/cups
             ./sh
           ];
         };

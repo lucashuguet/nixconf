@@ -1,9 +1,6 @@
-{ pkgs, ... }:
+{ lib, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    cups-brother-hl1210w
-  ];
+  imports = lib.filesystem.listFilesRecursive ./printers;
 
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ brlaser ];
 }

@@ -1,4 +1,4 @@
-{ DM, ... }:
+{ displayManager, ... }:
 {
-  imports = [ ./${DM}.nix ];
+  imports = [ ./${displayManager} ];
 }

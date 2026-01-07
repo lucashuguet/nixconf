@@ -1,6 +1,6 @@
 { nixpkgs, nixpkgs-unstable, username, ... }:
 {
-  imports = [ ./nh.nix ];
+  imports = [ ./nh ];
 
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

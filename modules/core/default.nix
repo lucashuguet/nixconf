@@ -2,15 +2,25 @@
 {
   imports = [
     ./boot
-    ./btrfs.nix
-    ./locale.nix
+    ./filesystems
+    ./locale
     ./nix
-    ./security.nix
+    ./security
     ./terminal
-    ./xorg.nix
+    ./xorg
   ];
 
   environment.systemPackages = with pkgs; [
-    aria2 ffmpeg imagemagick git git-lfs ncdu p7zip yt-dlp vimv file xxd fd
+    aria2
+    fd
+    ffmpeg
+    file
+    git git-lfs
+    imagemagick
+    ncdu
+    p7zip
+    vimv
+    xxd
+    yt-dlp
   ];
 }

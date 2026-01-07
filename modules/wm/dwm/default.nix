@@ -1,6 +1,6 @@
 { pkgs, dwm, system, username, ... }:
 {
-  imports = [ ./picom ../../core/terminal/st.nix ];
+  imports = [ ./picom ../../core/terminal/st ];
 
   environment.systemPackages = with pkgs; [ feh xdotool ];
   services.xserver.windowManager.dwm = {

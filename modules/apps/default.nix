@@ -1,11 +1,10 @@
-{apps, ...}:
 {
-  imports = (builtins.map (app: ./${app}.nix) apps) ++ [
+  imports = [
     ./browsers
-    ./gimp.nix
-    ./libreoffice.nix
+    ./gimp
+    ./libreoffice
     ./mpv
-    ./thunar.nix
-    ./zathura.nix
+    ./thunar
+    ./zathura
   ];
 }

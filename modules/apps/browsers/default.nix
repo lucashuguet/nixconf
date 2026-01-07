@@ -1,6 +1,6 @@
-{ extra-browsers, ... }:
+{ extraBrowsers, ... }:
 {
-  imports = (builtins.map (br: ./${br}) extra-browsers) ++ [
+  imports = (builtins.map (br: ./${br}) extraBrowsers) ++ [
     ./librewolf
   ];
 }

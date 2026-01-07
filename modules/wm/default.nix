@@ -1,4 +1,4 @@
-{ DE, ... }:
+{ windowManager, ... }:
 {
-  imports = (builtins.map (de: ./${de}) DE);
+  imports = (builtins.map (wm: ./${wm}) windowManager);
 }

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./docker.nix
-    ./virsh.nix
+    ./docker
+    ./virsh
   ];
 }

@@ -10,7 +10,7 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [vaapiVdpau];
+    extraPackages = with pkgs; [ vaapiVdpau ];
   };
 
   hardware.nvidia-container-toolkit.enable = true;

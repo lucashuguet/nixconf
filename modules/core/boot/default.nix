@@ -1,6 +1,8 @@
 {
-  imports = [ ./grub.nix ];
+  imports = [
+    ./grub
+    ./plymouth
+  ];
 
   boot.initrd.systemd.enable = true;
-  boot.plymouth.enable = true;
 }
