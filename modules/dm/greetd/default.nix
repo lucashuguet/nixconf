@@ -3,7 +3,7 @@
   programs.regreet = {
     enable = true;
     cursorTheme.name = config.theme.cursor.name;
-    font.name = config.theme.font.name;
+    font.name = config.theme.font.mono.name;
     iconTheme.name = config.theme.icon.name;
     theme.name = config.theme.gtk.name;
     settings = {
