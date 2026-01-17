@@ -6,9 +6,11 @@
 
   # fix read+write permissions for ledger
   services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="uucp"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2c97", TAG+="uaccess", TAG+="udev-acl"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="2c97", MODE="0666"
   '';
 
+  # KERNEL=="hidraw*", ATTRS{idVendor}=="2c97", MODE="0660", GROUP="uucp"
   users.users.${username} = {
     extraGroups = [ "uucp" ];
   };

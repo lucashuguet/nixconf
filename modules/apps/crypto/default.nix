@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./ledger
+    ./monero-gui
+  ];
+}

@@ -50,14 +50,14 @@
           } // inputs;
           modules = [
             ./.
+            ./modules/apps/crypto
             ./modules/apps/emacs
             ./modules/apps/filezilla
             ./modules/apps/games
-            ./modules/apps/games/steam
-            ./modules/apps/games/retroarch
             ./modules/apps/games/prismlauncher
+            ./modules/apps/games/retroarch
+            ./modules/apps/games/steam
             ./modules/apps/koreader
-            ./modules/apps/ledger
             ./modules/apps/mpd
             ./modules/apps/sideloader
             ./modules/apps/study
@@ -98,12 +98,13 @@
           } // inputs;
           modules = [
             ./.
+            ./modules/apps/crypto
             ./modules/apps/emacs
             ./modules/apps/filezilla
             ./modules/apps/games
-            ./modules/apps/games/steam
-            ./modules/apps/games/retroarch
             ./modules/apps/games/prismlauncher
+            ./modules/apps/games/retroarch
+            ./modules/apps/games/steam
             ./modules/apps/mpd
             ./modules/apps/optical
             ./modules/apps/study/maths/typst
