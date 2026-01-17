@@ -4,6 +4,8 @@
 {
   imports = [ ./hardware-configuration.nix ./disko-config.nix ];
 
+  system.stateVersion = "24.05";
+
   # broken screen on 144hz
   boot.kernelParams = [ "video=1920x1080@60" ];
   programs.hyprland.monitor-resolution = "1920x1080@60";

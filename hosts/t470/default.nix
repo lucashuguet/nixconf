@@ -4,6 +4,8 @@
 {
   imports = [ ./hardware-configuration.nix ./disko-config.nix ];
 
+  system.stateVersion = "25.05";
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   sops.secrets = {
