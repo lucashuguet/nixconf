@@ -7,6 +7,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nixos-06cb-009a-fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=25.05";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

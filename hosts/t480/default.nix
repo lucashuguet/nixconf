@@ -1,16 +1,34 @@
 # Lenovo Thinkpad T480
 
-{ nixos-hardware, username, ... }:
+{
+  nixos-06cb-009a-fingerprint-sensor,
+  nixos-hardware,
+  username,
+  lib,
+  ... }:
 {
   imports = [
     ./hardware-configuration.nix ./disko-config.nix
     ../../modules/hardware/nvidia
+    nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
     nixos-hardware.nixosModules.lenovo-thinkpad-t480
   ];
 
   system.stateVersion = "25.11";
 
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModprobeConfig = ''
+    options psmouse synaptics_intertouch=1
+  '';
+
+  services."06cb-009a-fingerprint-sensor" = {
+    enable = true;
+    backend = "python-validity";
+  };
+
+  security.pam.services = lib.genAttrs
+    [ "greetd" ]
+    (name: { fprintAuth = lib.mkDefault true; });
 
   sops.secrets = {
     "hosts/t480/komga_api".owner = username;
