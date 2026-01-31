@@ -431,6 +431,9 @@
 (dolist (hook '(web-mode-hook tsx-mode-hook))
   (add-hook hook #'emmet-mode))
 
+(require 'beancount)
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+
 (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
 (add-hook 'python-ts-mode-hook #'eglot-ensure)
 
