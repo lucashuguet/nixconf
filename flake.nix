@@ -5,6 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,6 +97,35 @@
             extraBrowsers = [ "firefox" ];
             username = "astrogoat";
             hostname = "t470";
+          } // inputs;
+          modules = [
+            ./.
+            ./modules/apps/crypto
+            ./modules/apps/emacs
+            ./modules/apps/filezilla
+            ./modules/apps/games
+            ./modules/apps/games/prismlauncher
+            ./modules/apps/games/retroarch
+            ./modules/apps/games/steam
+            ./modules/apps/mpd
+            ./modules/apps/optical
+            ./modules/apps/study/maths/typst
+            ./modules/apps/thunderbird
+            ./modules/apps/virt
+            ./modules/code
+            ./modules/core/cups
+            ./sh
+          ];
+        };
+
+        "t480" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system;
+            displayManager = "greetd";
+            windowManager = [ "hyprland" "dwm" "gnome" ];
+            extraBrowsers = [ "firefox" ];
+            username = "astrogoat";
+            hostname = "t480";
           } // inputs;
           modules = [
             ./.

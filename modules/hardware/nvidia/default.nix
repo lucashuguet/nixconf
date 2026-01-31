@@ -10,7 +10,7 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [ vaapiVdpau ];
+    extraPackages = with pkgs; [ libva-vdpau-driver ];
   };
 
   hardware.nvidia-container-toolkit.enable = true;
@@ -25,7 +25,7 @@
 
     prime = {
       offload = {
-	      enable = true;
+        enable = true;
         enableOffloadCmd =  true;
       };
       intelBusId = "PCI:0:2:0";
