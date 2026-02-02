@@ -63,7 +63,7 @@
             ./modules/apps/games/steam
             ./modules/apps/koreader
             ./modules/apps/mpd
-            ./modules/apps/sideloader
+            ./modules/apps/ios/sideloader
             ./modules/apps/study
             ./modules/apps/study/maths
             ./modules/apps/thunderbird
@@ -138,6 +138,7 @@
             ./modules/apps/games/prismlauncher
             ./modules/apps/games/retroarch
             ./modules/apps/games/steam
+            ./modules/apps/ios/impactor
             ./modules/apps/mpd
             ./modules/apps/optical
             ./modules/apps/study/maths/typst
