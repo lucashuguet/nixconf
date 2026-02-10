@@ -139,6 +139,7 @@
             ./modules/apps/games/retroarch
             ./modules/apps/games/steam
             ./modules/apps/ios/impactor
+            ./modules/apps/ios/localsend
             ./modules/apps/mpd
             ./modules/apps/optical
             ./modules/apps/study/maths/typst
