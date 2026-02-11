@@ -131,9 +131,10 @@
           } // inputs;
           modules = [
             ./.
-            ./modules/apps/crypto
             ./modules/apps/emacs
             ./modules/apps/filezilla
+            ./modules/apps/finances/beancount
+            ./modules/apps/finances/crypto
             ./modules/apps/games
             ./modules/apps/games/prismlauncher
             ./modules/apps/games/retroarch
