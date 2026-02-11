@@ -140,6 +140,7 @@
             ./modules/apps/games/steam
             ./modules/apps/ios/impactor
             ./modules/apps/ios/localsend
+            ./modules/apps/ios/uxplay
             ./modules/apps/mpd
             ./modules/apps/optical
             ./modules/apps/study/maths/typst
