@@ -19,6 +19,7 @@
     imagemagick
     ncdu
     p7zip
+    usbutils
     vimv
     xxd
     yt-dlp
