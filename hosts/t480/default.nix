@@ -4,8 +4,10 @@
   nixos-06cb-009a-fingerprint-sensor,
   nixos-hardware,
   username,
+  pkgs,
   lib,
-  ... }:
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix ./disko-config.nix
@@ -20,6 +22,9 @@
   boot.extraModprobeConfig = ''
     options psmouse synaptics_intertouch=1
   '';
+
+  environment.systemPackages = with pkgs; [ pcsc-tools ];
+  services.pcscd.enable = true;
 
   services."06cb-009a-fingerprint-sensor" = {
     enable = true;
