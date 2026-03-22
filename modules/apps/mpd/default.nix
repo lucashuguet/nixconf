@@ -19,6 +19,8 @@
           type "pipewire"
           name "My PipeWire Output"
         }
+
+        replaygain "track"
       '';
     };
   };
