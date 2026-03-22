@@ -43,6 +43,10 @@
 
   home-manager.users.${username} = {
     programs.fish.enable = true;
+    programs.fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     home.sessionPath = [
       "$HOME/.local/bin"
     ];
