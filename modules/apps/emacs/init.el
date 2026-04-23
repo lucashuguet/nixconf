@@ -10,7 +10,7 @@
 (global-hl-line-mode t)
 
 (add-to-list 'default-frame-alist
-             '(vertical-scroll-bars . nil))
+  '(vertical-scroll-bars . nil))
 
 (global-display-line-numbers-mode t)
 (setq frame-resize-pixelwise t)
@@ -23,70 +23,73 @@
 (unicode-fonts-setup)
 
 (setq custom-tab-width 4)
+(setq-default tab-width custom-tab-width)
 
-(defun disable-tabs () (setq indent-tabs-mode nil))
-(defun enable-tabs  ()
-  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
-  (setq indent-tabs-mode t)
-  (setq tab-width custom-tab-width))
+(defun my/disable-tabs ()
+  (interactive)
+  (setq indent-tabs-mode nil))
+(defun my/enable-tabs ()
+  (interactive)
+  (setq indent-tabs-mode t))
 
-(add-hook 'prog-mode-hook 'disable-tabs)
+(add-hook 'prog-mode-hook 'my/disable-tabs)
+
+(setq backward-delete-char-untabify-method 'hungry)
 
 (setq-default python-indent-offset custom-tab-width)
 (setq-default js-indent-level custom-tab-width)
+(setq-default c-ts-mode-indent-offset custom-tab-width)
+(setq-default c-basic-offset custom-tab-width)
+(setq-default rust-ts-mode-indent-offset custom-tab-width)
+(setq-default lisp-indent-offset 2)
 
-(setq-default electric-indent-inhibit t)
-
-(setq backward-delete-char-untabify-method 'hungry)
+(setq-default electric-indent-inhibit nil)
 
 (setq-default evil-shift-width custom-tab-width)
 
 (setq whitespace-style '(face tabs tab-mark trailing))
-(custom-set-faces
- '(whitespace-tab ((t (:foreground "#636363")))))
 (setq whitespace-display-mappings
-  '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+  '((tab-mark 9 [124 9] [92 9])))
+(add-hook 'before-save-hook 'whitespace-cleanup)
 (global-whitespace-mode)
 
 (dolist (char/ligature-re
-         `((?-  . ,(rx (or (or "-->" "-<<" "->>" "-|" "-~" "-<" "->") (+ "-"))))
-           (?/  . ,(rx (or (or "/==" "/=" "/>" "/**" "/*") (+ "/"))))
-           (?*  . ,(rx (or (or "*>" "*/") (+ "*"))))
-           (?<  . ,(rx (or (or "<<=" "<<-" "<|||" "<==>" "<!--" "<=>" "<||" "<|>" "<-<"
+          `((?-  . ,(rx (or (or "-->" "-<<" "->>" "-|" "-~" "-<" "->") (+ "-"))))
+             (?/  . ,(rx (or (or "/==" "/=" "/>" "/**" "/*") (+ "/"))))
+             (?*  . ,(rx (or (or "*>" "*/") (+ "*"))))
+             (?<  . ,(rx (or (or "<<=" "<<-" "<|||" "<==>" "<!--" "<=>" "<||" "<|>" "<-<"
                                "<==" "<=<" "<-|" "<~>" "<=|" "<~~" "<$>" "<+>" "</>"
                                "<*>" "<->" "<=" "<|" "<:" "<>"  "<$" "<-" "<~" "<+"
                                "</" "<*")
                            (+ "<"))))
-           (?:  . ,(rx (or (or ":?>" "::=" ":>" ":<" ":?" ":=") (+ ":"))))
-           (?=  . ,(rx (or (or "=>>" "==>" "=/=" "=!=" "=>" "=:=") (+ "="))))
-           (?!  . ,(rx (or (or "!==" "!=") (+ "!"))))
-           (?>  . ,(rx (or (or ">>-" ">>=" ">=>" ">]" ">:" ">-" ">=") (+ ">"))))
-           (?&  . ,(rx (+ "&")))
-           (?|  . ,(rx (or (or "|->" "|||>" "||>" "|=>" "||-" "||=" "|-" "|>"
+             (?:  . ,(rx (or (or ":?>" "::=" ":>" ":<" ":?" ":=") (+ ":"))))
+             (?=  . ,(rx (or (or "=>>" "==>" "=/=" "=!=" "=>" "=:=") (+ "="))))
+             (?!  . ,(rx (or (or "!==" "!=") (+ "!"))))
+             (?>  . ,(rx (or (or ">>-" ">>=" ">=>" ">]" ">:" ">-" ">=") (+ ">"))))
+             (?&  . ,(rx (+ "&")))
+             (?|  . ,(rx (or (or "|->" "|||>" "||>" "|=>" "||-" "||=" "|-" "|>"
                                "|]" "|}" "|=")
                            (+ "|"))))
-           (?.  . ,(rx (or (or ".?" ".=" ".-" "..<") (+ "."))))
-           (?+  . ,(rx (or "+>" (+ "+"))))
-           (?\[ . ,(rx (or "[<" "[|")))
-           (?\{ . ,(rx "{|"))
-           (?\? . ,(rx (or (or "?." "?=" "?:") (+ "?"))))
-           (?#  . ,(rx (or (or "#_(" "#[" "#{" "#=" "#!" "#:" "#_" "#?" "#(")
+             (?.  . ,(rx (or (or ".?" ".=" ".-" "..<") (+ "."))))
+             (?+  . ,(rx (or "+>" (+ "+"))))
+             (?\[ . ,(rx (or "[<" "[|")))
+             (?\{ . ,(rx "{|"))
+             (?\? . ,(rx (or (or "?." "?=" "?:") (+ "?"))))
+             (?#  . ,(rx (or (or "#_(" "#[" "#{" "#=" "#!" "#:" "#_" "#?" "#(")
                            (+ "#"))))
-           (?\; . ,(rx (+ ";")))
-           (?_  . ,(rx (or "_|_" "__")))
-           (?~  . ,(rx (or "~~>" "~~" "~>" "~-" "~@")))
-           (?$  . ,(rx "$>"))
-           (?^  . ,(rx "^="))
-           (?\] . ,(rx "]#"))))
+             (?\; . ,(rx (+ ";")))
+             (?_  . ,(rx (or "_|_" "__")))
+             (?~  . ,(rx (or "~~>" "~~" "~>" "~-" "~@")))
+             (?$  . ,(rx "$>"))
+             (?^  . ,(rx "^="))
+             (?\] . ,(rx "]#"))))
   (let ((char (car char/ligature-re))
-        (ligature-re (cdr char/ligature-re)))
+         (ligature-re (cdr char/ligature-re)))
     (set-char-table-range composition-function-table char
-                          `([,ligature-re 0 font-shape-gstring]))))
+      `([,ligature-re 0 font-shape-gstring]))))
 
-;; (require 'doom-themes)
-;; (load-theme 'doom-material-dark t)
-(load-theme 'doom-dark+ t)
-;; (doom-themes-org-config)
+(require 'ef-themes)
+(load-theme 'ef-winter t)
 
 (setq doom-modeline-height 30)
 (require 'doom-modeline)
@@ -112,6 +115,8 @@
 
 (require 'evil)
 (evil-mode t)
+
+(define-key evil-insert-state-map (kbd "DEL") #'backward-delete-char-untabify)
 
 (setq evil-collection-mode-list '(dashboard dired ibuffer magit calc))
 
@@ -146,7 +151,7 @@
 (add-hook 'dired-mode-hook 'nerd-icons-dired-mode)
 
 (require 'diredfl)
-(diredfl-global-mode)
+(diredfl-global-mode 1)
 
 (require 'peep-dired)
 (with-eval-after-load 'dired
@@ -168,17 +173,17 @@
 (setq org-return-follows-link t)
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
+  (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
 
 (setq-default org-enforce-todo-dependencies t)
 
 (setq org-todo-keyword-faces
-      (quote (("TODO" :foreground "indian red" :weight bold)
-              ("NEXT" :foreground "light blue" :weight bold)
-              ("DONE" :foreground "light green" :weight bold)
-              ("WAITING" :foreground "chocolate" :weight bold)
-              ("CANCELLED" :foreground "dim gray" :weight bold))))
+  (quote (("TODO" :foreground "indian red" :weight bold)
+           ("NEXT" :foreground "light blue" :weight bold)
+           ("DONE" :foreground "light green" :weight bold)
+           ("WAITING" :foreground "chocolate" :weight bold)
+           ("CANCELLED" :foreground "dim gray" :weight bold))))
 
 (setq-default org-export-with-todo-keywords nil)
 
@@ -186,13 +191,13 @@
 (require 'org-superstar)
 (with-eval-after-load 'org-superstar
   (setq org-superstar-item-bullet-alist
-        '((?* . ?•)
-          (?+ . ?➤)
-          (?- . ?•)))
+    '((?* . ?•)
+       (?+ . ?➤)
+       (?- . ?•)))
 
   (setq org-superstar-leading-bullet ?\s)
   (setq org-superstar-headline-bullets-list
-        '("◉" "◈" "○" "▷"))
+    '("◉" "◈" "○" "▷"))
   (org-superstar-restart))
 
 (add-hook 'org-mode-hook 'org-superstar-mode)
@@ -208,8 +213,8 @@
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
   (setq buffer-face-mode-face '(:family "FantasqueSansM Nerd Font"
-                                        :height 160
-                                        :width normal))
+                                 :height 160
+                                 :width normal))
   (buffer-face-mode))
 
 (defun my/set-faces-org ()
@@ -229,21 +234,21 @@
   (setq org-n-level-faces 4)
 
   (set-face-attribute 'org-document-title nil
-                      :height 2.074
-                      :foreground 'unspecified
-                      :inherit 'org-level-8))
+    :height 2.074
+    :foreground 'unspecified
+    :inherit 'org-level-8))
 
 (defun my/set-keyword-faces-org ()
   (mapc (lambda (pair) (push pair prettify-symbols-alist))
-        '(;; Syntax
-          ("TODO" .     "")
-          ("DONE" .     "")
-          ("WAITING" .  "")
-          ("HOLD" .     "")
-          ("NEXT" .     "")
-          ("CANCELLED" . "")
-          ("#+begin_quote" . "“")
-          ("#+end_quote" . "”")))
+    '(;; Syntax
+       ("TODO" .     "")
+       ("DONE" .     "")
+       ("WAITING" .  "")
+       ("HOLD" .     "")
+       ("NEXT" .     "")
+       ("CANCELLED" . "")
+       ("#+begin_quote" . "“")
+       ("#+end_quote" . "”")))
   )
 
 (defun my/style-org ()
@@ -257,9 +262,9 @@
 (setq org-bookmark-names-plist nil)
 
 (org-babel-do-load-languages
- 'org-babel-load-languages (quote ((emacs-lisp . t)
-                                   (sqlite . t)
-                                   (python . t))))
+  'org-babel-load-languages (quote ((emacs-lisp . t)
+                                     (sqlite . t)
+                                     (python . t))))
 
 (require 'evil-org)
 (require 'evil-org-agenda)
@@ -291,12 +296,12 @@
 
 (defadvice next-buffer (after avoid-anoying-buffers activate)
   (when (or (string-match-p "^\*" (buffer-name))
-            (string-match-p "^magit" (buffer-name)))
+          (string-match-p "^magit" (buffer-name)))
     (next-buffer)))
 
 (defadvice previous-buffer (after avoid-anoying-buffers activate)
   (when (or (string-match-p "^\*" (buffer-name))
-            (string-match-p "^magit" (buffer-name)))
+          (string-match-p "^magit" (buffer-name)))
     (previous-buffer)))
 
 (require 'magit)
@@ -329,6 +334,8 @@
 
 (setq eldoc-echo-area-use-multiline-p nil)
 (require 'eglot)
+
+(setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
 
 (setq corfu-cycle t)
 (setq corfu-auto t)
@@ -380,33 +387,35 @@
 
 (setq treesit-font-lock-level 4)
 (setq treesit-language-source-alist
-      '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-        (c "https://github.com/tree-sitter/tree-sitter-c")
-        (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-        (css "https://github.com/tree-sitter/tree-sitter-css")
-        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-        (html "https://github.com/tree-sitter/tree-sitter-html")
-        (js . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
-        (json "https://github.com/tree-sitter/tree-sitter-json")
-        (nix "https://github.com/nix-community/tree-sitter-nix")
-        (python "https://github.com/tree-sitter/tree-sitter-python")
-        (rust "https://github.com/tree-sitter/tree-sitter-rust")
-        (toml "https://github.com/tree-sitter/tree-sitter-toml")
-        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
-        (typst . ("https://github.com/uben0/tree-sitter-typst" "master" "src"))
-        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
-        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (c "https://github.com/tree-sitter/tree-sitter-c")
+     (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
+     (js . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (nix "https://github.com/nix-community/tree-sitter-nix")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (rust "https://github.com/tree-sitter/tree-sitter-rust")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+     (typst . ("https://github.com/uben0/tree-sitter-typst" "master" "src"))
+     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")))
 
 (setq rust-mode-treesitter-derive t)
 (setq rust-format-on-save t)
 (setq rust-format-show-buffer nil)
 (setq eglot-workspace-configuration
-      '(:rust-analyzer
-        ( :procMacro ( :attributes (:enable t)
-                       :enable t)
-          :cargo (:buildScripts (:enable t))
-          :diagnostics (:disabled ["unresolved-proc-macro"
-                                   "unresolved-macro-call"]))))
+  '(:rust-analyzer
+     ( :procMacro ( :attributes (:enable t)
+                    :enable t)
+       :cargo (:buildScripts (:enable t))
+       :diagnostics (:disabled ["unresolved-proc-macro"
+                                 "unresolved-macro-call"]))))
 (require 'rust-mode)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
@@ -445,12 +454,12 @@
 (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-ts-mode))
 
 (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
-
 (add-hook 'c-ts-mode-hook #'eglot-ensure)
-(add-hook 'c-ts-mode-hook #'indent-tabs-mode)
 
 (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
 (add-hook 'c++-ts-mode-hook #'eglot-ensure)
+
+(add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-ts-mode))
 
 (require 'general)
 (general-evil-setup t)
