@@ -18,6 +18,7 @@ in {
     ef-themes
     lualine-nvim
     nvim-autopairs
+    nvim-colorizer-lua
     nvim-lspconfig
     (nvim-treesitter.withPlugins (p: with p; [
       c cpp lua nix python rust

@@ -25,6 +25,8 @@ require("nvim-autopairs").setup({
     check_ts = true,
 })
 
+require("colorizer").setup()
+
 require("blink.cmp").setup({
     keymap = {
         preset = "default",
