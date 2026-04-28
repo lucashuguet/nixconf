@@ -11,7 +11,6 @@
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
       (import inputs.rust-overlay)
-      (import inputs.emacs-overlay)
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable { inherit system; };
       })
