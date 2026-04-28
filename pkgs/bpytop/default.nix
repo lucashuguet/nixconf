@@ -1,5 +1,4 @@
-{ pkgs }:
-
+{ pkgs, ... }:
 pkgs.stdenv.mkDerivation {
   name = "bpytop";
   src = pkgs.fetchFromGitHub {
@@ -10,7 +9,7 @@ pkgs.stdenv.mkDerivation {
   };
 
   buildInputs = with pkgs; [
-    (python3.withPackages (ps: with ps; [psutil]))
+    (python3.withPackages (ps: with ps; [ psutil ]))
   ];
 
   installPhase = ''

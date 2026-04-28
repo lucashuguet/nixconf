@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ filezilla ];
+  flake.nixosModules.filezilla = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ filezilla ];
   };
 }

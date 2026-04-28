@@ -1,8 +1,9 @@
-{
-  imports = [
-    ./grub
-    ./plymouth
-  ];
+{ self, ... }: {
+  flake.nixosModules.boot = { ... }: {
+    imports = with self.nixosModules; [
+      grub plymouth
+    ];
 
-  boot.initrd.systemd.enable = true;
+    boot.initrd.systemd.enable = true;
+  };
 }

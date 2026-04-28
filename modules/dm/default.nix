@@ -1,4 +1,0 @@
-{ displayManager, ... }:
-{
-  imports = [ ./${displayManager} ];
-}

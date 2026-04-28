@@ -1,6 +1,6 @@
-{ username, ... }:
 {
-  imports = [ ./${username}.nix ];
-
-  users.mutableUsers = false;
+  flake.nixosModules.users = { ... }: {
+    users.mutableUsers = false;
+    users.allowNoPasswordLogin = true;
+  };
 }

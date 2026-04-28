@@ -1,10 +1,39 @@
 # Lenovo IdeaPad Gaming 3 15HU6
 
-{
-  imports = [ ./hardware-configuration.nix ];
+{ inputs, self, ... }: {
+  flake.nixosConfigurations."natnix" = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      username = "natminer";
+      hostname = "natnix";
+    };
 
-  system.stateVersion = "24.05";
+    modules = [ self.nixosModules.hostNatNix ];
+  };
 
-  # fix time with windows dual boot
-  time.hardwareClockInLocalTime = true;
+  flake.nixosModules.hostNatNix = { ... }: {
+    imports = with self.nixosModules; [
+      # bare bones
+      common secrets
+
+      # username
+      natminer
+
+      # apps
+      docker
+
+      # hardware
+      nvidia
+
+      # display manager
+      regreet
+
+      # window manager
+      gnome
+    ];
+
+    system.stateVersion = "24.05";
+
+    # fix time with windows dual boot
+    time.hardwareClockInLocalTime = true;
+  };
 }

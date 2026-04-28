@@ -1,6 +1,7 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    dvdbackup
-  ];
+  flake.nixosModules.dvdbackup = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      dvdbackup
+    ];
+  };
 }

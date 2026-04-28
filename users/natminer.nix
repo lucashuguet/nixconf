@@ -1,8 +1,9 @@
-{ pkgs, username, ... }:
 {
-  users.users.${username} = {
-    shell = pkgs.fish;
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
+  flake.nixosModules.natminer = { pkgs, username, ... }: {
+    users.users.${username} = {
+      shell = pkgs.fish;
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
   };
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }:
 {
-  services.printing.drivers = with pkgs; [ cups-brother-hl1210w ];
+  flake.nixosModules.brotherHl1210w = { pkgs, ... }: {
+    services.printing.drivers = with pkgs; [ cups-brother-hl1210w ];
+  };
 }

@@ -1,4 +1,5 @@
-{ lib, ... }:
-{
-  imports = lib.filesystem.listFilesRecursive ./devices;
+{ self, ... }: {
+  flake.nixosModules.steelseries = { ... }: {
+    imports = with self.nixosModules; [ aerox3 ];
+  };
 }

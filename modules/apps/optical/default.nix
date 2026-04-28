@@ -1,10 +1,11 @@
-{ username, ... }:
-{
-  imports = [
-    ./brasero
-    ./dvdbackup
-    ./handbrake
-  ];
+{ self, ... }: {
+  flake.nixosModules.optical = { username, ... }: {
+    imports = with self.nixosModules; [
+      brasero
+      dvdbackup
+      handbrake
+    ];
 
-  users.users.${username}.extraGroups = [ "cdrom" ];
+    users.users.${username}.extraGroups = [ "cdrom" ];
+  };
 }

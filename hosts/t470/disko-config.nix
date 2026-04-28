@@ -1,44 +1,46 @@
 {
-  disko.devices = {
-    disk = {
-      main = {
-        type = "disk";
-        device = "/dev/nvme0n1";
-        content = {
-          type = "gpt";
-          partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MGR
-            };
-            ESP = {
-              size = "1G";
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
+  flake.diskoConfigurations.hostT470 = {
+    disko.devices = {
+      disk = {
+        main = {
+          type = "disk";
+          device = "/dev/nvme0n1";
+          content = {
+            type = "gpt";
+            partitions = {
+              boot = {
+                size = "1M";
+                type = "EF02"; # for grub MGR
               };
-            };
-            root = {
-              end = "-8G";
-              content = {
-                type = "luks";
-                name = "nixos";
+              ESP = {
+                size = "1G";
+                type = "EF00";
                 content = {
                   type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/";
+                  format = "vfat";
+                  mountpoint = "/boot";
                 };
               };
-            };
-            swap = {
-              size = "100%";
-              content = {
-                type = "luks";
-                name = "swap";
+              root = {
+                end = "-8G";
                 content = {
-                  type = "swap";
+                  type = "luks";
+                  name = "nixos";
+                  content = {
+                    type = "filesystem";
+                    format = "ext4";
+                    mountpoint = "/";
+                  };
+                };
+              };
+              swap = {
+                size = "100%";
+                content = {
+                  type = "luks";
+                  name = "swap";
+                  content = {
+                    type = "swap";
+                  };
                 };
               };
             };

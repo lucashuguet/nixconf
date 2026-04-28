@@ -7,6 +7,9 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:denful/import-tree";
+
     nixos-06cb-009a-fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=25.05";
 
     disko = {
@@ -34,124 +37,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dwm.url = "github:lucashuguet/dwm";
-    st.url = "github:lucashuguet/st";
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-    in {
-      nixosConfigurations = {
-        "rog" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit system;
-            displayManager = "greetd";
-            windowManager = [ "hyprland" "dwm" "gnome" ];
-            extraBrowsers = [ "firefox" "qutebrowser" ];
-            username = "astrogoat";
-            hostname = "rog";
-          } // inputs;
-          modules = [
-            ./.
-            ./modules/apps/crypto
-            ./modules/apps/emacs
-            ./modules/apps/filezilla
-            ./modules/apps/games
-            ./modules/apps/games/prismlauncher
-            ./modules/apps/games/retroarch
-            ./modules/apps/games/steam
-            ./modules/apps/koreader
-            ./modules/apps/mpd
-            ./modules/apps/ios/sideloader
-            ./modules/apps/study
-            ./modules/apps/study/maths
-            ./modules/apps/thunderbird
-            ./modules/apps/virt
-            ./modules/code
-            ./modules/core/cups
-            ./modules/hardware/nvidia
-            ./sh
-          ];
-        };
+  outputs = inputs @ { flake-parts, import-tree, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = with inputs; [
+        disko.flakeModules.default
+        home-manager.flakeModules.home-manager
+        (import-tree ./hosts)
+        (import-tree ./modules)
+        (import-tree ./secrets)
+        (import-tree ./sh)
+        (import-tree ./users)
+      ];
 
-        "natnix" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit system;
-            displayManager = "greetd";
-            windowManager = [ "gnome" ];
-            extraBrowsers = [];
-            username = "natminer";
-            hostname = "natnix";
-          } // inputs;
-          modules = [
-            ./.
-            ./modules/apps/virt/docker
-            ./modules/hardware/nvidia
-          ];
-        };
-
-        "t470" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit system;
-            displayManager = "greetd";
-            windowManager = [ "hyprland" "dwm" "gnome" ];
-            extraBrowsers = [ "firefox" ];
-            username = "astrogoat";
-            hostname = "t470";
-          } // inputs;
-          modules = [
-            ./.
-            ./modules/apps/crypto
-            ./modules/apps/emacs
-            ./modules/apps/filezilla
-            ./modules/apps/games
-            ./modules/apps/games/prismlauncher
-            ./modules/apps/games/retroarch
-            ./modules/apps/games/steam
-            ./modules/apps/mpd
-            ./modules/apps/optical
-            ./modules/apps/study/maths/typst
-            ./modules/apps/thunderbird
-            ./modules/apps/virt
-            ./modules/code
-            ./modules/core/cups
-            ./sh
-          ];
-        };
-
-        "t480" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit system;
-            displayManager = "greetd";
-            windowManager = [ "hyprland" "dwm" "gnome" ];
-            extraBrowsers = [ "firefox" ];
-            username = "astrogoat";
-            hostname = "t480";
-          } // inputs;
-          modules = [
-            ./.
-            ./modules/apps/emacs
-            ./modules/apps/filezilla
-            ./modules/apps/finances/beancount
-            ./modules/apps/finances/crypto
-            ./modules/apps/games
-            ./modules/apps/games/prismlauncher
-            ./modules/apps/games/retroarch
-            ./modules/apps/games/steam
-            ./modules/apps/ios/impactor
-            ./modules/apps/ios/localsend
-            ./modules/apps/ios/uxplay
-            ./modules/apps/mpd
-            ./modules/apps/optical
-            ./modules/apps/study/maths/typst
-            ./modules/apps/thunderbird
-            ./modules/apps/virt
-            ./modules/code
-            ./modules/core/cups
-            ./sh
-          ];
-        };
-      };
+      systems = [ "x86_64-linux" ];
     };
 }

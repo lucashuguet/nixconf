@@ -1,12 +1,13 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    lutris mangohud
-    wineWowPackages.stable wineWowPackages.waylandFull winetricks
-  ];
+  flake.nixosModules.lutris = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      lutris mangohud
+      wineWowPackages.stable wineWowPackages.waylandFull winetricks
+    ];
 
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
+    programs.gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
   };
 }

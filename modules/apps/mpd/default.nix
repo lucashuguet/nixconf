@@ -1,27 +1,29 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ mpc ncmpcpp cava ];
-    services.mpd = {
-      enable = true;
+  flake.nixosModules.mpd = { pkgs, username, ... }: {
+    environment.systemPackages = with pkgs; [ mpc ncmpcpp cava ];
 
-      musicDirectory = "/home/${username}/Music";
+    home-manager.users.${username} = {
+      services.mpd = {
+        enable = true;
 
-      playlistDirectory = "/home/${username}/.mpd/playlists";
-      dbFile = "/home/${username}/.mpd/database";
-      dataDir = "/home/${username}/.mpd/";
+        musicDirectory = "/home/${username}/Music";
 
-      network.listenAddress = "127.0.0.1";
-      network.port = 6600;
+        playlistDirectory = "/home/${username}/.mpd/playlists";
+        dbFile = "/home/${username}/.mpd/database";
+        dataDir = "/home/${username}/.mpd/";
 
-      extraConfig = ''
-        audio_output {
+        network.listenAddress = "127.0.0.1";
+        network.port = 6600;
+
+        extraConfig = ''
+          audio_output {
           type "pipewire"
           name "My PipeWire Output"
         }
 
         replaygain "track"
-      '';
+        '';
+      };
     };
   };
 }

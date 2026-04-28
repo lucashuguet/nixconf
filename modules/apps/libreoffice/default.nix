@@ -1,6 +1,5 @@
-{ pkgs, username, ...}:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ libreoffice ];
+  flake.nixosModules.libreoffice = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ libreoffice ];
   };
 }

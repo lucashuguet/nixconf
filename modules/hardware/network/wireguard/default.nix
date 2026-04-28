@@ -1,4 +1,7 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ wireguard-tools ];
+  flake.nixosModules.wireguard = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ wireguard-tools ];
+
+    networking.wireguard.enable = true;
+  };
 }

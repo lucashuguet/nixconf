@@ -1,11 +1,18 @@
-{ pkgs, username, ... }:
-{
-  imports = [ ./lutris ];
+{ self, ... }: {
+  flake.nixosModules.games = { pkgs, username, ... }: {
+    imports = with self.nixosModules; [
+      lutris
+      prismlauncher
+      retroarch
+      steam
+    ];
 
-  environment.systemPackages = with pkgs; [ gamemode ];
+    environment.systemPackages = with pkgs; [ gamemode ];
 
-  hardware.xone.enable = true;
-  users.users.${username} = {
-    extraGroups = [ "input" ];
+    hardware.xone.enable = true;
+
+    users.users.${username} = {
+      extraGroups = [ "input" ];
+    };
   };
 }

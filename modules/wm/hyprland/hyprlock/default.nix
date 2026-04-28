@@ -1,10 +1,11 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.file = {
-      ".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
-    };
+  flake.nixosModules.hyprlock = { pkgs, username, ... }: {
+    environment.systemPackages = with pkgs; [ hyprlock ];
 
-    home.packages = with pkgs; [ hyprlock ];
+    home-manager.users.${username} = {
+      home.file = {
+        ".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
+      };
+    };
   };
 }

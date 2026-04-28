@@ -1,4 +1,5 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ pavucontrol ];
+  flake.nixosModules.pavucontrol = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ pavucontrol ];
+  };
 }

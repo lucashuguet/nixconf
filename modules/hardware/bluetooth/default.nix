@@ -1,20 +1,23 @@
-{
-  imports = [
-    ./blueman
-  ];
+{ self, ... }: {
+  flake.nixosModules.bluetooth = {
+    imports = with self.nixosModules; [
+      blueman
+    ];
 
-  hardware.bluetooth.enable = true;
+    hardware.bluetooth.enable = true;
 
-  hardware.bluetooth.settings = {
-    General = {
-      Name = "Computer";
-      ControllerMode = "dual";
-      FastConnectable = "true";
-      Experimental = "true";
-      Enable = "Source,Sink,Media,Socket";
+    hardware.bluetooth.settings = {
+      General = {
+        Name = "Computer";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+        Enable = "Source,Sink,Media,Socket";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
     };
-    Policy = {
-      AutoEnable = "true";
-    };
+
   };
 }

@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ librewolf ];
+  flake.nixosModules.librewolf = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ librewolf ];
   };
 }

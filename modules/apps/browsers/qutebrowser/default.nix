@@ -1,10 +1,11 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ qutebrowser ];
+  flake.nixosModules.qutebrowser = { pkgs, username, ... }: {
+    environment.systemPackages = with pkgs; [ qutebrowser ];
 
-    home.file = {
-      ".config/qutebrowser/config.py".source = ./config.py;
+    home-manager.users.${username} = {
+      home.file = {
+        ".config/qutebrowser/config.py".source = ./config.py;
+      };
     };
   };
 }

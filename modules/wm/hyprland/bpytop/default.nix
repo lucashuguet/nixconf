@@ -1,8 +1,9 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [
-      (callPackage ./bpytop.nix {})
-    ];
+  perSystem = { pkgs, ... }: {
+    packages.bpytop = pkgs.callPackage ../../../../pkgs/bpytop {};
+  };
+
+  flake.nixosModules.bpytop = { pkgs, ... }: {
+    environment.systemPackages = [ (pkgs.callPackage ../../../../pkgs/bpytop {}) ];
   };
 }

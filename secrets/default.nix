@@ -1,10 +1,15 @@
-{ pkgs, username, ... }:
-{
- environment.systemPackages = with pkgs; [ sops ];
+{ inputs, ... }: {
+  flake.nixosModules.secrets = { pkgs, username, ... }: {
+    imports = [
+      inputs.sops-nix.nixosModules.sops
+    ];
 
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    environment.systemPackages = with pkgs; [ sops ];
+
+    sops = {
+      defaultSopsFile = ./secrets.yaml;
+      defaultSopsFormat = "yaml";
+      age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    };
   };
 }

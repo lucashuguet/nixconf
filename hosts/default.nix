@@ -1,4 +1,0 @@
-{ hostname, ... }:
-{
-  imports = [ ./${hostname} ];
-}

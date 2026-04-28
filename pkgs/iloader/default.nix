@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 pkgs.appimageTools.wrapType2 rec {
   pname = "iloader";
   version = "1.1.6";

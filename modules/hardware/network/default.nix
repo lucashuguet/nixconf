@@ -1,25 +1,22 @@
-{ pkgs, hostname, username, ... }:
-{
-  imports = [
-    ./avahi
-    ./openvpn
-    ./wireguard
-  ];
+{ self, ... }: {
+  flake.nixosModules.network = { pkgs, username, hostname, ... }: {
+    imports = with self.nixosModules; [
+      avahi
+      openvpn
+      wireguard
+    ];
 
-  environment.systemPackages = with pkgs; [ networkmanagerapplet openvpn wireguard-tools ];
+    environment.systemPackages = with pkgs; [ networkmanagerapplet ];
 
-  networking = {
-    hostName = hostname;
-    wireguard.enable = true;
-    networkmanager = {
-      enable = true;
-      plugins = with pkgs; [
-        networkmanager-openvpn
-      ];
+    networking = {
+      hostName = hostname;
+      networkmanager = {
+        enable = true;
+      };
     };
-  };
 
-  users.users.${username} = {
-    extraGroups = [ "networkmanager" ];
+    users.users.${username} = {
+      extraGroups = [ "networkmanager" ];
+    };
   };
 }

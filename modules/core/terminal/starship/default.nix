@@ -1,138 +1,140 @@
 {
-  programs.starship = {
-    enable = true;
-    settings = {
-      username = {
-        format = " [$user]($style)@";
-        show_always = true;
-        style_user = "red bold";
-        style_root = "red bold";
-      };
+  flake.nixosModules.starship = {
+    programs.starship = {
+      enable = true;
+      settings = {
+        username = {
+          format = " [$user]($style)@";
+          show_always = true;
+          style_user = "red bold";
+          style_root = "red bold";
+        };
 
-      hostname = {
-        format = "[$hostname]($style) in ";
-        style = "bold dimmed red";
-        ssh_only = false;
-        disabled = false;
-      };
+        hostname = {
+          format = "[$hostname]($style) in ";
+          style = "bold dimmed red";
+          ssh_only = false;
+          disabled = false;
+        };
 
-      directory = {
-        style = "purple";
-        truncate_to_repo = true;
-        truncation_length = 0;
-        truncation_symbol = "repo: ";
-      };
+        directory = {
+          style = "purple";
+          truncate_to_repo = true;
+          truncation_length = 0;
+          truncation_symbol = "repo: ";
+        };
 
-      character = {
-        success_symbol = " [λ](bold red)";
-        error_symbol = " [×](bold red)";
-      };
+        character = {
+          success_symbol = " [λ](bold red)";
+          error_symbol = " [×](bold red)";
+        };
 
-      sudo = {
-        symbol = "sudo: ";
-      };
+        sudo = {
+          symbol = "sudo: ";
+        };
 
-      git_commit = {
-        tag_symbol = " tag ";
-      };
-      
-      git_status = {
-        ahead = ">";
-        behind = "<";
-        diverged = "<>";
-        renamed = "r";
-        deleted = "x";
+        git_commit = {
+          tag_symbol = " tag ";
+        };
 
-        style = "white";
-      };
+        git_status = {
+          ahead = ">";
+          behind = "<";
+          diverged = "<>";
+          renamed = "r";
+          deleted = "x";
 
-      cmd_duration = {
-        format = "took [$duration]($style)";
-        min_time = 1;
-      };
+          style = "white";
+        };
 
-      aws = {
-        symbol = " ";
-      };
+        cmd_duration = {
+          format = "took [$duration]($style)";
+          min_time = 1;
+        };
 
-      conda = {
-        symbol = " ";
-      };
+        aws = {
+          symbol = " ";
+        };
 
-      dart = {
-        symbol = " ";
-      };
+        conda = {
+          symbol = " ";
+        };
 
-      docker_context = {
-        symbol = " ";
-      };
+        dart = {
+          symbol = " ";
+        };
 
-      elixir = {
-        symbol = " ";
-      };
+        docker_context = {
+          symbol = " ";
+        };
 
-      elm = {
-        symbol = " ";
-      };
+        elixir = {
+          symbol = " ";
+        };
 
-      git_branch = {
-        symbol = " ";
-      };
+        elm = {
+          symbol = " ";
+        };
 
-      golang = {
-        symbol = " ";
-      };
+        git_branch = {
+          symbol = " ";
+        };
 
-      hg_branch = {
-        symbol = " ";
-      };
+        golang = {
+          symbol = " ";
+        };
 
-      java = {
-        symbol = " ";
-      };
+        hg_branch = {
+          symbol = " ";
+        };
 
-      julia = {
-        symbol = " ";
-      };
+        java = {
+          symbol = " ";
+        };
 
-      nim = {
-        symbol = " ";
-      };
+        julia = {
+          symbol = " ";
+        };
 
-      nix_shell = {
-        symbol = "󱄅 ";
-      };
+        nim = {
+          symbol = " ";
+        };
 
-      nodejs = {
-        symbol = " ";
-      };
+        nix_shell = {
+          symbol = "󱄅 ";
+        };
 
-      package = {
-        symbol = " ";
-      };
+        nodejs = {
+          symbol = " ";
+        };
 
-      perl = {
-        symbol = " ";
-      };
+        package = {
+          symbol = " ";
+        };
 
-      php = {
-        symbol = " ";
-      };
+        perl = {
+          symbol = " ";
+        };
 
-      python = {
-        symbol = " ";
-      };
+        php = {
+          symbol = " ";
+        };
 
-      ruby = {
-        symbol = " ";
-      };
+        python = {
+          symbol = " ";
+        };
 
-      rust = {
-        symbol = " ";
-      };
+        ruby = {
+          symbol = " ";
+        };
 
-      swift = {
-        symbol = " ";
+        rust = {
+          symbol = " ";
+        };
+
+        swift = {
+          symbol = " ";
+        };
       };
     };
   };

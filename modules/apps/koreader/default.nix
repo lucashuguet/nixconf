@@ -1,4 +1,5 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ koreader ];
+  flake.nixosModules.koreader = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ koreader ];
+  };
 }

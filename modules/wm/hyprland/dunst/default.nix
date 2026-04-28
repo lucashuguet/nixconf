@@ -1,9 +1,11 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ dunst ];
-    home.file = {
-      ".config/dunst/config.toml".source = ./config.toml;
+  flake.nixosModules.dunst = { pkgs, username, ... }: {
+    environment.systemPackages = with pkgs; [ dunst ];
+
+    home-manager.users.${username} = {
+      home.file = {
+        ".config/dunst/config.toml".source = ./config.toml;
+      };
     };
   };
 }

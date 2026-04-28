@@ -1,17 +1,19 @@
-{ pkgs, username, ... }:
-{
-  imports = [ ../modules/wm/hyprland/rofi ];
-  home-manager.users.${username} = {
-    home.packages =
-      (with pkgs; [ fzf pywal ])
-      ++
-      [
+{ self, ... }: {
+  flake.nixosModules.sh = { pkgs, username, ... }: {
+    imports = with self.nixosModules; [ rofi ];
+
+    environment.systemPackages = with pkgs; [
+      fzf pywal
+    ];
+
+    home-manager.users.${username} = {
+      home.packages = [
         (pkgs.writeScriptBin "audiosetup" (builtins.readFile ./audiosetup.sh))
         (pkgs.writeScriptBin "createcbz" (builtins.readFile ./createcbz.py))
         (pkgs.writeScriptBin "epub2cbz" (builtins.readFile ./epub2cbz.sh))
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
         (pkgs.writeScriptBin "gs" (builtins.readFile ./gs.sh))
-	(pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
+	    (pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./rofidrives.py))
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ./rofinmcli.py))
         (pkgs.writeScriptBin "rofipass" (builtins.readFile ./rofipass.sh))
@@ -24,5 +26,6 @@
           asusctl aura static -c $(cat ~/.config/colors/aura.txt)
         '')
       ];
+    };
   };
 }

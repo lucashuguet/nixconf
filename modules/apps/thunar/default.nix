@@ -1,6 +1,7 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ xfce.thunar ];
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
+  flake.nixosModules.thunar = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ xfce.thunar ];
+    services.gvfs.enable = true;
+    services.tumbler.enable = true;
+  };
 }

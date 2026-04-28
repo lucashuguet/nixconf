@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ firefox ];
+  flake.nixosModules.firefox = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ firefox ];
   };
 }

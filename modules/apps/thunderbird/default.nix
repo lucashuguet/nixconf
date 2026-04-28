@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ thunderbird ];
+  flake.nixosModules.thunderbird = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ thunderbird ];
   };
 }

@@ -1,17 +1,16 @@
-{ nixpkgs, nixpkgs-unstable, username, ... }:
-{
-  imports = [ ./nh ];
+{ inputs, self, ... }: {
+  flake.nixosModules.nix = { username, ... }: {
+    imports = with self.nixosModules; [ nh ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  home-manager = {
-    users.${username} = {
-      home.stateVersion = "24.05";
+    nix.registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      unstable.flake = inputs.nixpkgs-unstable;
     };
-  };
 
-  nix.registry = {
-    nixpkgs.flake = nixpkgs;
-    unstable.flake = nixpkgs-unstable;
+    home-manager.users.${username} = {
+      home.stateVersion = "25.11";
+    };
   };
 }

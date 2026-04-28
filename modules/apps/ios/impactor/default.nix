@@ -1,6 +1,9 @@
-{ pkgs, ... }:
-let
-  impactor = ( import ./impactor.nix ) { inherit pkgs; };
-in {
-  environment.systemPackages = [ impactor ];
+{
+  perSystem = { pkgs, ... }: {
+    packages.impactor = pkgs.callPackage ../../../../pkgs/impactor {};
+  };
+
+  flake.nixosModules.impactor = { pkgs, ... }: {
+    environment.systemPackages = [ (pkgs.callPackage ../../../../pkgs/impactor {}) ];
+  };
 }

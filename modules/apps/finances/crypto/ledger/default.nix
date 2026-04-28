@@ -1,8 +1,6 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ unstable.ledger-live-desktop ];
+  flake.nixosModules.ledger = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ unstable.ledger-live-desktop ];
+    hardware.ledger.enable = true;
   };
-
-  hardware.ledger.enable = true;
 }

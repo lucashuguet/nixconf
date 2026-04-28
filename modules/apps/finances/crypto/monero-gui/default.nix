@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ unstable.monero-gui ];
+  flake.nixosModules.moneroGui = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ unstable.monero-gui ];
   };
 }

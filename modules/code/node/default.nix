@@ -1,4 +1,5 @@
-{ pkgs, ...}:
 {
-  environment.systemPackages = with pkgs; [ nodejs ];
+  flake.nixosModules.nodeLang = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ nodejs ];
+  };
 }

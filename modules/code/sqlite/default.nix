@@ -1,4 +1,5 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ sqlite ];
+  flake.nixosModules.sqliteLang = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ sqlite ];
+  };
 }

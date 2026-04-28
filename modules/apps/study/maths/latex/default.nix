@@ -1,4 +1,5 @@
-{ pkgs, ...}:
 {
-  environment.systemPackages = with pkgs; [ texliveFull ];
+  flake.nixosModules.latex = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ texliveFull ];
+  };
 }

@@ -1,6 +1,5 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [ tinymist ];
+  flake.nixosModules.typst = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ tinymist typst ];
   };
 }

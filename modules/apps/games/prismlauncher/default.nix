@@ -1,7 +1,8 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    prismlauncher
-    jdk8 jdk17 jdk21
-  ];
+  flake.nixosModules.prismlauncher = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      prismlauncher
+      jdk8 jdk17 jdk21
+    ];
+  };
 }

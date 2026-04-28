@@ -1,6 +1,8 @@
-{
-  imports = [
-    ./ledger
-    ./monero-gui
-  ];
+{ self, ... }: {
+  flake.nixosModules.crypto = { ... }: {
+    imports = with self.nixosModules; [
+      ledger
+      moneroGui
+    ];
+  };
 }
