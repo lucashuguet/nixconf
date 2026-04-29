@@ -404,6 +404,9 @@
                                        (sqlite . t)
                                        (python . t))))
 
+  (require 'org-src)
+  (define-key org-src-mode-map (kbd "C-c C-c") #'org-edit-src-exit)
+
   (require 'evil-org)
   (require 'evil-org-agenda)
   (add-hook 'org-mode-hook 'evil-org-mode)
@@ -480,6 +483,15 @@
   (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-ts-mode))
   (add-hook 'c++-ts-mode-hook #'eglot-ensure)
 #+end_src
+** typst
+#+begin_src emacs-lisp
+  (require 'typst-ts-mode)
+  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode))
+  (add-hook 'typst-ts-mode-hook #'eglot-ensure)
+
+  (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))
+#+end_src
+
 ** lua
 #+begin_src emacs-lisp
   (setq-default lua-ts-indent-offset custom-tab-width)
@@ -606,7 +618,8 @@
     "h f" '(describe-function :which-key "describe function")
     "h k" '(describe-key :which-key "describe key")
     "h m" '(describe-mode :which-key "describe mode")
-    "h M" '(man :which-key "gnu manual")
+    "h M" '(woman :which-key "woman")
+    "h s" '(sort-lines :which-key "sort lines")
     "h t" '(load-theme :which-key "load theme")
     "h T" '(consult-theme :which-key "consult theme")
     "h v" '(describe-variable :which-key "describe variable")
@@ -618,13 +631,13 @@
     "i s" '(yas-insert-snippet :which-key "insert snippet")
 
     "o" '(:which-key "org")
-    ;; "o c" '(org-latex-preview-clear-cache :which-key "clear LaTeX fragments")
-    "o e" '(org-export-dispatch :which-key "org export dispatch")
-    "o E" '(org-edit-special :which-key "org edit special")
+    "o e" '(org-edit-special :which-key "org edit special")
+    "o E" '(org-export-dispatch :which-key "org export dispatch")
     "o i" '(org-link-preview :which-key "toggle inline images")
-    ;; "o p" '(org-latex-preview :which-key "preview LaTeX fragments")
-    "o r" '(:which-key "org roam")
     "o R" '(org-mode-restart :which-key "restart org")
+    "o t" '(org-babel-tangle :which-key "tangle")
+
+    "o r" '(:which-key "org roam")
     "o r f" '(org-roam-node-find :which-key "org roam node find")
     "o r i" '(org-roam-node-insert :which-key "org roam node insert")
     "o r s" '(org-roam-db-sync :which-key "org roam sync db")
@@ -642,6 +655,9 @@
   (nvmap :states '(normal) :keymaps 'override
     "z a" '(org-cycle :which-key "org toggle fold"))
 #+end_src
+
+#+RESULTS:
+
 * init
 #+begin_src emacs-lisp
   (dashboard-open)
