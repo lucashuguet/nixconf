@@ -608,8 +608,8 @@
 
     "f" '(:which-key "file")
     "f b" '(:which-key "bookmark")
-    "f b b" '(bookmark-jump :which-key "jump to bookmark")
     "f b d" '(bookmark-delete :which-key "delete bookmark")
+    "f b j" '(bookmark-jump :which-key "jump to bookmark")
     "f b n" '(bookmark-set :which-key "new bookmark")
     "f f" '(find-file :which-key "find file")
     "f s" '(save-buffer :which-key "save file")
@@ -633,7 +633,7 @@
     "o" '(:which-key "org")
     "o e" '(org-edit-special :which-key "org edit special")
     "o E" '(org-export-dispatch :which-key "org export dispatch")
-    "o i" '(org-link-preview :which-key "toggle inline images")
+    "o i" '(org-toggle-inline-images :which-key "toggle inline images")
     "o R" '(org-mode-restart :which-key "restart org")
     "o t" '(org-babel-tangle :which-key "tangle")
 
