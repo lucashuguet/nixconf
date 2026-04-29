@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.terminal = { ... }: {
+  flake.nixosModules.terminal = { pkgs, ... }: {
     imports = with self.nixosModules; [
       alacritty
       fastfetch
@@ -7,7 +7,8 @@
       fonts
       neovim
       starship
-      zoxide
     ];
+
+    environment.systemPackages = with pkgs; [ zoxide ueberzugpp ];
   };
 }
