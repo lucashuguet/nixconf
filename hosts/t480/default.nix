@@ -25,16 +25,14 @@
 
       # apps
       emacs code typst
-      filezilla
+      filezilla localsend
       finances
       firefox librewolf
       games
       impactor uxplay
-      libreoffice thunar thunderbird zathura
-      localsend
+      libreoffice thunar thunderbird zathura koreader
       mpd mpv
-      optical
-      virtualisation
+      optical virtualisation
 
       # core
       cups
