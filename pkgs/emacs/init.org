@@ -646,8 +646,12 @@
     "q f" '(delete-frame :which-key "quit emacsclient")
     "q q" '(save-buffers-kill-terminal :which-key "quit emacs")
 
+    "t" '(:which-key "typst")
+    "t w" '(typst-ts-watch-mode :which-key "toggle watch")
+    "t o" '(typst-ts-preview :which-key "open")
+
     "w" '(:which-key "window")
-    "w c" '(delete-window :which-key "close window")
+    "w k" '(delete-window :which-key "close window")
     "w h" '(split-window-below :which-key "split window horizontally")
     "w v" '(split-window-right :which-key "split window vertically")
     "w w" '(other-window :which-key "switch window"))
@@ -655,9 +659,6 @@
   (nvmap :states '(normal) :keymaps 'override
     "z a" '(org-cycle :which-key "org toggle fold"))
 #+end_src
-
-#+RESULTS:
-
 * init
 #+begin_src emacs-lisp
   (dashboard-open)
