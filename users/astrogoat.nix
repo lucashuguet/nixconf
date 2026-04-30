@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.astrogoat = { config, pkgs, username, ... }: {
+  flake.nixosModules.astrogoatUser = { config, pkgs, username, ... }: {
     sops.secrets."users/astrogoat/password".neededForUsers = true;
 
     users.users.${username} = {

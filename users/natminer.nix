@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.natminer = { pkgs, username, ... }: {
+  flake.nixosModules.natminerUser = { pkgs, username, ... }: {
     users.users.${username} = {
       shell = pkgs.fish;
       isNormalUser = true;

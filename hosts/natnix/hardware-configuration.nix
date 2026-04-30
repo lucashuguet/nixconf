@@ -3,24 +3,24 @@
 # to /etc/nixos/configuration.nix instead.
 {
   flake.nixosModules.hostNatNix = { config, lib, pkgs, modulesPath, ... }: {
-    imports =
-      [ (modulesPath + "/installer/scan/not-detected.nix")
-      ];
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
     boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/a3e755bb-ee42-4d09-b7f6-5bbf859938d3";
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/a3e755bb-ee42-4d09-b7f6-5bbf859938d3";
       fsType = "ext4";
-      };
+    };
 
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/5AD0-861F";
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/5AD0-861F";
       fsType = "vfat";
-      };
+    };
 
     swapDevices = [ ];
 

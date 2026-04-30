@@ -5,7 +5,10 @@
     specialArgs = {
       username = "astrogoat";
       hostname = "t470";
-      resolution = "auto";
+      resolution = "preferred";
+      nvidia = false;
+      extraHyprConfig = "";
+      stateVersion = "25.05";
     };
 
     modules = [ self.nixosModules.hostT470 ];
@@ -16,29 +19,18 @@
       # bare bones
       common secrets
 
-      # user
-      astrogoat
-
       # apps
-      emacs
+      emacs code typst
       filezilla
       finances
       firefox librewolf
       games
-      impactor
-      libreoffice
+      impactor uxplay
+      libreoffice thunar thunderbird zathura
       localsend
-      mpd
-      mpv
+      mpd mpv
       optical
-      thunar
-      thunderbird
-      typst
-      uxplay
       virtualisation
-      zathura
-
-      code
 
       # core
       cups
@@ -46,14 +38,9 @@
       # display manager
       regreet
 
-      # hardware
-      nvidia steelseries
-
       # window manager
       gnome hyprland
     ]);
-
-    system.stateVersion = "25.05";
 
     boot.loader.efi.canTouchEfiVariables = true;
 

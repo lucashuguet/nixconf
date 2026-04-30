@@ -1,5 +1,13 @@
 { self, ... }: {
-  flake.nixosModules.hyprland = { pkgs, username, resolution, ... }: let
+  flake.nixosModules.hyprland = {
+    lib,
+    pkgs,
+    username,
+    resolution,
+    nvidia,
+    extraHyprConfig,
+    ...
+  }: let
     hyprConfig = builtins.readFile ./hyprland.conf;
   in{
     imports = with self.nixosModules; [
@@ -30,7 +38,15 @@
         ".config/hypr/hyprland.conf".text = ''
           monitor = ,${resolution},0x0,1
 
-        ${hyprConfig}
+          ${extraHyprConfig}
+
+          ${lib.optionalString nvidia ''
+            env = LIBVA_DRIVER_NAME,nvidia
+            env = GBM_BACKEND,nvidia-drm
+            env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+          ''}
+
+          ${hyprConfig}
         '';
       };
     };

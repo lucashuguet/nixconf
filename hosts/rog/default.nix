@@ -6,6 +6,16 @@
       username = "astrogoat";
       hostname = "rog";
       resolution = "1920x1080@60";
+      nvidia = true;
+      extraHyprConfig = ''
+        exec-once = aurastatic
+
+        bind = , XF86KbdBrightnessDown, exec, asusctl -p
+        bind = , XF86KbdBrightnessUp, exec, asusctl -n
+        bind = , XF86Launch2, exec, asusctl aura rainbow-wave
+        bind = , XF86Launch3, exec, aurastatic
+      '';
+      stateVersion = "24.05";
     };
 
     modules = [ self.nixosModules.hostRog ];
@@ -15,9 +25,6 @@
     imports = (with inputs; [ disko.nixosModules.disko ]) ++ [ self.diskoConfigurations.hostRog ] ++ (with self.nixosModules; [
       # bare bones
       common secrets
-
-      # user
-      astrogoat
 
       # apps
       emacs
@@ -29,9 +36,6 @@
       typst
       virtualisation
 
-      # hardware
-      nvidia
-
       # core
       cups
 
@@ -41,8 +45,6 @@
       # window manager
       hyprland gnome
     ]);
-
-    system.stateVersion = "24.05";
 
     # broken screen on 144hz
     boot.kernelParams = [ "video=1920x1080@60" ];

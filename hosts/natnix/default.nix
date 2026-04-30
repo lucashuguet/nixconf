@@ -5,6 +5,10 @@
     specialArgs = {
       username = "natminer";
       hostname = "natnix";
+      resolution = "preferred";
+      nvidia = true;
+      extraHyprConfig = "";
+      stateVersion = "24.05";
     };
 
     modules = [ self.nixosModules.hostNatNix ];
@@ -15,14 +19,8 @@
       # bare bones
       common secrets
 
-      # username
-      natminer
-
       # apps
       docker
-
-      # hardware
-      nvidia
 
       # display manager
       regreet
@@ -30,8 +28,6 @@
       # window manager
       gnome
     ];
-
-    system.stateVersion = "24.05";
 
     # fix time with windows dual boot
     time.hardwareClockInLocalTime = true;
