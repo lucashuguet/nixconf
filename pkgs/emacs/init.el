@@ -515,6 +515,7 @@
   "b i" '(ibuffer :which-key "ibuffer")
   "b n" '(next-buffer :which-key "next buffer")
   "b p" '(previous-buffer :which-key "previous buffer")
+  "b s" '(scratch-buffer :which-key "scratch buffer")
 
   "d" '(:which-key "dired")
   "d d" '(dired-jump :which-key "open dired")
