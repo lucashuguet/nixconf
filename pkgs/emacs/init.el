@@ -157,7 +157,7 @@
 (require 'evil-anzu)
 (global-anzu-mode)
 
-(setq dired-listing-switches "-Dhlv --group-directories-first")
+(setq dired-listing-switches "-DAhlv --group-directories-first")
 
 (require 'dired)
 
@@ -539,11 +539,11 @@
   "h f" '(describe-function :which-key "describe function")
   "h k" '(describe-key :which-key "describe key")
   "h m" '(describe-mode :which-key "describe mode")
-  "h M" '(woman :which-key "woman")
   "h s" '(sort-lines :which-key "sort lines")
   "h t" '(load-theme :which-key "load theme")
   "h T" '(consult-theme :which-key "consult theme")
   "h v" '(describe-variable :which-key "describe variable")
+  "h w" '(woman :which-key "woman")
 
   "i" '(:which-key "insert")
   "i a" '(add-global-abbrev :which-key "write new abbrev")
