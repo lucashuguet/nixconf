@@ -12,7 +12,7 @@
     evil evil-collection evil-commentary evil-vimish-fold evil-anzu
     nerd-icons-dired diredfl peep-dired
     eglot corfu nerd-icons-corfu cape
-    yasnippet yasnippet-snippets
+    tempel
 
     # major modes
     org-superstar evil-org org-roam org-roam-ui

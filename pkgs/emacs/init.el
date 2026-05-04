@@ -129,7 +129,7 @@
 
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
 (setq save-abbrevs 'silently)
-;; (setq-default abbrev-mode t)
+(setq-default abbrev-mode t)
 
 (setq evil-default-cursor t)
 (setq evil-default-state 'normal)
@@ -233,17 +233,6 @@
 (add-hook 'completion-at-point-functions #'cape-file)
 (add-hook 'completion-at-point-functions #'cape-elisp-block)
 
-(require 'yasnippet)
-(require 'yasnippet-snippets)
-(yas-global-mode)
-
-(defun my/yas-try-expanding-auto-snippets ()
-(when (and (boundp 'yas-minor-mode) yas-minor-mode)
-  (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
-    (yas-expand))))
-
-(add-hook 'post-self-insert-hook #'my/yas-try-expanding-auto-snippets)
-
 (setq treesit-font-lock-level 4)
 ;; (setq treesit-language-source-alist
 ;;   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -264,6 +253,16 @@
 ;;      (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
 ;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
 ;;      (cmake "https://github.com/uyha/tree-sitter-cmake")))
+
+(require 'tempel)
+
+(define-key global-map (kbd "M-*") #'tempel-insert)
+(define-key tempel-map (kbd "TAB") #'tempel-next)
+(define-key tempel-map (kbd "<backtab>") #'tempel-previous)
+
+(add-to-list 'completion-at-point-functions #'tempel-complete)
+
+(global-tempel-abbrev-mode)
 
 (setq org-startup-folded t)
 (setq org-hidden-keywords '(title))
@@ -544,12 +543,6 @@
   "h T" '(consult-theme :which-key "consult theme")
   "h v" '(describe-variable :which-key "describe variable")
   "h w" '(woman :which-key "woman")
-
-  "i" '(:which-key "insert")
-  "i a" '(add-global-abbrev :which-key "write new abbrev")
-  "i f" '(yas-visit-snippet-file :which-key "visit snippet")
-  "i n" '(yas-new-snippet :which-key "new snippet")
-  "i s" '(yas-insert-snippet :which-key "insert snippet")
 
   "o" '(:which-key "org")
   "o e" '(org-edit-special :which-key "org edit special")
