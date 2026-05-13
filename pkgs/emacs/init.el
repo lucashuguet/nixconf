@@ -131,10 +131,19 @@
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
 
+(defun my/abbrev-case-sensitive-expand (orig-fun &rest args)
+  (let ((word (thing-at-point 'word t)))
+    (if (and word (not (string= word (downcase word))))
+      nil  ;; mixed/upper case: skip expansion entirely
+      (apply orig-fun args))))
+
+(advice-add 'expand-abbrev :around #'my/abbrev-case-sensitive-expand)
+
 (setq evil-default-cursor t)
 (setq evil-default-state 'normal)
 (setq evil-split-window-below t)
 (setq evil-vsplit-window-right t)
+(setq evil-want-abbrev-expand-on-insert-exit nil)
 (setq evil-want-c-i-jump nil) ;; fixes indent in org mode
 (setq evil-want-integration t)
 (setq evil-want-keybinding nil)
