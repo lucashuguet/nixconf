@@ -5,14 +5,14 @@
       interactiveShellInit = ''
         abbr -a !! --position anywhere (echo $history[1])
 
-      if test -e /run/secrets/hosts/(hostname)/komga_api;
-        set -x KOMGA_API (cat /run/secrets/hosts/(hostname)/komga_api)
-      end
+        if test -e /run/secrets/hosts/(hostname)/komga_api;
+          set -x KOMGA_API (cat /run/secrets/hosts/(hostname)/komga_api)
+        end
 
-      set fish_greeting
+        set fish_greeting
 
-      zoxide init fish | source
-      fastfetch
+        zoxide init fish | source
+        fastfetch
       '';
       shellAliases = {
         ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";
@@ -33,10 +33,11 @@
         e = "emacsclient -nw -c";
       };
       shellAbbrs = {
-        at = "aria2c --seed-time=0 --max-upload-limit=1";
-        als = "aria2c --seed-time=0 --max-upload-limit=1 --show-files";
-        ats = "aria2c --seed-time=0 --max-upload-limit=1 --select-file=";
-        ad = "aria2c --continue=true";
+        at = "aria2c -j8 -x16 -s16 --seed-time=0";
+        atl = "aria2c -j8 -x16 -s16 --seed-time=0 --show-files";
+        ats = "aria2c -j8 -x16 -s16 --seed-time=0 --select-file=";
+        ad = "aria2c -j8 -x16 -s16 -c";
+        ai = "aria2c -j8 -x16 -s16 -c --input-file=";
       };
     };
     programs.command-not-found.enable = false;
