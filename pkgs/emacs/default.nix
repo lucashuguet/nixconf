@@ -17,7 +17,7 @@
     # major modes
     org-superstar evil-org org-roam org-roam-ui
     rust-mode nix-ts-mode web-mode emmet-mode beancount
-    typst-ts-mode
+    typst-ts-mode markdown-mode
     (treesit-grammars.with-grammars (g: with g; [
       tree-sitter-bash
       tree-sitter-c
