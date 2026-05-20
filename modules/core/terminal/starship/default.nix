@@ -1,141 +1,141 @@
 {
-  flake.nixosModules.starship = {
-    programs.starship = {
-      enable = true;
-      settings = {
-        username = {
-          format = " [$user]($style)@";
-          show_always = true;
-          style_user = "red bold";
-          style_root = "red bold";
-        };
+  flake.nixosModules.starship = { pkgs, ... }: let
+    starshipConfig = (pkgs.formats.toml {}).generate "starship.toml" {
+      username = {
+        format = " [$user]($style)@";
+        show_always = true;
+        style_user = "red bold";
+        style_root = "red bold";
+      };
 
-        hostname = {
-          format = "[$hostname]($style) in ";
-          style = "bold dimmed red";
-          ssh_only = false;
-          disabled = false;
-        };
+      hostname = {
+        format = "[$hostname]($style) in ";
+        style = "bold dimmed red";
+        ssh_only = false;
+        disabled = false;
+      };
 
-        directory = {
-          style = "purple";
-          truncate_to_repo = true;
-          truncation_length = 0;
-          truncation_symbol = "repo: ";
-        };
+      directory = {
+        style = "purple";
+        truncate_to_repo = true;
+        truncation_length = 0;
+        truncation_symbol = "repo: ";
+      };
 
-        character = {
-          success_symbol = " [λ](bold red)";
-          error_symbol = " [×](bold red)";
-        };
+      character = {
+        success_symbol = " [λ](bold red)";
+        error_symbol = " [×](bold red)";
+      };
 
-        sudo = {
-          symbol = "sudo: ";
-        };
+      sudo = {
+        symbol = "sudo: ";
+      };
 
-        git_commit = {
-          tag_symbol = " tag ";
-        };
+      git_commit = {
+        tag_symbol = " tag ";
+      };
 
-        git_status = {
-          ahead = ">";
-          behind = "<";
-          diverged = "<>";
-          renamed = "r";
-          deleted = "x";
+      git_status = {
+        ahead = ">";
+        behind = "<";
+        diverged = "<>";
+        renamed = "r";
+        deleted = "x";
 
-          style = "white";
-        };
+        style = "white";
+      };
 
-        cmd_duration = {
-          format = "took [$duration]($style)";
-          min_time = 1;
-        };
+      cmd_duration = {
+        format = "took [$duration]($style)";
+        min_time = 1;
+      };
 
-        aws = {
-          symbol = " ";
-        };
+      aws = {
+        symbol = " ";
+      };
 
-        conda = {
-          symbol = " ";
-        };
+      conda = {
+        symbol = " ";
+      };
 
-        dart = {
-          symbol = " ";
-        };
+      dart = {
+        symbol = " ";
+      };
 
-        docker_context = {
-          symbol = " ";
-        };
+      docker_context = {
+        symbol = " ";
+      };
 
-        elixir = {
-          symbol = " ";
-        };
+      elixir = {
+        symbol = " ";
+      };
 
-        elm = {
-          symbol = " ";
-        };
+      elm = {
+        symbol = " ";
+      };
 
-        git_branch = {
-          symbol = " ";
-        };
+      git_branch = {
+        symbol = " ";
+      };
 
-        golang = {
-          symbol = " ";
-        };
+      golang = {
+        symbol = " ";
+      };
 
-        hg_branch = {
-          symbol = " ";
-        };
+      hg_branch = {
+        symbol = " ";
+      };
 
-        java = {
-          symbol = " ";
-        };
+      java = {
+        symbol = " ";
+      };
 
-        julia = {
-          symbol = " ";
-        };
+      julia = {
+        symbol = " ";
+      };
 
-        nim = {
-          symbol = " ";
-        };
+      nim = {
+        symbol = " ";
+      };
 
-        nix_shell = {
-          symbol = "󱄅 ";
-        };
+      nix_shell = {
+        symbol = "󱄅 ";
+      };
 
-        nodejs = {
-          symbol = " ";
-        };
+      nodejs = {
+        symbol = " ";
+      };
 
-        package = {
-          symbol = " ";
-        };
+      package = {
+        symbol = " ";
+      };
 
-        perl = {
-          symbol = " ";
-        };
+      perl = {
+        symbol = " ";
+      };
 
-        php = {
-          symbol = " ";
-        };
+      php = {
+        symbol = " ";
+      };
 
-        python = {
-          symbol = " ";
-        };
+      python = {
+        symbol = " ";
+      };
 
-        ruby = {
-          symbol = " ";
-        };
+      ruby = {
+        symbol = " ";
+      };
 
-        rust = {
-          symbol = " ";
-        };
+      rust = {
+        symbol = " ";
+      };
 
-        swift = {
-          symbol = " ";
-        };
+      swift = {
+        symbol = " ";
       };
     };
+  in {
+    environment.systemPackages = with pkgs; [ starship ];
+    environment.sessionVariables.STARSHIP_CONFIG = "${starshipConfig}";
   };
 }

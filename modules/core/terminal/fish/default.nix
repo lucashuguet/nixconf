@@ -9,10 +9,38 @@
           set -x KOMGA_API (cat /run/secrets/hosts/(hostname)/komga_api)
         end
 
+        set -g fish_transient_prompt 1
         set fish_greeting
 
         zoxide init fish | source
-        fastfetch
+
+        if test -n "$DISPLAY";
+          if test (id -u) -ne 0
+            fastfetch
+          end
+
+          function starship_transient_prompt_func
+            starship module character
+          end
+
+          starship init fish | source
+          enable_transience
+        end
+      '';
+      promptInit = ''
+        function fish_prompt
+          set -l last_status $status
+          set -l stat
+          if test $last_status -ne 0
+            set stat (set_color -o red)"[$last_status]"(set_color -o normal)
+          end
+
+          if contains -- --final-rendering $argv
+            echo (set_color -o red)"\$" (set_color normal)
+          else
+            echo (set_color -o red)$USER(set_color -o normal)"@"(set_color -o red)$hostname (set_color -o normal)"in" (set_color -o purple)(prompt_pwd) $stat "\$" (set_color normal)
+          end
+        end
       '';
       shellAliases = {
         ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";
@@ -41,6 +69,8 @@
       };
     };
     programs.command-not-found.enable = false;
+
+    users.users.root.shell = pkgs.fish;
 
     home-manager.users.${username} = {
       programs.fish.enable = true;
