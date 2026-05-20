@@ -14,19 +14,18 @@
     modules = [ self.nixosModules.hostT470 ];
   };
 
-  flake.nixosModules.hostT470 = { username, ... }: {
+  flake.nixosModules.hostT470 = { pkgs, username, ... }: {
     imports = [ inputs.disko.nixosModules.disko ] ++ [ self.diskoConfigurations.hostT470 ] ++ (with self.nixosModules; [
       # bare bones
       common secrets
 
       # apps
-      emacs code typst
-      filezilla localsend
+      emacs code study
+      localsend
       finances
-      firefox librewolf
       games
       impactor uxplay
-      libreoffice thunar thunderbird zathura
+      thunar
       mpd mpv
       optical virtualisation
 
@@ -39,6 +38,17 @@
       # window manager
       gnome hyprland
     ]);
+
+    environment.systemPackages = with pkgs; [
+      # design
+      gimp inkscape
+
+      # network
+      firefox librewolf thunderbird filezilla
+
+      # office
+      libreoffice zathura koreader
+    ];
 
     boot.loader.efi.canTouchEfiVariables = true;
 

@@ -24,18 +24,17 @@
       common secrets
 
       # apps
-      emacs code typst
-      filezilla localsend
-      finances
-      firefox librewolf
+      emacs code study
+      localsend
+      # finances
       games
       impactor uxplay
-      libreoffice thunar thunderbird zathura koreader
+      thunar
       mpd mpv
       optical virtualisation
 
       # core
-      cups
+      cups pcscd
 
       # display manager
       regreet
@@ -44,13 +43,22 @@
       gnome hyprland
     ]);
 
+
+    environment.systemPackages = with pkgs; [
+      # design
+      gimp inkscape
+
+      # network
+      firefox librewolf thunderbird filezilla
+
+      # office
+      libreoffice zathura koreader
+    ];
+
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModprobeConfig = ''
       options psmouse synaptics_intertouch=1
     '';
-
-    environment.systemPackages = with pkgs; [ pcsc-tools ];
-    services.pcscd.enable = true;
 
     services."06cb-009a-fingerprint-sensor" = {
       enable = true;

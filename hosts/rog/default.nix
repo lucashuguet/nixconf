@@ -28,12 +28,11 @@
 
       # apps
       emacs
-      filezilla
       finances
-      firefox librewolf qutebrowser
+      qutebrowser
       games
       mpd
-      typst
+      study
       virtualisation
 
       # core
@@ -45,6 +44,10 @@
       # window manager
       hyprland gnome
     ]);
+
+    environment.systemPackages = with pkgs; [
+      firefox librewolf thunderbird filezilla
+    ];
 
     # broken screen on 144hz
     boot.kernelParams = [ "video=1920x1080@60" ];

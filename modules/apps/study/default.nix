@@ -1,8 +1,6 @@
 { self, ... }: {
-  flake.nixosModules.study = { ... }: {
-    imports = with self.nixosModules; [
-      anki
-      maths
-    ];
+  flake.nixosModules.study = { pkgs, ... }: {
+    imports = with self.nixosModules; [ typst ];
+    environment.systemPackages = with pkgs; [ anki ];
   };
 }
