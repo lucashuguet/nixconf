@@ -1,6 +1,5 @@
 {
   flake.nixosModules.grub = {
-    boot.kernelParams = [ "quiet" ];
     boot.loader.grub = {
       enable = true;
       device = "nodev";

@@ -50,8 +50,6 @@
       libreoffice zathura koreader
     ];
 
-    boot.loader.efi.canTouchEfiVariables = true;
-
     sops.secrets = {
       "hosts/t470/komga_api".owner = username;
       "hosts/t470/private_key" = {

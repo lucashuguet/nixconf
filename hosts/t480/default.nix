@@ -55,7 +55,6 @@
       libreoffice zathura koreader
     ];
 
-    boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModprobeConfig = ''
       options psmouse synaptics_intertouch=1
     '';
