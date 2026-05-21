@@ -14,6 +14,7 @@
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
         (pkgs.writeScriptBin "gs" (builtins.readFile ./gs.sh))
 	    (pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
+	    (pkgs.writeScriptBin "roficombined" (builtins.readFile ./roficombined.sh))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./rofidrives.py))
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ./rofinmcli.py))
         (pkgs.writeScriptBin "rofipass" (builtins.readFile ./rofipass.sh))
