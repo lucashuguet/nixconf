@@ -57,12 +57,15 @@
 
     boot.extraModprobeConfig = ''
       options psmouse synaptics_intertouch=1
+      options thinkpad_acpi fan_control=1
     '';
 
     services."06cb-009a-fingerprint-sensor" = {
       enable = true;
       backend = "python-validity";
     };
+
+    services.thinkfan.enable = true;
 
     security.pam.services = lib.genAttrs
       [ "greetd" ]
