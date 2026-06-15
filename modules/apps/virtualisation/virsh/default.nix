@@ -4,11 +4,14 @@
       extraGroups = [ "libvirtd" ];
     };
 
-    environment.systemPackages = with pkgs; [
-      virt-manager virtiofsd
-    ];
+    environment.systemPackages = with pkgs; [ dnsmasq ];
+    networking.firewall.trustedInterfaces = [ "virbr0" ];
+    programs.virt-manager.enable = true;
 
-    virtualisation.libvirtd.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
   };
 }
