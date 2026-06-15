@@ -1,6 +1,6 @@
 {
   flake.nixosModules.alacritty = { pkgs, username, ... }: {
-    environment.systemPackages = with pkgs; [ unstable.alacritty ];
+    environment.systemPackages = with pkgs; [ alacritty ];
 
     home-manager.users.${username} = {
       home.file = {

@@ -2,7 +2,7 @@
   flake.nixosModules.mpv = { pkgs, username, ... }: {
     environment.systemPackages = with pkgs; [
       (mpv.override {
-        mpv = mpv-unwrapped.override {
+        mpv-unwrapped = mpv-unwrapped.override {
           cddaSupport = true;
         };
       })

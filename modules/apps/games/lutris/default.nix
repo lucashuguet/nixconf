@@ -2,7 +2,7 @@
   flake.nixosModules.lutris = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       lutris mangohud
-      wineWowPackages.stable wineWowPackages.waylandFull winetricks
+      wineWow64Packages.stable wineWow64Packages.waylandFull winetricks
     ];
 
     programs.gamescope = {

@@ -1,5 +1,5 @@
 {
   flake.nixosModules.nixLang = { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ nixd nixfmt-rfc-style ];
+    environment.systemPackages = with pkgs; [ nixd nixfmt ];
   };
 }

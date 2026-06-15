@@ -25,7 +25,7 @@ in {
     ]))
   ];
 
-  extraPackages = with pkgs; [
+  runtimePkgs = with pkgs; [
     nixd rust-analyzer clang-tools
   ];
 

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nvidia = { config, pkgs, username, ... }: {
+  flake.nixosModules.nvidia = { config, lib, pkgs, username, ... }: {
     boot = {
       initrd.kernelModules = [ "nvidia" ];
       extraModprobeConfig = ''
@@ -21,7 +21,7 @@
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = lib.mkDefault pkgs.linuxPackages.nvidiaPackages.stable;
 
       prime = {
         offload = {

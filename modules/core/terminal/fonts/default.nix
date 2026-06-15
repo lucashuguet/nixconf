@@ -2,9 +2,11 @@
   flake.nixosModules.fonts = { pkgs, ... }: {
     fonts = {
       packages = with pkgs; [
-        unstable.nerd-fonts.fantasque-sans-mono
+        nerd-fonts.fantasque-sans-mono
         noto-fonts noto-fonts-cjk-sans noto-fonts-color-emoji
       ];
+
+      fontDir.enable = true;
 
       fontconfig.defaultFonts = {
         serif = [ "Noto Serif" ];

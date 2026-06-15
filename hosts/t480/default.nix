@@ -55,6 +55,8 @@
       libreoffice zathura koreader
     ];
 
+    hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;
+
     boot.extraModprobeConfig = ''
       options psmouse synaptics_intertouch=1
       options thinkpad_acpi fan_control=1

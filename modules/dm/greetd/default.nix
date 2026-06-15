@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.regreet = { config, username, ... }: {
+  flake.nixosModules.regreet = { username, ... }: {
     services.greetd = {
       enable = true;
       settings.initial_session = {

@@ -1,6 +1,6 @@
 {
   flake.nixosModules.zathura = { pkgs, username, ... }: {
-    environment.systemPackages = with pkgs; [ unstable.zathura ];
+    environment.systemPackages = with pkgs; [ zathura ];
 
     home-manager.users.${username} = {
       home.file = {

@@ -56,8 +56,8 @@ light_color() {
     echo "#$(twolen $(printf '%x' ${light[0]}))$(twolen $(printf '%x' ${light[1]}))$(twolen $(printf '%x' ${light[2]}))"
 }
 
-update_swww() {
-    for i in $(find $HOME/.cache/swww/ -type f); do
+update_awww() {
+    for i in $(find $HOME/.cache/awww/ -type f); do
         rm $i
         echo "$directory/$file" | tee $i
     done
@@ -97,7 +97,7 @@ fi
 alacritty=$colors_path/alacritty.toml
 qutebrowser=$colors_path/qutebrowser.yml
 rofi=$colors_path/rofi.rasi
-hyprland=$colors_path/hyprland.conf
+hyprland=$colors_path/hyprland.lua
 hyprlock=$colors_path/hyprlock.conf
 waybar=$colors_path/waybar.css
 dunst=$colors_path/dunst.toml
@@ -161,14 +161,10 @@ echo "    lightfg: $(convert_rgba $lbackground);" | tee -a $rofi
 echo "    lightbg: $(convert_rgba $background);" | tee -a $rofi
 echo "}" | tee -a $rofi
 
-echo "general {" | tee $hyprland
-echo "    col.active_border = rgba(${lforeground:1}ee)" | tee -a $hyprland
-echo "    col.inactive_border = rgba(${lbackground:1}ee)" | tee -a $hyprland
-echo "}" | tee -a $hyprland
-echo "decoration {" | tee -a $hyprland
-echo "    shadow {" | tee -a $hyprland
-echo "        color = rgba(${background:1}ee)" | tee -a $hyprland
-echo "    }" | tee -a $hyprland
+echo "return {" | tee $hyprland
+echo "    accent = \"rgba(${lforeground:1}ee)\"," | tee -a $hyprland
+echo "    background = \"rgba(${background:1}ee)\"," | tee -a $hyprland
+echo "    lbackground = \"rgba(${lbackground:1}ee)\"," | tee -a $hyprland
 echo "}" | tee -a $hyprland
 
 echo "\$wallpaper = $wallpaper" | tee $hyprlock
@@ -220,11 +216,11 @@ echo "$lcyan" | tee -a $suckless
 echo "$lwhite" | tee -a $suckless
 
 if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-    swww img "$wallpaper" -t none
+    awww img "$wallpaper" -t none
 else
     feh --no-fehbg --bg-fill "$wallpaper"
     xdotool key "Super+F5"
-    # update_swww
+    # update_awww
 fi
 
 hyprctl reload

@@ -8,7 +8,7 @@
     extraHyprConfig,
     ...
   }: let
-    hyprConfig = builtins.readFile ./hyprland.conf;
+    hyprConfig = builtins.readFile ./hyprland.lua;
   in{
     imports = with self.nixosModules; [
       bpytop
@@ -24,26 +24,29 @@
     };
 
     environment.systemPackages = with pkgs; [
-      swww
+      brightnessctl
       hyprshot
+      awww
       wl-clipboard
       wlr-randr
     ];
 
-    programs.light.enable = true;
     users.users.${username}.extraGroups = [ "video" ];
 
     home-manager.users.${username} = {
       home.file = {
-        ".config/hypr/hyprland.conf".text = ''
-          monitor = ,${resolution},0x0,1
-
+        ".config/hypr/hyprland.lua".text = ''
+          hl.monitor({
+            output = "",
+            mode = "${resolution}",
+            position = "0x0",
+            scale = 1
+          })
           ${extraHyprConfig}
-
           ${lib.optionalString nvidia ''
-            env = LIBVA_DRIVER_NAME,nvidia
-            env = GBM_BACKEND,nvidia-drm
-            env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+            hl.env("LIBVA_DRIVER_NAME", "nvidia")
+            hl.env("GBM_BACKEND", "nvidia-drm")
+            hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
           ''}
 
           ${hyprConfig}

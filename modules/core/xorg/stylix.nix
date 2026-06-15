@@ -24,7 +24,7 @@
         };
 
         monospace = {
-          package = pkgs.unstable.nerd-fonts.fantasque-sans-mono;
+          package = pkgs.nerd-fonts.fantasque-sans-mono;
           name = "FantasqueSansM Nerd Font";
         };
 
