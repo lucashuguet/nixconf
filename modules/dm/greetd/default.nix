@@ -3,7 +3,7 @@
     services.greetd = {
       enable = true;
       settings.initial_session = {
-        command = "Hyprland > /dev/null 2>&1";
+        command = "start-hyprland > /dev/null 2>&1";
         user = username;
       };
     };
