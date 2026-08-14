@@ -5,5 +5,7 @@
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
     };
+
+    environment.sessionVariables.PROTON_ENABLE_WAYLAND = 1;
   };
 }

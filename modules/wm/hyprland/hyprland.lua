@@ -71,6 +71,11 @@ hl.config({
         disable_hyprland_logo = true,
         disable_autoreload = true,
     },
+
+    xwayland = {
+        enabled = true,
+        force_zero_scaling = true,
+    },
 })
 
 hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
