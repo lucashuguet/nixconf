@@ -46,7 +46,7 @@
 
     environment.systemPackages = with pkgs; [
       # design
-      gimp inkscape
+      gimp inkscape kdePackages.kdenlive
 
       # network
       firefox librewolf thunderbird filezilla
