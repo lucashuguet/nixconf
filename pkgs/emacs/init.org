@@ -545,6 +545,15 @@
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-ts-mode))
 #+end_src
+** js
+#+begin_src emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+  (require 'astro-ts-mode)
+  (add-to-list 'auto-mode-alist '("\\.astro\\'" . astro-ts-mode))
+#+end_src
 * utilities
 ** magit
 #+begin_src emacs-lisp

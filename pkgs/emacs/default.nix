@@ -17,12 +17,14 @@
     # major modes
     org-superstar evil-org org-roam org-roam-ui
     rust-mode nix-ts-mode web-mode emmet-mode beancount
-    typst-ts-mode markdown-mode
+    typst-ts-mode markdown-mode astro-ts-mode
     (treesit-grammars.with-grammars (g: with g; [
+      tree-sitter-astro
       tree-sitter-bash
       tree-sitter-c
       tree-sitter-cmake
       tree-sitter-cpp
+      tree-sitter-css
       tree-sitter-dockerfile
       tree-sitter-html
       tree-sitter-javascript
@@ -32,6 +34,7 @@
       tree-sitter-python
       tree-sitter-rust
       tree-sitter-toml
+      tree-sitter-tsx
       tree-sitter-typescript
       tree-sitter-typst
       tree-sitter-yaml

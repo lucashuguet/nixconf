@@ -478,6 +478,13 @@
 
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-ts-mode))
 
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+(require 'astro-ts-mode)
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . astro-ts-mode))
+
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
 
 (require 'magit)
