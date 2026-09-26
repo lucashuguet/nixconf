@@ -12,7 +12,7 @@
         (pkgs.writeScriptBin "createcbz" (builtins.readFile ./createcbz.py))
         (pkgs.writeScriptBin "epub2cbz" (builtins.readFile ./epub2cbz.sh))
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
-        (pkgs.writeScriptBin "gs" (builtins.readFile ./gs.sh))
+        (pkgs.writeScriptBin "run_gamescope" (builtins.readFile ./run_gamescope.sh))
 	    (pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
 	    (pkgs.writeScriptBin "roficombined" (builtins.readFile ./roficombined.sh))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./rofidrives.py))
