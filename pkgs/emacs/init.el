@@ -139,6 +139,10 @@
 
 (advice-add 'expand-abbrev :around #'my/abbrev-case-sensitive-expand)
 
+(add-hook 'before-save-hook
+        (lambda ()
+          (untabify (point-min) (point-max))))
+
 (setq evil-default-cursor t)
 (setq evil-default-state 'normal)
 (setq evil-split-window-below t)
