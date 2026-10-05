@@ -7,9 +7,12 @@
       polarity = "dark";
       autoEnable = false;
       cursor = {
-        package = pkgs.capitaine-cursors;
-        name = "capitaine-cursors";
-        size = 32;
+        package = pkgs.callPackage ../../../pkgs/wha-cursors {};
+        name = "VerPinceau";
+        size = 64;
+        # package = pkgs.capitaine-cursors;
+        # name = "capitaine-cursors";
+        # size = 32;
       };
 
       fonts = {
