@@ -55,6 +55,8 @@
 
       # office
       libreoffice koreader
+
+      unstable.exegol
     ];
 
     hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;

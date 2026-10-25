@@ -15,7 +15,10 @@
     nixpkgs.overlays = [
       (import inputs.rust-overlay)
       (final: prev: {
-        unstable = import inputs.nixpkgs-unstable { inherit system; };
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config = prev.config;
+        };
       })
     ];
 
