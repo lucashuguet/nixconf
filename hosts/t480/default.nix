@@ -26,6 +26,8 @@
       # apps
       emacs code study
       localsend
+      zathura
+
       # finances
       games
       impactor uxplay
@@ -52,7 +54,7 @@
       firefox librewolf thunderbird filezilla
 
       # office
-      libreoffice zathura koreader
+      libreoffice koreader
     ];
 
     hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;
