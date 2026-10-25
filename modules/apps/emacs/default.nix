@@ -7,7 +7,7 @@
 
   flake.nixosModules.emacs = { pkgs, username, ... }: {
     environment.systemPackages = [
-      pkgs.ripgrep
+      pkgs.ripgrep pkgs.d2
       (inputs.wrappers.lib.evalPackage [
         ../../../pkgs/emacs { inherit pkgs; }
       ])

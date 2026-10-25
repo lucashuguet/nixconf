@@ -170,6 +170,16 @@
 (require 'evil-anzu)
 (global-anzu-mode)
 
+(unless (display-graphic-p)
+  (require 'evil-terminal-cursor-changer)
+  (setq evil-normal-state-cursor  'box
+    evil-visual-state-cursor  'box
+    evil-motion-state-cursor  'box
+    evil-insert-state-cursor  'bar
+    evil-replace-state-cursor 'hbar
+    evil-emacs-state-cursor   'bar)
+  (evil-terminal-cursor-changer-activate))
+
 (setq dired-listing-switches "-DAhlv --group-directories-first")
 
 (require 'dired)
@@ -266,6 +276,7 @@
 ;;      (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
 ;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
 ;;      (cmake "https://github.com/uyha/tree-sitter-cmake")))
+(require 'treesit)
 
 (require 'tempel)
 
@@ -278,124 +289,135 @@
 (global-tempel-abbrev-mode)
 
 (setq org-startup-folded t)
-(setq org-hidden-keywords '(title))
-(setq org-return-follows-link t)
-
-(setq org-todo-keywords
-  (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
-
-(setq-default org-enforce-todo-dependencies t)
-
-(setq org-todo-keyword-faces
-  (quote (("TODO" :foreground "indian red" :weight bold)
-           ("NEXT" :foreground "light blue" :weight bold)
-           ("DONE" :foreground "light green" :weight bold)
-           ("WAITING" :foreground "chocolate" :weight bold)
-           ("CANCELLED" :foreground "dim gray" :weight bold))))
-
-(setq-default org-export-with-todo-keywords nil)
-
-(setq org-hide-leading-stars nil)
-(setq org-indent-mode-turns-on-hiding-stars nil)
-
-(setq org-ellipsis " ▼ ")
-
-(setq org-hide-emphasis-markers t)
-
-(defun my/buffer-face-mode-variable ()
-  "Set font to a variable width (proportional) fonts in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "FantasqueSansM Nerd Font"
-                                 :height 160
-                                 :width normal))
-  (buffer-face-mode))
-
-(defun my/set-faces-org ()
   (setq org-hidden-keywords '(title))
-  (set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+  (setq org-return-follows-link t)
 
-  (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+  (setq org-todo-keywords
+    (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+             (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
 
-  (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.2) ;\large
-  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.44) ;\Large
-  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.728) ;\LARGE
+  (setq-default org-enforce-todo-dependencies t)
 
-  (setq org-cycle-level-faces nil)
-  (setq org-n-level-faces 4)
+  (setq org-todo-keyword-faces
+    (quote (("TODO" :foreground "indian red" :weight bold)
+             ("NEXT" :foreground "light blue" :weight bold)
+             ("DONE" :foreground "light green" :weight bold)
+             ("WAITING" :foreground "chocolate" :weight bold)
+             ("CANCELLED" :foreground "dim gray" :weight bold))))
 
-  (set-face-attribute 'org-document-title nil
-    :height 2.074
-    :foreground 'unspecified
-    :inherit 'org-level-8))
+  (setq-default org-export-with-todo-keywords nil)
 
-(defun my/set-keyword-faces-org ()
-  (mapc (lambda (pair) (push pair prettify-symbols-alist))
-    '(;; Syntax
-       ("TODO" .     "")
-       ("DONE" .     "")
-       ("WAITING" .  "")
-       ("HOLD" .     "")
-       ("NEXT" .     "")
-       ("CANCELLED" . "")
-       ("#+begin_quote" . "“")
-       ("#+end_quote" . "”")))
-  )
+  (setq org-hide-leading-stars nil)
+  (setq org-indent-mode-turns-on-hiding-stars nil)
 
-(defun my/style-org ()
-  (my/set-faces-org)
-  (my/set-keyword-faces-org))
+  (setq org-ellipsis " ▼ ")
+
+  (setq org-hide-emphasis-markers t)
+
+  (defun my/buffer-face-mode-variable ()
+    "Set font to a variable width (proportional) fonts in current buffer"
+    (interactive)
+    (setq buffer-face-mode-face '(:family "FantasqueSansM Nerd Font"
+                                   :height 160
+                                   :width normal))
+    (buffer-face-mode))
+
+  (defun my/set-faces-org ()
+    (setq org-hidden-keywords '(title))
+    (set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+
+    (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+    (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+    (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+    (set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+
+    (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.2) ;\large
+    (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.44) ;\Large
+    (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.728) ;\LARGE
+
+    (setq org-cycle-level-faces nil)
+    (setq org-n-level-faces 4)
+
+    (set-face-attribute 'org-document-title nil
+      :height 2.074
+      :foreground 'unspecified
+      :inherit 'org-level-8))
+
+  (defun my/set-keyword-faces-org ()
+    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+      '(;; Syntax
+         ("TODO" .     "")
+         ("DONE" .     "")
+         ("WAITING" .  "")
+         ("HOLD" .     "")
+         ("NEXT" .     "")
+         ("CANCELLED" . "")
+         ("#+begin_quote" . "“")
+         ("#+end_quote" . "”")))
+    )
+
+  (defun my/style-org ()
+    (my/set-faces-org)
+    (my/set-keyword-faces-org))
 
 
-;; prevent org capture from saving bookmarks
-(setq org-bookmark-names-plist nil)
+  ;; prevent org capture from saving bookmarks
+  (setq org-bookmark-names-plist nil)
 
-(setq org-superstar-item-bullet-alist
-  '((?* . ?•)
-     (?+ . ?➤)
-     (?- . ?•)))
+  (setq org-superstar-item-bullet-alist
+    '((?* . ?•)
+       (?+ . ?➤)
+       (?- . ?•)))
 
-(setq org-superstar-leading-bullet ?\s)
-(setq org-superstar-headline-bullets-list
-  '("◉" "◈" "○" "▷"))
+  (setq org-superstar-leading-bullet ?\s)
+  (setq org-superstar-headline-bullets-list
+    '("◉" "◈" "○" "▷"))
 
-(require 'org)
-(require 'org-superstar)
-(org-superstar-restart)
+  (require 'org)
+  (require 'org-superstar)
+  (org-superstar-restart)
 
-(add-hook 'org-mode-hook 'org-superstar-mode)
+  (add-hook 'org-mode-hook 'org-superstar-mode)
 
-(add-hook 'org-mode-hook 'my/style-org)
-(add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook 'my/style-org)
+  (add-hook 'org-mode-hook 'org-indent-mode)
 
-(org-babel-do-load-languages
-  'org-babel-load-languages (quote ((emacs-lisp . t)
-                                     (sqlite . t)
-                                     (python . t))))
+  (require 'ob-d2)
+  (org-babel-do-load-languages
+    'org-babel-load-languages (quote ((emacs-lisp . t)
+                                       (sqlite . t)
+                                       (python . t)
+                                       (d2 . t))))
 
-(require 'org-src)
-(define-key org-src-mode-map (kbd "C-c C-c") #'org-edit-src-exit)
+  (require 'org-src)
+  (define-key org-src-mode-map (kbd "C-c C-c") #'org-edit-src-exit)
 
-(require 'evil-org)
-(require 'evil-org-agenda)
-(add-hook 'org-mode-hook 'evil-org-mode)
-(evil-org-agenda-set-keys)
+  (require 'evil-org)
+  (require 'evil-org-agenda)
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-agenda-set-keys)
 
-(setq org-roam-directory (file-truename "~/Documents/org/roam"))
-(setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-directory (file-truename "~/Documents/org/roam"))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
 
-(require 'org-roam)
-(require 'org-roam-protocol)
-(org-roam-db-autosync-mode)
+  (require 'org-roam)
+  (require 'org-roam-protocol)
+  (org-roam-db-autosync-mode)
 
-(setq org-roam-ui-sync-theme t)
-(setq org-roam-ui-follow t)
-(setq org-roam-ui-update-on-save t)
-(setq org-roam-ui-open-on-start nil)
-(require 'org-roam-ui)
+  (setq org-roam-ui-sync-theme t)
+  (setq org-roam-ui-follow t)
+  (setq org-roam-ui-update-on-save t)
+  (setq org-roam-ui-open-on-start nil)
+  (require 'org-roam-ui)
+
+(setq org-appear-autoemphasis t)
+(setq org-appear-autolinks t)
+(setq org-appear-autosubmarkers t)
+(setq org-appear-autoentities t)
+(setq org-appear-autokeywords t)
+
+(require 'org-appear)
+(add-hook 'org-mode-hook 'org-appear-mode)
 
 (setq-default lisp-indent-offset 2)
 ;; (setq evil-shift-width 2)
@@ -525,7 +547,6 @@
   "a F" '(affe-grep :which-key "affe grep")
   "a g" '(magit-status-here :which-key "magit")
   "a i" '(ibuffer :which-key "ibuffer")
-  "a r" '(org-roam-ui-open :which-key "org roam ui")
   "a s" '(gptel-send :which-key "gptel send")
   "a S" '(gptel :which-key "gptel")
 
@@ -567,7 +588,7 @@
   "o" '(:which-key "org")
   "o e" '(org-edit-special :which-key "org edit special")
   "o E" '(org-export-dispatch :which-key "org export dispatch")
-  "o i" '(org-toggle-inline-images :which-key "toggle inline images")
+  "o i" '(org-link-preview :which-key "link preview")
   "o R" '(org-mode-restart :which-key "restart org")
   "o t" '(org-babel-tangle :which-key "tangle")
 
@@ -575,6 +596,7 @@
   "o r f" '(org-roam-node-find :which-key "org roam node find")
   "o r i" '(org-roam-node-insert :which-key "org roam node insert")
   "o r s" '(org-roam-db-sync :which-key "org roam sync db")
+  "o r u" '(org-roam-ui-open :which-key "org roam ui")
 
   "q" '(:which-key "quit")
   "q f" '(delete-frame :which-key "quit emacsclient")

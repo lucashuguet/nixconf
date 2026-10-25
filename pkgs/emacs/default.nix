@@ -9,13 +9,16 @@
     dashboard
 
     # behaviour related
-    evil evil-collection evil-commentary evil-vimish-fold evil-anzu
+    evil evil-collection evil-commentary evil-vimish-fold evil-anzu evil-terminal-cursor-changer
     nerd-icons-dired diredfl peep-dired
     eglot corfu nerd-icons-corfu cape
     tempel
 
+    # babel
+    ob-d2
+
     # major modes
-    org-superstar evil-org org-roam org-roam-ui
+    org-superstar evil-org org-roam org-roam-ui org-appear
     rust-mode nix-ts-mode web-mode emmet-mode beancount
     typst-ts-mode markdown-mode astro-ts-mode
     (treesit-grammars.with-grammars (g: with g; [
