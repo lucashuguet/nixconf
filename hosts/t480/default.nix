@@ -58,7 +58,7 @@
 
       unstable.exegol
 
-      cage
+      cage wstunnel ollama claude-code
     ];
 
     hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;
