@@ -13,8 +13,8 @@
         (pkgs.writeScriptBin "epub2cbz" (builtins.readFile ./epub2cbz.sh))
         (pkgs.writeScriptBin "gamemode" (builtins.readFile ./gamemode.sh))
         (pkgs.writeScriptBin "run_gamescope" (builtins.readFile ./run_gamescope.sh))
-	    (pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
-	    (pkgs.writeScriptBin "roficombined" (builtins.readFile ./roficombined.sh))
+        (pkgs.writeScriptBin "roficompose" (builtins.readFile ./roficompose.py))
+        (pkgs.writeScriptBin "roficombined" (builtins.readFile ./roficombined.sh))
         (pkgs.writeScriptBin "rofidrives" (builtins.readFile ./rofidrives.py))
         (pkgs.writeScriptBin "rofinmcli" (builtins.readFile ./rofinmcli.py))
         (pkgs.writeScriptBin "rofipass" (builtins.readFile ./rofipass.sh))
@@ -22,6 +22,7 @@
         (pkgs.writeScriptBin "rofisink" (builtins.readFile ./rofisink.py))
         (pkgs.writeScriptBin "rofisurf" (builtins.readFile ./rofisurf.py))
         (pkgs.writeScriptBin "rofitheme" (builtins.readFile ./rofitheme.sh))
+        (pkgs.writeScriptBin "rofiwg" (builtins.readFile ./rofiwg.sh))
         (pkgs.writeScriptBin "waybar-battery" (builtins.readFile ./battery.sh))
         (pkgs.writeScriptBin "aurastatic" ''
           asusctl aura static -c $(cat ~/.config/colors/aura.txt)

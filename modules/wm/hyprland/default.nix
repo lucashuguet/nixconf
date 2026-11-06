@@ -34,6 +34,7 @@
     users.users.${username}.extraGroups = [ "video" ];
 
     home-manager.users.${username} = {
+      services.hyprpolkitagent.enable = true;
       home.file = {
         ".config/hypr/hyprland.lua".text = ''
           hl.monitor({

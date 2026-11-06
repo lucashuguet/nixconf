@@ -158,6 +158,7 @@ hl.bind("SUPER + V",             hl.dsp.exec_cmd("alacritty -e pulsemixer"))
 hl.bind("SUPER + X",             hl.dsp.exec_cmd("rofishutdown"))
 
 hl.bind("ALT + SHIFT + A",       hl.dsp.exec_cmd("roficompose alacritty"))
+hl.bind("ALT + SHIFT + N",       hl.dsp.exec_cmd("rofiwg"))
 hl.bind("ALT + SHIFT + P",       hl.dsp.exec_cmd("rofipass otp"))
 hl.bind("ALT + SHIFT + V",       hl.dsp.exec_cmd("roficombined"))
 hl.bind("ALT + A",               hl.dsp.exec_cmd("roficompose alacritty bypass"))
